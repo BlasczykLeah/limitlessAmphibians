@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454f5ae9a6bfd084193045290f633dfc, type: 3}
   m_Name: Wincon 2
   m_EditorClassIdentifier: 
+  sprite: {fileID: 1228386461570299458, guid: cd4405e7d4f149440a15bfa85cbcf2ab, type: 3}
   frog: 5
   dragon: 0
   gator: 0

@@ -34,8 +34,11 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void PlayLimit() {
-        print("I am playing a limit");
+    public void PlayLimit(Limit limit) {
+
+        int num = Random.Range(0, players.Count);
+        players[num].limit = limit;
+
     }
 
     public void PlaySwap() {

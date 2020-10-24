@@ -69,6 +69,7 @@ io.sockets.on('connection', (socket) => {
     });
 
     socket.on('loadHands', () => {
+        console.log('dealing cards to all players');
         handsToAllPlayers();
     });
 
@@ -77,7 +78,8 @@ io.sockets.on('connection', (socket) => {
 
     function handsToAllPlayers() {
         Users.forEach((value, key, map) => {
-            drawHand(key.id);
+            console.log('dealing cards to player: ' + key);
+            drawHand(key);
         });
     }
 
@@ -102,7 +104,7 @@ io.sockets.on('connection', (socket) => {
     function resetDeck() {
         // sets the deck back to default, and emptys the discard
         DiscardPile = [];
-        Deck = ['string1', 'string2', 'the entire deck written here'];
+        Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Limit1', 'Limit2', 'Limit3', 'Limit4', 'Limit5', 'Limit6'];
         console.log('deck is ready')
     }
 

@@ -15,8 +15,8 @@ public class Networking : MonoBehaviour
     char quote = '"';
 
     public List<string> playerSockets;
-    string mySocket;
-    Player myPlayer;
+    string mySocket = "";
+    int myPlayerIndex = -1;
 
     public bool host;
 
@@ -107,12 +107,18 @@ public class Networking : MonoBehaviour
             thing.name = jsonData.GetField("username").ToString().Trim('"');
             thing.id = jsonData.GetField("id").ToString().Trim('"');
 
-            if (thing.id == mySocket) myPlayer = thing;
+            if (thing.id == mySocket) myPlayerIndex = i;
 
             GameManager.instance.players.Add(thing);
         }
 
-        if (host) socket.Emit("loadHands");
+        Debug.Log("Players loaded successfully");
+
+        if (host)
+        {
+            Debug.Log("loading cards...");
+            socket.Emit("loadHands");
+        }
 
         //GameManager.instance.ready = true;
     }
@@ -136,11 +142,16 @@ public class Networking : MonoBehaviour
 
     void newHand(SocketIOEvent evt)
     {
-        if (myPlayer != null)
+        if (myPlayerIndex != -1)
         {
-            myPlayer.Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
-            myPlayer.Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"')).GetComponent<Card>());
-            myPlayer.Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card3").ToString().Trim('"')).GetComponent<Card>());
+            GameObject[] newHand = new GameObject[3];
+
+            //GameManager.instance.players[myPlayerIndex].Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
+            newHand[0] = CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"'));
+            newHand[1] = CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"'));
+            newHand[2] = CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"'));
+
+            Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
         }
         else Debug.LogError("Player instance not saved. Cannot add cards.");
 

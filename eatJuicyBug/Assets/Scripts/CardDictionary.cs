@@ -26,7 +26,7 @@ public class CardDictionary : MonoBehaviour
     {
         if (cards.ContainsKey(name)) return cards[name];
 
-        Debug.LogError("invalid card name given");
+        Debug.LogError("invalid card name given: " + name);
         return null;
     }
 }

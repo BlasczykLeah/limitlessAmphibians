@@ -134,5 +134,10 @@ public class Networking : MonoBehaviour
         socket.Emit("drawCard");
     }
 
+    public void discardCard(string cardName)
+    {
+        socket.Emit("discardCard", new JSONObject(quote + cardName + quote));
+    }
+
     #endregion
 }

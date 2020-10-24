@@ -11,6 +11,9 @@ app.get('/', function (req, res) {
 
 var Users = new Map();
 
+var Deck = [];
+var DiscardPile = [];
+
 
 io.sockets.on('connection', (socket) => {
     console.log('a user connected');
@@ -44,9 +47,57 @@ io.sockets.on('connection', (socket) => {
     });
 
     socket.on('loadGame', () => {
+        console.log('setting deck...')
+        resetDeck();
         io.emit('loadGameScene');
     });
 
+    socket.on('playCard', (card) => {   //sending card played to everyone
+        console.log(Users[socket.id].username + ' played a ' + card + ' card');
+        io.emit('cardPlayed', { card: card, id: socket.id });
+    });
+
+    socket.on('drawCard', () => {
+        console.log(Users[socket.id].username + ' drew a card');
+        socket.emit('drewCard', { card: drawCard() });
+        //maybe send something to everyone else updating hand count
+    });
+
+    socket.on('discardCard', (card) => {
+        DiscardPile.push(card);
+    });
+
+
+
+    function drawCard() {
+        if (Deck.length == 0) discardToDeck();
+
+        var rand = Math.floor(Math.random() * Deck.length);
+        var card = Deck[rand];
+
+        var swap = Deck[rand];
+        Deck[rand] = Deck[Deck.length - 1];
+        Deck[Deck.length - 1] = swap;
+        Deck.pop();
+
+        return card;
+    }
+
+    function resetDeck() {
+        // sets the deck back to default, and emptys the discard
+        DiscardPile = [];
+        Deck = ['string1', 'string2', 'the entire deck written here'];
+        console.log('deck is ready')
+    }
+
+    function discardToDeck() {
+        if (Deck.length == 0) Deck = DiscardPile;
+        else DiscardPile.forEach((value, index, array) => { // might only need value
+            Deck.push(value);
+        });
+
+        DiscardPile = [];
+    }
 
 
 

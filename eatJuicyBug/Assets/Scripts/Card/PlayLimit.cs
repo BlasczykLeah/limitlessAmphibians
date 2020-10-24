@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayLimit : CardEffect
 {
+    public Limit limit;
     public override void PlayCard() {
-        GameManager.instance.PlayLimit();
+        GameManager.instance.PlayLimit(limit);
     }
 
 

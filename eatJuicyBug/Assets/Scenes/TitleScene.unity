@@ -1754,7 +1754,7 @@ MonoBehaviour:
   nameField: {fileID: 481274016}
   usernameList: {fileID: 515714432}
   textPrefab: {fileID: 2641536181404752600, guid: 9c72d3ec7bd50494e973e641d9c65004, type: 3}
-  playButton: {fileID: 0}
+  playButton: {fileID: 150456905}
 --- !u!4 &1821805165
 Transform:
   m_ObjectHideFlags: 0

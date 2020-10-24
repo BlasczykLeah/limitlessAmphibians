@@ -34,9 +34,12 @@ public class Networking : MonoBehaviour
         socket.On("removeUser", removeUser);
         socket.On("allUsers", allUsers);
         socket.On("loadGameScene", gameScene);
+        socket.On("cardPlayed", recieveCardPlayed);
+        socket.On("drewCard", recieveCardDrawn);
     }
 
-    // This is the listener function definition
+    #region Starting Game
+
     void onConnectionEstabilished(SocketIOEvent evt)
     {
         Debug.Log("Player is connected: " + evt.data.GetField("id"));
@@ -105,4 +108,31 @@ public class Networking : MonoBehaviour
         Debug.Log("Attempting to load game scene");
         SceneManager.LoadScene(1);
     }
+
+    #endregion
+
+    #region Game Functions
+
+    void recieveCardPlayed(SocketIOEvent evt)
+    {
+        string cardString = evt.data.GetField("card").ToString().Trim('"');
+        string playerID = evt.data.GetField("id").ToString().Trim('"');
+    }
+
+    void recieveCardDrawn(SocketIOEvent evt)
+    {
+        string cardString = evt.data.GetField("card").ToString().Trim('"');
+    }
+
+    void playCard(string cardName)
+    {
+        socket.Emit("playCard", new JSONObject(quote + cardName + quote));
+    }
+
+    void drawCard()
+    {
+        socket.Emit("drawCard");
+    }
+
+    #endregion
 }

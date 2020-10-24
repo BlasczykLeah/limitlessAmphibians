@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 454f5ae9a6bfd084193045290f633dfc, type: 3}
-  m_Name: Wincon 2
+  m_Name: Wincon 6
   m_EditorClassIdentifier: 
   frog: 0
   dragon: 0
   gator: 0
   azolotl: 0
-  lizard: 0
+  lizard: 5
   dino: 0

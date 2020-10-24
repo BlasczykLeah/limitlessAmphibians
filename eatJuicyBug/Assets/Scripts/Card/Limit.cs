@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Limit : MonoBehaviour
+public abstract class Limit : MonoBehaviour
 {
-    //Cannot play frogs. Sorry sydney
     
-
+    public virtual bool CheckLimit(CardType type, CreatureType creature) {
+        return true;
+    }
+    
 }

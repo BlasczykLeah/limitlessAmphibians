@@ -15,11 +15,15 @@ public class CardData : MonoBehaviour
     public List<CardEffect> cardEffects = new List<CardEffect>();
 
     public void Play() {
-        for(int i = 0; i < cardEffects.Count; i++) {
-            if(type == CardType.Creature) {  
-                cardEffects[i].DetermineCreatureType(c_type);
+        if (GameManager.instance.players[0].limit.CheckLimit(type, c_type)) { // checks limit
+            for (int i = 0; i < cardEffects.Count; i++) {
+                if (type == CardType.Creature) {
+                    cardEffects[i].DetermineCreatureType(c_type);
+                }
+                cardEffects[i].PlayCard();
             }
-            cardEffects[i].PlayCard();
+        } else {
+            print("Cannot play this card.");
         }
     }
 }

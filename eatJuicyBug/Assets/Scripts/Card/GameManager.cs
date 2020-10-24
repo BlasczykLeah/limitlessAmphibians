@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager instance;
-    private List<Player> players = new List<Player>();
-    
+    public List<Player> players = new List<Player>();
+
     private void Awake() {
-        if(instance == null) {
+        if (instance == null) {
             instance = this;
         } else {
             Destroy(this);
         }
+
+
+
     }
-    
+
     //you draw a card...yay
     public void DrawCard() {
         //Card card = Deck.instance.cards[Deck.instance.cards.Count - 1];    
@@ -31,4 +33,13 @@ public class GameManager : MonoBehaviour
         print("I am playing a limit");
     }
 
+    public void PlaySwap() {
+
+    }
+
+    public void PlayDestroy() {
+
+    }
+
+    
 }

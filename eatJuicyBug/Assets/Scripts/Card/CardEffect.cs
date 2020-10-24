@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class CardEffect : MonoBehaviour
 {
-    
+    public virtual void DetermineCreatureType(CreatureType myType) {
+
+    }
     public virtual void PlayCard() {
         //Do things
     }

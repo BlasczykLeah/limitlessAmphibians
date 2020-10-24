@@ -12,11 +12,21 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
     }
+    
+    //you draw a card...yay
+    public void DrawCard() {
+        //Card card = Deck.instance.cards[Deck.instance.cards.Count - 1];    
+    }
+
     // ALL CARD FUNCTIONS
-    public void PlayCreature() {
-        
+    public void PlayCreature(CreatureType type) {
 
+        print("I am playing a " + type.ToString());
 
+    }
+
+    public void PlayLimit() {
+        print("I am playing a limit");
     }
 
 }

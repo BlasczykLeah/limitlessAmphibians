@@ -1,1 +1,1 @@
-﻿public enum CreatureType { Frog, Dragon, Gator, Axolotl, Lizard, Dino, None };
+﻿public enum CreatureType { Frog, Dragon, Gator, Axolotl, Lizard, Dino, Cat, Box, None };

@@ -2,130 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SocketIO;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Networking : MonoBehaviour
 {
-    public static Networking inst;
+    [TextArea]
+    public string serverQuickRef;
 
+    public static Networking server;
     SocketIOComponent socket;
-    //HighScoreFunctions hsf;
 
-    int highScoreLoadIndex = 0;
-    List<HighScore> highScores;
+    char quote = '"';
+
+    public List<string> playerSockets;
 
     private void Awake()
     {
-        if (inst) Destroy(gameObject);
-        else inst = this;
+        if (server) Destroy(gameObject);
+        else server = this;
 
         DontDestroyOnLoad(gameObject);
+        playerSockets = new List<string>();
 
         socket = GetComponent<SocketIOComponent>();
-        socket.Connect();
     }
 
     void Start()
     {
         socket.On("connectionmessage", onConnectionEstabilished);
-        socket.On("LoadScore", LoadScore);
-        socket.On("ScoresUpdated", SendToUI);
+        socket.On("users", loadUsers);
+        socket.On("removeUser", removeUser);
     }
 
     // This is the listener function definition
     void onConnectionEstabilished(SocketIOEvent evt)
     {
         Debug.Log("Player is connected: " + evt.data.GetField("id"));
-        SendScore("coolname", 3.2345F);
     }
 
-    public void button(int num)
+    public void newUsername(string name)
     {
-        JSONObject test = new JSONObject(num);
-        socket.Emit("buttonClicked", test);
+        name = quote + name + quote;
+
+        JSONObject nameUpload = new JSONObject(name);
+        socket.Emit("updateUsername", nameUpload);
     }
 
-    public void LoadScore(SocketIOEvent evt)
+    void loadUsers(SocketIOEvent evt)
     {
-        string newName = evt.data.GetField("name").ToString();
-        newName.Trim('"');
+        Debug.Log("loading usernames...");
 
-        if (newName != "" && newName != "undefined")
+        for (int i = 0; i < evt.data.Count; i++)
         {
-            string tempScore = evt.data.GetField("score").ToString();
-            tempScore.Trim('"');
+            JSONObject jsonData = evt.data.GetField(i.ToString());
 
-            Debug.Log("Adding " + newName + ", " + tempScore);
+            Debug.Log(jsonData.GetField("username"));
+            Usernames.inst.addUsername(jsonData.GetField("id").ToString().Trim('"'), jsonData.GetField("username").ToString().Trim('"'));
 
-            float newScore;
-            float.TryParse(tempScore, out newScore);
-
-            HighScore newHS = new HighScore(newName, newScore);
-            highScores.Add(newHS);
+            if (!playerSockets.Contains(jsonData.GetField("id").ToString().Trim('"'))) 
+                playerSockets.Add(jsonData.GetField("id").ToString().Trim('"'));
         }
     }
 
-    public void SendScore(string name, float score)
+    void removeUser(SocketIOEvent evt)
     {
-        char quote = '"';
-
-        string thing = "{ " + quote + "name" + quote + ":" + quote + name + quote + ", " + quote + "score" + quote + ":" + score + " }";
-        JSONObject send = new JSONObject(thing);
-
-        socket.Emit("EnterScore", send);
-
-        //Invoke("LoadScores", 2F);
-    }
-
-    public void LoadScores()
-    {
-        //hsf = sendTo;
-
-        highScoreLoadIndex = 0;
-        highScores = new List<HighScore>();
-
-        for(int i = 0; i < 5; i++)
-        {
-            JSONObject send = new JSONObject(highScoreLoadIndex + 1);
-            socket.Emit("LoadTheScore", send);
-            highScoreLoadIndex++;
-        }
-
-        Debug.Log("Scores loaded.");
-
-        //StartCoroutine("SendToUI", sendTo);
-    }
-
-    void SendToUI(SocketIOEvent evt)
-    {
-        if (highScores.Count > 0)
-        {
-            for (int i = 0; i < highScores.Count; i++)
-            {
-                Debug.Log(highScores[i].name + " got a score of " + highScores[i].score);
-            }
-
-            //hsf.ReceiveScores(highScores);
-        }
-        else Debug.LogError("no highscores found");
-    }
-
-    public void ResetHighScores()
-    {
-        socket.Emit("ResetScores");
-        Debug.Log("High scores have been reset.");
-    }
-}
-
-
-public class HighScore
-{
-    public string name;
-    public float score;
-
-    public HighScore(string n, float f)
-    {
-        name = n;
-        score = f;
+        Usernames.inst.removeUsername(evt.data.GetField("id").ToString().Trim('"'));
+        playerSockets.Remove(evt.data.GetField("id").ToString().Trim('"'));
     }
 }

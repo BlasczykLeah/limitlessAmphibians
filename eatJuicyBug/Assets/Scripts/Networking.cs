@@ -96,6 +96,8 @@ public class Networking : MonoBehaviour
 
             GameManager.instance.players.Add(thing);
         }
+
+        GameManager.instance.ready = true;
     }
 
     public void loadGame()

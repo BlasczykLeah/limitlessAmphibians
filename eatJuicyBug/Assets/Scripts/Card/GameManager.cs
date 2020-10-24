@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public List<Player> players = new List<Player>();
 
+    public bool ready = false;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -17,6 +19,15 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         Invoke("GetPlayers", 2);
+    }
+
+    void Update()
+    {
+        if (ready)
+        {
+            if (GetComponent<PlayerViews>()) GetComponent<PlayerViews>().enableButtons(players.Count);
+            ready = false;
+        }
     }
 
     void GetPlayers() {

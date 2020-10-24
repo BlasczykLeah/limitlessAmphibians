@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public List<Player> players = new List<Player>();
-
+    public int turn;
     public bool ready = false;
 
     private void Awake() {
@@ -19,8 +19,34 @@ public class GameManager : MonoBehaviour {
     private void Start()
     {
         Invoke("GetPlayers", 2);
+        Invoke("StartGame", 2.5f);
+    }
+    private void StartGame() {
+        turn = 0;
+        print("It is Player " + turn + "'s turn!");
+    }
+    public void NextTurn() {
+        if(players[turn].creatureAmounts[0] >= players[turn].winCon.frog &&
+           players[turn].creatureAmounts[1] >= players[turn].winCon.dragon &&
+           players[turn].creatureAmounts[2] >= players[turn].winCon.gator &&
+           players[turn].creatureAmounts[3] >= players[turn].winCon.azolotl &&
+           players[turn].creatureAmounts[4] >= players[turn].winCon.lizard &&
+           players[turn].creatureAmounts[5] >= players[turn].winCon.dino) {
+
+            //ta-da!!!
+            WinGame();
+        } else {
+            turn++;
+            if(turn >= players.Count - 1) {
+                turn = 0;
+            }
+            print("It is Player " + turn + "'s turn!");
+        }
     }
 
+    void WinGame() {
+        print("WINNER: Player " + turn);
+    }
     void Update()
     {
         if (ready)
@@ -41,7 +67,26 @@ public class GameManager : MonoBehaviour {
 
     // ALL CARD FUNCTIONS
     public void PlayCreature(CreatureType type) {
-
+        switch (type) {
+            case CreatureType.Frog:
+                players[0].creatureAmounts[0]++;
+                break;
+            case CreatureType.Dragon:
+                players[0].creatureAmounts[1]++;
+                break;
+            case CreatureType.Gator:
+                players[0].creatureAmounts[2]++;
+                break;
+            case CreatureType.Axolotl:
+                players[0].creatureAmounts[3]++;
+                break;
+            case CreatureType.Lizard:
+                players[0].creatureAmounts[4]++;
+                break;
+            case CreatureType.Dino:
+                players[0].creatureAmounts[5]++;
+                break;
+        }
         print("I am playing a " + type.ToString());
 
     }

@@ -18,8 +18,6 @@ public class Networking : MonoBehaviour
     string mySocket;
     Player myPlayer;
 
-    public bool isHost = false;
-
     private void Awake()
     {
         if (server) Destroy(gameObject);
@@ -41,7 +39,6 @@ public class Networking : MonoBehaviour
         socket.On("cardPlayed", recieveCardPlayed);
         socket.On("drewCard", recieveCardDrawn);
         socket.On("newHand", newHand);
-        socket.On("host", setAsHost);
     }
 
     #region Starting Game
@@ -50,12 +47,6 @@ public class Networking : MonoBehaviour
     {
         Debug.Log("Player is connected: " + evt.data.GetField("id"));
         if (mySocket == "") mySocket = evt.data.GetField("id").ToString().Trim('"');
-    }
-
-    void setAsHost(SocketIOEvent evt)
-    {
-        isHost = true;
-        Debug.Log("You are set as the host of this game.");
     }
 
     public void newUsername(string name)
@@ -112,9 +103,6 @@ public class Networking : MonoBehaviour
             GameManager.instance.players.Add(thing);
         }
 
-        if (isHost) socket.Emit("loadingHands");
-        else Debug.LogWarning("You are not the host. Host is dealing cards...");
-
         //GameManager.instance.ready = true;
     }
 
@@ -127,6 +115,8 @@ public class Networking : MonoBehaviour
     {
         Debug.Log("Attempting to load game scene");
         SceneManager.LoadScene(1);
+
+        socket.Emit("loadingHands");
     }
 
     #endregion

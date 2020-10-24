@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CardDictionary : MonoBehaviour
 {
-    public string[] cardNames;
     public GameObject[] cardPrefs;
 
     Dictionary<string, GameObject> cards;
@@ -15,7 +14,7 @@ public class CardDictionary : MonoBehaviour
         cards = new Dictionary<string, GameObject>();
         for(int i = 0; i < cardPrefs.Length; i++)
         {
-            cards.Add(cardNames[i], cardPrefs[i]);
+            cards.Add(cardPrefs[i].GetComponent<Card>().cardData.cardName, cardPrefs[i]);
         }
     }
 

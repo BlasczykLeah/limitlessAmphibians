@@ -1,7 +1,79 @@
 fileFormatVersion: 2
 guid: a957e1735a459c147a3e06444c4d4d77
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3453637227376558936
+    second: Crittercards_0
+  - first:
+      213: 2481211492556116634
+    second: Crittercards_1
+  - first:
+      213: -7980497082380325206
+    second: Crittercards_2
+  - first:
+      213: -9185074882936295652
+    second: Crittercards_3
+  - first:
+      213: -3540491516727599389
+    second: Crittercards_4
+  - first:
+      213: -7893347370490115624
+    second: Crittercards_5
+  - first:
+      213: -6954151725591081265
+    second: Crittercards_6
+  - first:
+      213: 955898869835527775
+    second: Crittercards_7
+  - first:
+      213: 7329558327927934042
+    second: Crittercards_8
+  - first:
+      213: 1412837832878578463
+    second: Crittercards_9
+  - first:
+      213: -309849277256388054
+    second: Crittercards_10
+  - first:
+      213: 7170442003935748170
+    second: Crittercards_11
+  - first:
+      213: 6056754719726084692
+    second: Crittercards_12
+  - first:
+      213: 1777712364078808059
+    second: Crittercards_13
+  - first:
+      213: 2639994175879464728
+    second: Crittercards_14
+  - first:
+      213: 6193521383581722325
+    second: Crittercards_15
+  - first:
+      213: -168047459805543379
+    second: Crittercards_16
+  - first:
+      213: -2930913884818224619
+    second: Crittercards_17
+  - first:
+      213: -3779045667600612845
+    second: Crittercards_18
+  - first:
+      213: 7180599283487996043
+    second: Crittercards_19
+  - first:
+      213: -4092521273111852977
+    second: Crittercards_20
+  - first:
+      213: -7087990963765443100
+    second: Crittercards_21
+  - first:
+      213: 3396067223478341086
+    second: Crittercards_22
+  - first:
+      213: 8886026001621146122
+    second: Crittercards_23
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +113,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -135,7 +207,511 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Crittercards_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 3428
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85348d892c8cdef20800000000000000
+      internalID: 3453637227376558936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_1
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 3421
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a929c6ad4b80f6220800000000000000
+      internalID: 2481211492556116634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_2
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 3406
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaeeda1af249f3190800000000000000
+      internalID: -7980497082380325206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_3
+      rect:
+        serializedVersion: 2
+        x: 2668
+        y: 3401
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f283ffe0f088080800000000000000
+      internalID: -9185074882936295652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_4
+      rect:
+        serializedVersion: 2
+        x: 3511
+        y: 3405
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eeda2f49b5addec0800000000000000
+      internalID: -3540491516727599389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_5
+      rect:
+        serializedVersion: 2
+        x: 4334
+        y: 3396
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d94c252362357290800000000000000
+      internalID: -7893347370490115624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce49f9a9d3ed7f90800000000000000
+      internalID: -6954151725591081265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_7
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 2311
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f567eb125f8044d00800000000000000
+      internalID: 955898869835527775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_8
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 2296
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c86a03772d7b560800000000000000
+      internalID: 7329558327927934042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_9
+      rect:
+        serializedVersion: 2
+        x: 2665
+        y: 2261
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1bd5f106886b9310800000000000000
+      internalID: 1412837832878578463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_10
+      rect:
+        serializedVersion: 2
+        x: 3512
+        y: 2259
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a22b83759b133bbf0800000000000000
+      internalID: -309849277256388054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_11
+      rect:
+        serializedVersion: 2
+        x: 4321
+        y: 2274
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a40612f0307828360800000000000000
+      internalID: 7170442003935748170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 1163
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452a1f8d35aed0450800000000000000
+      internalID: 6056754719726084692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_13
+      rect:
+        serializedVersion: 2
+        x: 865
+        y: 1197
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfbbcb5f9f3bba810800000000000000
+      internalID: 1777712364078808059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_14
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 1158
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 817456637b423a420800000000000000
+      internalID: 2639994175879464728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_15
+      rect:
+        serializedVersion: 2
+        x: 2663
+        y: 1143
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d6ac2932eec3f550800000000000000
+      internalID: 6193521383581722325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_16
+      rect:
+        serializedVersion: 2
+        x: 3525
+        y: 1112
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2442e4c9b9faadf0800000000000000
+      internalID: -168047459805543379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_17
+      rect:
+        serializedVersion: 2
+        x: 4325
+        y: 1130
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a4624b95d4357d0800000000000000
+      internalID: -2930913884818224619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_18
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 55
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 312cfa0dcf12e8bc0800000000000000
+      internalID: -3779045667600612845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_19
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 15
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b88f9bef00d96a360800000000000000
+      internalID: 7180599283487996043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_20
+      rect:
+        serializedVersion: 2
+        x: 1796
+        y: 9
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f484070d5917437c0800000000000000
+      internalID: -4092521273111852977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_21
+      rect:
+        serializedVersion: 2
+        x: 2675
+        y: 7
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e50591b5c562ad90800000000000000
+      internalID: -7087990963765443100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_22
+      rect:
+        serializedVersion: 2
+        x: 3518
+        y: 0
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edd06c88521412f20800000000000000
+      internalID: 3396067223478341086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards_23
+      rect:
+        serializedVersion: 2
+        x: 4327
+        y: 9
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a538b7191815b70800000000000000
+      internalID: 8886026001621146122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

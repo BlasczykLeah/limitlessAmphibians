@@ -336,7 +336,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20404e0cf47fdbd418dfe03d202278e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefs: []
+  cardPrefs:
+  - {fileID: 3583609248252101723, guid: baf3186e588229a498ae121e3ec95a66, type: 3}
+  - {fileID: 3583609248252101723, guid: b4f3ffcba984fab4a808dcaa4f2d670a, type: 3}
+  - {fileID: 3583609248252101723, guid: 0ec97909d668a07418979fa8fa630a9f, type: 3}
+  - {fileID: 3583609248252101723, guid: 657b67ef0c9606d45b44f183e1272141, type: 3}
+  - {fileID: 3583609248252101723, guid: 66c83e769f19f5e4bb9fad4375455d72, type: 3}
+  - {fileID: 3583609248252101723, guid: 20363024a9dfc9d48b4e541acff78950, type: 3}
+  - {fileID: 3583609248252101723, guid: 0f716cff15bc1604cae9603f369328dd, type: 3}
+  - {fileID: 3583609248252101723, guid: e7a1bc750b93adb4c9659ff5ebf761ab, type: 3}
+  - {fileID: 3583609248252101723, guid: 3cb18a77d7cd7a346a4588a606985407, type: 3}
+  - {fileID: 3583609248252101723, guid: d23e79f45f609944aa3a787f9c06d9a8, type: 3}
+  - {fileID: 3583609248252101723, guid: 892083f8481809b478b7a543edc6d059, type: 3}
+  - {fileID: 3583609248252101723, guid: cc5627b755033de48b24b944d52e1cb7, type: 3}
+  - {fileID: 3583609248252101723, guid: 67837cf951dae8742b16e5b1112b0041, type: 3}
+  - {fileID: 3583609248252101723, guid: ea7129a445c471b4a9321c8387e46470, type: 3}
+  - {fileID: 3583609248252101723, guid: 74a42767ca48e6140aa982036dc2bd3c, type: 3}
+  - {fileID: 3583609248252101723, guid: 10e726fd317a0e948b9ce7575096b85f, type: 3}
+  - {fileID: 3583609248252101723, guid: 98217fd9e283385428a68c6f86260b9e, type: 3}
+  - {fileID: 3583609248252101723, guid: abeee519f672157439cd265276091f31, type: 3}
+  - {fileID: 3583609248252101723, guid: 06c23e838501e604b8aff6caf1f3b29f, type: 3}
+  - {fileID: 3583609248252101723, guid: ded3f0f9d1cfd38429472fac1931448e, type: 3}
+  - {fileID: 3583609248252101723, guid: 3f20b31202fa92b42badefec6e702812, type: 3}
+  - {fileID: 3583609248252101723, guid: ee1d04e03f89e584fb28866609f97cf6, type: 3}
+  - {fileID: 3583609248252101723, guid: 6611c7fb7e69e8f42bf82c4e26d43cf5, type: 3}
+  - {fileID: 3583609248252101723, guid: c64d098cabfb9f54d9461ef080df149d, type: 3}
+  - {fileID: 3583609248252101723, guid: bb9da4212c6f69e44a91de7635532e78, type: 3}
+  - {fileID: 3583609248252101723, guid: 3989a9066d5336e4e8bdbe36370d98b0, type: 3}
+  - {fileID: 3583609248252101723, guid: 1d93108f6a601db41aeba015362aada4, type: 3}
+  - {fileID: 3583609248252101723, guid: 658b28069a282364eacec7d8d700da8b, type: 3}
+  - {fileID: 3583609248252101723, guid: 96c43a2f2241a0c40b958bb69f8bb518, type: 3}
+  - {fileID: 3583609248252101723, guid: 5517671321fdead4ab6aa1bb663b3914, type: 3}
 --- !u!1 &56219668
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,7 +869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 252.55035, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &464544364

@@ -15,6 +15,8 @@ public class Networking : MonoBehaviour
     char quote = '"';
 
     public List<string> playerSockets;
+    string mySocket;
+    Player myPlayer;
 
     private void Awake()
     {
@@ -36,6 +38,7 @@ public class Networking : MonoBehaviour
         socket.On("loadGameScene", gameScene);
         socket.On("cardPlayed", recieveCardPlayed);
         socket.On("drewCard", recieveCardDrawn);
+        socket.On("newHand", newHand);
     }
 
     #region Starting Game
@@ -43,6 +46,7 @@ public class Networking : MonoBehaviour
     void onConnectionEstabilished(SocketIOEvent evt)
     {
         Debug.Log("Player is connected: " + evt.data.GetField("id"));
+        if (mySocket == "") mySocket = evt.data.GetField("id").ToString().Trim('"');
     }
 
     public void newUsername(string name)
@@ -94,10 +98,12 @@ public class Networking : MonoBehaviour
             thing.name = jsonData.GetField("username").ToString().Trim('"');
             thing.id = jsonData.GetField("id").ToString().Trim('"');
 
+            if (thing.id == mySocket) myPlayer = thing;
+
             GameManager.instance.players.Add(thing);
         }
 
-        GameManager.instance.ready = true;
+        //GameManager.instance.ready = true;
     }
 
     public void loadGame()
@@ -109,11 +115,26 @@ public class Networking : MonoBehaviour
     {
         Debug.Log("Attempting to load game scene");
         SceneManager.LoadScene(1);
+
+        socket.Emit("loadingHands");
     }
 
     #endregion
 
     #region Game Functions
+
+    void newHand(SocketIOEvent evt)
+    {
+        if (myPlayer != null)
+        {
+            myPlayer.Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
+            myPlayer.Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"')).GetComponent<Card>());
+            myPlayer.Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card3").ToString().Trim('"')).GetComponent<Card>());
+        }
+        else Debug.LogError("Player instance not saved. Cannot add cards.");
+
+        GameManager.instance.ready = true;
+    }
 
     void recieveCardPlayed(SocketIOEvent evt)
     {

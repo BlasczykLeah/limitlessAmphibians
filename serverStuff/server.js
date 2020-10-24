@@ -14,6 +14,7 @@ var Users = new Map();
 var Deck = [];
 var DiscardPile = [];
 
+var loadingHands = false;
 
 io.sockets.on('connection', (socket) => {
     console.log('a user connected');
@@ -67,7 +68,25 @@ io.sockets.on('connection', (socket) => {
         DiscardPile.push(card);
     });
 
+    socket.on('loadHands', () => {
+        if (!loadingHands) {
+            loadingHands = true;
+            handsToAllPlayers();
+        }
+    });
 
+
+
+
+    function handsToAllPlayers() {
+        Users.forEach((value, key, map) => {
+            drawHand(key.id);
+        });
+    }
+
+    function drawHand(id) {
+        io.to(id).emit('newHand', { card1: drawCard(), card2: drawCard(), card3: drawCard() });
+    }
 
     function drawCard() {
         if (Deck.length == 0) discardToDeck();

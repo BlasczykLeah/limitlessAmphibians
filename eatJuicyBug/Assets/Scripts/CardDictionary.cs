@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class CardDictionary : MonoBehaviour
 {
+    public static CardDictionary instance;
+
     public GameObject[] cardPrefs;
 
     Dictionary<string, GameObject> cards;
 
     void Awake()
     {
+        instance = this;
+
         cards = new Dictionary<string, GameObject>();
         for(int i = 0; i < cardPrefs.Length; i++)
         {
-            cards.Add(cardPrefs[i].GetComponent<Card>().cardData.cardName, cardPrefs[i]);
+            cards.Add(cardPrefs[i].name, cardPrefs[i]);
         }
     }
 

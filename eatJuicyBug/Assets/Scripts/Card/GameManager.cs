@@ -14,13 +14,10 @@ public class GameManager : MonoBehaviour {
         } else {
             Destroy(this);
         }
+
+        Networking.server.getPlayers();
     }
 
-    private void Start()
-    {
-        Invoke("GetPlayers", 2);
-        Invoke("StartGame", 2.5f);
-    }
     private void StartGame() {
         turn = 0;
         print("It is Player " + turn + "'s turn!");
@@ -52,12 +49,10 @@ public class GameManager : MonoBehaviour {
         if (ready)
         {
             if (GetComponent<PlayerViews>()) GetComponent<PlayerViews>().enableButtons(players.Count);
+
+            Invoke("StartGame", 2f);
             ready = false;
         }
-    }
-
-    void GetPlayers() {
-        Networking.server.getPlayers();
     }
 
     //you draw a card...yay

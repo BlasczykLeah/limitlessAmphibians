@@ -14,6 +14,7 @@ var Users = new Map();
 var Deck = [];
 var DiscardPile = [];
 
+var host = "";
 var loadingHands = false;
 
 io.sockets.on('connection', (socket) => {
@@ -125,7 +126,18 @@ io.sockets.on('connection', (socket) => {
 
 
 
-    function changeUserProperty(property, value, id) {
+    function changeUserProperty(property, value) {
+        // users properties: id, username, observeallcontrol, observeallevents
+        if (Users.has(socket.id)) {
+            tempObj = Users.get(socket.id);
+            // console.log('changed current user property: ' + property);
+            tempObj[property] = value;
+            Users.set(socket.id, tempObj);
+        }
+        //checkUsers();
+    }
+
+    function changeOtherUsersProperty(id, property, value) {
         // users properties: id, username, observeallcontrol, observeallevents
         if (Users.has(id)) {
             tempObj = Users.get(id);
@@ -133,12 +145,12 @@ io.sockets.on('connection', (socket) => {
             tempObj[property] = value;
             Users.set(id, tempObj);
         }
-        checkUsers();
+        //checkUsers();
     }
 
     function addUsername(newUsername) {
         // coming back to this
-        changeUserProperty('username', newUsername, socket.id);
+        changeUserProperty('username', newUsername);
     }
 
     function addUser(socket) {
@@ -148,20 +160,26 @@ io.sockets.on('connection', (socket) => {
                 socket.id,
                 {
                     username: "Name",
-                    id: socket.id,
-                    host: false
+                    id: socket.id
                 }
             );
+
             checkUsers();
         }
     };
 
     function removeUser(socket) {
         if (Users.has(socket.id)) {
-            if (Users[socket.id].host == true && Users.length > 1) {
+            if (host == socket.id && Users.length > 1) {
                 var user = Array.from(Users.keys())[0];
-                changeUserProperty("host", true, user);
+                if (user == socket.id) user = Array.from(Users.keys())[1];
+
+                host = user;
+                //console.log(User[user].username + ' is now the host.');
                 io.to(user).emit('host');
+            }
+            else if (host == socket.id) {
+                host = "";
             }
 
             Users.delete(socket.id);
@@ -179,8 +197,10 @@ io.sockets.on('connection', (socket) => {
         // Giving id, name pairs
         let tempUsers = Array.from(Users.values());
 
-        if (Users.length == 1) {
-            changeUserProperty("host", true, socket.id);
+        console.log(tempUsers.length);
+        if (tempUsers.length == 1) {
+            host = socket.id;
+            //console.log(Users[socket.id].username + ' is now the host.');
             socket.emit('host');
         }
 

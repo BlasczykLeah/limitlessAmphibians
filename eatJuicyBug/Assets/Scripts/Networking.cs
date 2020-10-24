@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using SocketIO;
 
 public class Networking : MonoBehaviour
@@ -101,6 +102,7 @@ public class Networking : MonoBehaviour
 
     void gameScene(SocketIOEvent evt)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        Debug.Log("Attempting to load game scene");
+        SceneManager.LoadScene(1);
     }
 }

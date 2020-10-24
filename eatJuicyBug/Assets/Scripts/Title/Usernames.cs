@@ -78,6 +78,7 @@ public class Usernames : MonoBehaviour
 
     public void playGame()
     {
+        Debug.Log("starting game...");
         Networking.server.loadGame();
     }
 }

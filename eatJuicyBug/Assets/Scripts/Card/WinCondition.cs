@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New WinCon", menuName = "Wincon")]
 public class WinCondition : ScriptableObject
 {
+    [Header("IMAGE FOR SPRITE")]
+    public UnityEngine.UI.Image sprite;
 
     [Header("Frog")]
     public int frog;

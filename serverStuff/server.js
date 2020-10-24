@@ -60,7 +60,8 @@ io.sockets.on('connection', (socket) => {
 
     socket.on('drawCard', () => {
         console.log(Users[socket.id].username + ' drew a card');
-        socket.emit('drewCard', { card: drawCard() });
+        var newCard = drawCard();
+        socket.emit('drewCard', { card: newCard });
         //maybe send something to everyone else updating hand count
     });
 
@@ -85,7 +86,11 @@ io.sockets.on('connection', (socket) => {
     }
 
     function drawHand(id) {
-        io.to(id).emit('newHand', { card1: drawCard(), card2: drawCard(), card3: drawCard() });
+        var card1 = drawCard();
+        var card2 = drawCard();
+        var card3 = drawCard();
+
+        io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3 });
     }
 
     function drawCard() {
@@ -105,7 +110,7 @@ io.sockets.on('connection', (socket) => {
     function resetDeck() {
         // sets the deck back to default, and emptys the discard
         DiscardPile = [];
-        Deck = ['string1', 'string2', 'the entire deck written here'];
+        Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Limit1', 'Limit2', 'Limit3', 'Limit4', 'Limit5', 'Limit6'];
         console.log('deck is ready')
     }
 
@@ -120,20 +125,20 @@ io.sockets.on('connection', (socket) => {
 
 
 
-    function changeUserProperty(property, value) {
+    function changeUserProperty(property, value, id) {
         // users properties: id, username, observeallcontrol, observeallevents
-        if (Users.has(socket.id)) {
-            tempObj = Users.get(socket.id);
+        if (Users.has(id)) {
+            tempObj = Users.get(id);
             // console.log('changed current user property: ' + property);
             tempObj[property] = value;
-            Users.set(socket.id, tempObj);
+            Users.set(id, tempObj);
         }
         checkUsers();
     }
 
     function addUsername(newUsername) {
         // coming back to this
-        changeUserProperty('username', newUsername);
+        changeUserProperty('username', newUsername, socket.id);
     }
 
     function addUser(socket) {
@@ -143,7 +148,8 @@ io.sockets.on('connection', (socket) => {
                 socket.id,
                 {
                     username: "Name",
-                    id: socket.id
+                    id: socket.id,
+                    host: false
                 }
             );
             checkUsers();
@@ -152,6 +158,12 @@ io.sockets.on('connection', (socket) => {
 
     function removeUser(socket) {
         if (Users.has(socket.id)) {
+            if (Users[socket.id].host == true && Users.length > 1) {
+                var user = Array.from(Users.keys())[0];
+                changeUserProperty("host", true, user);
+                io.to(user).emit('host');
+            }
+
             Users.delete(socket.id);
             checkUsers();
         }
@@ -166,6 +178,12 @@ io.sockets.on('connection', (socket) => {
 
         // Giving id, name pairs
         let tempUsers = Array.from(Users.values());
+
+        if (Users.length == 1) {
+            changeUserProperty("host", true, socket.id);
+            socket.emit('host');
+        }
+
         var usernameObject = {};
         for (var i = 0; i < tempUsers.length; i++) {
             usernameObject[i] = {

@@ -14,5 +14,5 @@ public class Deck : MonoBehaviour
     }
 
     public List<Card> cards = new List<Card>();
-
+    public List<WinCondition> winConditions = new List<WinCondition>();
 }

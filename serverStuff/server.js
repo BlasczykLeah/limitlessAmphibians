@@ -84,19 +84,26 @@ io.sockets.on('connection', (socket) => {
     }
 
     function drawHand(id) {
-        io.to(id).emit('newHand', { card1: drawCard(), card2: drawCard(), card3: drawCard() });
+        var card1 = drawCard();
+        var card2 = drawCard();
+        var card3 = drawCard();
+
+        io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3 });
     }
 
-    function drawCard() {
+    function drawCard(rand) {
         if (Deck.length == 0) discardToDeck();
 
         var rand = Math.floor(Math.random() * Deck.length);
-        var card = Deck[rand];
+
+        console.log("Cards swapping: " + Deck[rand] + "   " + Deck[Deck.length - 1]);
 
         var swap = Deck[rand];
         Deck[rand] = Deck[Deck.length - 1];
         Deck[Deck.length - 1] = swap;
-        Deck.pop();
+
+        var card = Deck.pop();
+        console.log("card chosen: " + card);
 
         return card;
     }
@@ -116,8 +123,6 @@ io.sockets.on('connection', (socket) => {
 
         DiscardPile = [];
     }
-
-
 
     function changeUserProperty(property, value) {
         // users properties: id, username, observeallcontrol, observeallevents

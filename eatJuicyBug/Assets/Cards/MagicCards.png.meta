@@ -1,0 +1,946 @@
+fileFormatVersion: 2
+guid: 93171941ed79db84498e145e4de5e899
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -619529626361220285
+    second: MagicCards_0
+  - first:
+      213: 6007601707822140558
+    second: MagicCards_1
+  - first:
+      213: -7944495629542634584
+    second: MagicCards_2
+  - first:
+      213: -9013540867126866671
+    second: MagicCards_3
+  - first:
+      213: -7212982219577416376
+    second: MagicCards_4
+  - first:
+      213: -950749992957588527
+    second: MagicCards_5
+  - first:
+      213: -341623512530883888
+    second: MagicCards_6
+  - first:
+      213: -6059385310947765810
+    second: MagicCards_7
+  - first:
+      213: -7185861966115725051
+    second: MagicCards_8
+  - first:
+      213: 7044288008919004909
+    second: MagicCards_9
+  - first:
+      213: 3993798336701890184
+    second: MagicCards_10
+  - first:
+      213: 8218820355713107600
+    second: MagicCards_11
+  - first:
+      213: 4734818468214752238
+    second: MagicCards_12
+  - first:
+      213: 2485520788738823960
+    second: MagicCards_13
+  - first:
+      213: -3270433182202772142
+    second: MagicCards_14
+  - first:
+      213: -8243233940783326164
+    second: MagicCards_15
+  - first:
+      213: -4121611308707322105
+    second: MagicCards_16
+  - first:
+      213: 8175874761284580090
+    second: MagicCards_17
+  - first:
+      213: 7987269615028243078
+    second: MagicCards_18
+  - first:
+      213: -5452720813914784267
+    second: MagicCards_19
+  - first:
+      213: 3670803494653910169
+    second: MagicCards_20
+  - first:
+      213: 1934691144940687870
+    second: MagicCards_21
+  - first:
+      213: 4452702950322848307
+    second: MagicCards_22
+  - first:
+      213: -2494404032561981815
+    second: MagicCards_23
+  - first:
+      213: -3997005645854549345
+    second: MagicCards_24
+  - first:
+      213: -1062026649216947966
+    second: MagicCards_25
+  - first:
+      213: -2898466165966498439
+    second: MagicCards_26
+  - first:
+      213: -2906593657464566898
+    second: MagicCards_27
+  - first:
+      213: 4589374225765698544
+    second: MagicCards_28
+  - first:
+      213: 4668884887931559133
+    second: MagicCards_29
+  - first:
+      213: -2831818033300757781
+    second: MagicCards_30
+  - first:
+      213: -9014015308900640966
+    second: MagicCards_31
+  - first:
+      213: -3160886874476463346
+    second: MagicCards_32
+  - first:
+      213: 1462832303017271008
+    second: MagicCards_33
+  - first:
+      213: -3107217037477455931
+    second: MagicCards_34
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MagicCards_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5617
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343b8e4561df667f0800000000000000
+      internalID: -619529626361220285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4524
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8cc4c27ce94f5350800000000000000
+      internalID: 6007601707822140558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_2
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 4520
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8abc771115b7fb190800000000000000
+      internalID: -7944495629542634584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_3
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 4523
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11dcf6e465879e280800000000000000
+      internalID: -9013540867126866671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_4
+      rect:
+        serializedVersion: 2
+        x: 2443
+        y: 4523
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84521e623e656eb90800000000000000
+      internalID: -7212982219577416376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_5
+      rect:
+        serializedVersion: 2
+        x: 3231
+        y: 4524
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dbce8f2be14ec2f0800000000000000
+      internalID: -950749992957588527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_6
+      rect:
+        serializedVersion: 2
+        x: 4037
+        y: 4524
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0daeca0b93f424bf0800000000000000
+      internalID: -341623512530883888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3327
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec11db7e92db8eba0800000000000000
+      internalID: -6059385310947765810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_8
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 3329
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501aea83d90b64c90800000000000000
+      internalID: -7185861966115725051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_9
+      rect:
+        serializedVersion: 2
+        x: 1640
+        y: 3328
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de639233f9652c160800000000000000
+      internalID: 7044288008919004909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_10
+      rect:
+        serializedVersion: 2
+        x: 2446
+        y: 3328
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88e79ab5d62dc6730800000000000000
+      internalID: 3993798336701890184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_11
+      rect:
+        serializedVersion: 2
+        x: 3231
+        y: 3328
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096870f719d1f0270800000000000000
+      internalID: 8218820355713107600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_12
+      rect:
+        serializedVersion: 2
+        x: 4037
+        y: 3343
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee346e98f4475b140800000000000000
+      internalID: 4734818468214752238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2202
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81750ae0df75e7220800000000000000
+      internalID: 2485520788738823960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_14
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 2201
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255472929561d92d0800000000000000
+      internalID: -3270433182202772142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_15
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 2200
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2c9a27c7662a9d80800000000000000
+      internalID: -8243233940783326164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_16
+      rect:
+        serializedVersion: 2
+        x: 2443
+        y: 2202
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 707644a1a581dc6c0800000000000000
+      internalID: -4121611308707322105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_17
+      rect:
+        serializedVersion: 2
+        x: 3230
+        y: 2202
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af2f27a17ca867170800000000000000
+      internalID: 8175874761284580090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_18
+      rect:
+        serializedVersion: 2
+        x: 4035
+        y: 2201
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68a8701856b78de60800000000000000
+      internalID: 7987269615028243078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1127
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fdfa3b3f4b0454b0800000000000000
+      internalID: -5452720813914784267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_20
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1126
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99cdb13645051f230800000000000000
+      internalID: 3670803494653910169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_21
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 1125
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1984c885769da10800000000000000
+      internalID: 1934691144940687870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_22
+      rect:
+        serializedVersion: 2
+        x: 2432
+        y: 1124
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 332c35cedbd2bcd30800000000000000
+      internalID: 4452702950322848307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_23
+      rect:
+        serializedVersion: 2
+        x: 3230
+        y: 1124
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98657d09fb8126dd0800000000000000
+      internalID: -2494404032561981815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_24
+      rect:
+        serializedVersion: 2
+        x: 4037
+        y: 1127
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9adb99ca88c788c0800000000000000
+      internalID: -3997005645854549345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_25
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 209ec6fa36ce241f0800000000000000
+      internalID: -1062026649216947966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_26
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 5617
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9751418f06496c7d0800000000000000
+      internalID: -2898466165966498439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_27
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 5617
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8bcb64e774b9a7d0800000000000000
+      internalID: -2906593657464566898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_28
+      rect:
+        serializedVersion: 2
+        x: 2438
+        y: 5617
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fb0914fa8bb0bf30800000000000000
+      internalID: 4589374225765698544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_29
+      rect:
+        serializedVersion: 2
+        x: 3228
+        y: 5617
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc995a91163bc040800000000000000
+      internalID: 4668884887931559133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_30
+      rect:
+        serializedVersion: 2
+        x: 4037
+        y: 5617
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be22098908c53b8d0800000000000000
+      internalID: -2831818033300757781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_31
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 0
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a375b09b5d8c7e280800000000000000
+      internalID: -9014015308900640966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_32
+      rect:
+        serializedVersion: 2
+        x: 1956
+        y: 0
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0bb2af72264224d0800000000000000
+      internalID: -3160886874476463346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_33
+      rect:
+        serializedVersion: 2
+        x: 2826
+        y: 0
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ee9f4baa360d4410800000000000000
+      internalID: 1462832303017271008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MagicCards_34
+      rect:
+        serializedVersion: 2
+        x: 3699
+        y: 0
+        width: 752
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c75d113192f0e4d0800000000000000
+      internalID: -3107217037477455931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: a1ca835ce8a31ce4f9021a646c282b34
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

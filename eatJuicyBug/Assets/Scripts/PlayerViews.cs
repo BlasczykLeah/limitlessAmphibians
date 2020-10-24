@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerViews : MonoBehaviour
 {
@@ -18,7 +19,11 @@ public class PlayerViews : MonoBehaviour
 
     public void enableButtons(int amount)
     {
-        for (int i = 0; i < amount; i++) viewButtons[i].SetActive(true);
+        for (int i = 0; i < amount; i++)
+        {
+            viewButtons[i].SetActive(true);
+            viewButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager.instance.players[i].name;
+        }
     }
 
     public void setView(int index)

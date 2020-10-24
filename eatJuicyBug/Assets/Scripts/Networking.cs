@@ -31,6 +31,8 @@ public class Networking : MonoBehaviour
         socket.On("connectionmessage", onConnectionEstabilished);
         socket.On("users", loadUsers);
         socket.On("removeUser", removeUser);
+        socket.On("allUsers", allUsers);
+        socket.On("loadGameScene", gameScene);
     }
 
     // This is the listener function definition
@@ -67,5 +69,38 @@ public class Networking : MonoBehaviour
     {
         Usernames.inst.removeUsername(evt.data.GetField("id").ToString().Trim('"'));
         playerSockets.Remove(evt.data.GetField("id").ToString().Trim('"'));
+    }
+
+    public void getPlayers()
+    {
+        socket.Emit("getUsernames");
+    }
+
+    void allUsers(SocketIOEvent evt)
+    {
+        // has all users, used for setting up who is which indexed player
+
+        GameManager.instance.players = new List<Player>();
+
+        for (int i = 0; i < evt.data.Count; i++)
+        {
+            JSONObject jsonData = evt.data.GetField(i.ToString());
+            
+            Player thing = new Player();
+            thing.name = jsonData.GetField("username").ToString().Trim('"');
+            thing.id = jsonData.GetField("id").ToString().Trim('"');
+
+            GameManager.instance.players.Add(thing);
+        }
+    }
+
+    public void loadGame()
+    {
+        socket.Emit("loadGame");
+    }
+
+    void gameScene(SocketIOEvent evt)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 }

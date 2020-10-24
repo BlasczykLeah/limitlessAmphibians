@@ -31,6 +31,22 @@ io.sockets.on('connection', (socket) => {
         removeUser(socket);
     });
 
+    socket.on('getUsernames', () => {
+        let tempUsers = Array.from(Users.values());
+        var usernameObject = {};
+        for (var i = 0; i < tempUsers.length; i++) {
+            usernameObject[i] = {
+                username: tempUsers[i]["username"],
+                id: tempUsers[i]["id"]
+            };
+        }
+        socket.emit('allUsers', usernameObject);
+    });
+
+    socket.on('loadGame', () => {
+        io.emit('loadGameScene');
+    });
+
 
 
 

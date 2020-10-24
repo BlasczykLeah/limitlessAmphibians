@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+[Serializable]
+public class Player
 {
-
+    public string name;
     public List<Card> Hand = new List<Card>();
     public WinCondition winCon;
     public Limit limit;

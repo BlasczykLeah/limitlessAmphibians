@@ -11,6 +11,8 @@ public class Usernames : MonoBehaviour
 
     public GameObject usernameList;
     public GameObject textPrefab;
+    public GameObject playButton;
+
     Dictionary<string, GameObject> usernameTexts;
 
     private void Start()
@@ -53,6 +55,9 @@ public class Usernames : MonoBehaviour
             newText.GetComponent<TextMeshProUGUI>().text = name;
             usernameTexts.Add(id, newText);
         }
+
+        if (usernameTexts.Count > 1) playButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
+        else playButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
     }
 
     public void removeUsername(string id)
@@ -62,10 +67,17 @@ public class Usernames : MonoBehaviour
             GameObject remove = usernameTexts[id];
             usernameTexts.Remove(id);
             Destroy(remove);
+
+            if (usernameTexts.Count < 2) playButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
         }
         else
         {
             Debug.LogError("user not found, could not remove from list");
         }
+    }
+
+    public void playGame()
+    {
+        Networking.server.loadGame();
     }
 }

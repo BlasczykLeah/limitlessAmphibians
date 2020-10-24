@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour {
 
     }
 
+    private void Start()
+    {
+        Networking.server.getPlayers();
+    }
+
     //you draw a card...yay
     public void DrawCard() {
         //Card card = Deck.instance.cards[Deck.instance.cards.Count - 1];    

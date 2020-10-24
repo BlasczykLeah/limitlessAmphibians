@@ -12,13 +12,14 @@ public class GameManager : MonoBehaviour {
         } else {
             Destroy(this);
         }
-
-
-
     }
 
     private void Start()
     {
+        Invoke("GetPlayers", 2);
+    }
+
+    void GetPlayers() {
         Networking.server.getPlayers();
     }
 

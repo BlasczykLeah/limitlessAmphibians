@@ -124,12 +124,12 @@ public class Networking : MonoBehaviour
         string cardString = evt.data.GetField("card").ToString().Trim('"');
     }
 
-    void playCard(string cardName)
+    public void playCard(string cardName)
     {
         socket.Emit("playCard", new JSONObject(quote + cardName + quote));
     }
 
-    void drawCard()
+    public void drawCard()
     {
         socket.Emit("drawCard");
     }

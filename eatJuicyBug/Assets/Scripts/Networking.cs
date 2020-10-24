@@ -18,6 +18,8 @@ public class Networking : MonoBehaviour
     string mySocket;
     Player myPlayer;
 
+    public bool host;
+
     private void Awake()
     {
         if (server) Destroy(gameObject);
@@ -39,6 +41,7 @@ public class Networking : MonoBehaviour
         socket.On("cardPlayed", recieveCardPlayed);
         socket.On("drewCard", recieveCardDrawn);
         socket.On("newHand", newHand);
+        socket.On("host", setHost);
     }
 
     #region Starting Game
@@ -47,6 +50,12 @@ public class Networking : MonoBehaviour
     {
         Debug.Log("Player is connected: " + evt.data.GetField("id"));
         if (mySocket == "") mySocket = evt.data.GetField("id").ToString().Trim('"');
+    }
+
+    void setHost(SocketIOEvent evt)
+    {
+        Debug.Log("You are now the host.");
+        host = true;
     }
 
     public void newUsername(string name)
@@ -68,7 +77,7 @@ public class Networking : MonoBehaviour
             Debug.Log(jsonData.GetField("username"));
             Usernames.inst.addUsername(jsonData.GetField("id").ToString().Trim('"'), jsonData.GetField("username").ToString().Trim('"'));
 
-            if (!playerSockets.Contains(jsonData.GetField("id").ToString().Trim('"'))) 
+            if (!playerSockets.Contains(jsonData.GetField("id").ToString().Trim('"')))
                 playerSockets.Add(jsonData.GetField("id").ToString().Trim('"'));
         }
     }
@@ -93,7 +102,7 @@ public class Networking : MonoBehaviour
         for (int i = 0; i < evt.data.Count; i++)
         {
             JSONObject jsonData = evt.data.GetField(i.ToString());
-            
+
             Player thing = new Player();
             thing.name = jsonData.GetField("username").ToString().Trim('"');
             thing.id = jsonData.GetField("id").ToString().Trim('"');
@@ -102,6 +111,8 @@ public class Networking : MonoBehaviour
 
             GameManager.instance.players.Add(thing);
         }
+
+        if (host) socket.Emit("loadHands");
 
         //GameManager.instance.ready = true;
     }

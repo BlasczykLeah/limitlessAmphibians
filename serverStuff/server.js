@@ -15,7 +15,6 @@ var Deck = [];
 var DiscardPile = [];
 
 var host = "";
-var loadingHands = false;
 
 io.sockets.on('connection', (socket) => {
     console.log('a user connected');
@@ -70,10 +69,7 @@ io.sockets.on('connection', (socket) => {
     });
 
     socket.on('loadHands', () => {
-        if (!loadingHands) {
-            loadingHands = true;
-            handsToAllPlayers();
-        }
+        handsToAllPlayers();
     });
 
 
@@ -129,18 +125,7 @@ io.sockets.on('connection', (socket) => {
             tempObj[property] = value;
             Users.set(socket.id, tempObj);
         }
-        //checkUsers();
-    }
-
-    function changeOtherUsersProperty(id, property, value) {
-        // users properties: id, username, observeallcontrol, observeallevents
-        if (Users.has(socket.id)) {
-            tempObj = Users.get(socket.id);
-            // console.log('changed current user property: ' + property);
-            tempObj[property] = value;
-            Users.set(socket.id, tempObj);
-        }
-        //checkUsers();
+        checkUsers();
     }
 
     function addUsername(newUsername) {
@@ -158,6 +143,13 @@ io.sockets.on('connection', (socket) => {
                     id: socket.id
                 }
             );
+
+            console.log(Array.from(Users.keys()).length);
+            if (Array.from(Users.keys()).length == 1) {
+                host = socket.id;
+                //console.log(Users[socket.id].username + ' is now the host.');
+                socket.emit('host');
+            }
 
             checkUsers();
         }
@@ -191,13 +183,6 @@ io.sockets.on('connection', (socket) => {
 
         // Giving id, name pairs
         let tempUsers = Array.from(Users.values());
-
-        console.log(tempUsers.length);
-        if (tempUsers.length == 1) {
-            host = socket.id;
-            //console.log(Users[socket.id].username + ' is now the host.');
-            socket.emit('host');
-        }
 
         var usernameObject = {};
         for (var i = 0; i < tempUsers.length; i++) {

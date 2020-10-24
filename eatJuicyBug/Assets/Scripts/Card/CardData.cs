@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CardData : MonoBehaviour
 {
+    public string cardName;
+
     [SerializeField] CardType type;
     [SerializeField] CreatureType c_type;
 

@@ -315,7 +315,7 @@ public class Networking : MonoBehaviour
 
     public void updateValues(string limit, string win)
     {
-        string thing = "{ " + quote + "limit" + quote + ":" + limit + ", " + quote + "wincon" + quote + ":" + win + " }";
+        string thing = "{ " + quote + "limit" + quote + ":" + quote + limit + quote + ", " + quote + "wincon" + quote + ":" + quote + win + quote + " }";
         socket.Emit("setValues", new JSONObject(thing));
     }
 

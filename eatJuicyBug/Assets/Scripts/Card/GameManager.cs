@@ -343,22 +343,22 @@ public class GameManager : MonoBehaviour {
         switch (type)
         {
             case CreatureType.Frog:
-                players[index].creatureAmounts[0]++;
+                players[index].creatureAmounts[0]--;
                 break;
             case CreatureType.Dragon:
-                players[index].creatureAmounts[1]++;
+                players[index].creatureAmounts[1]--;
                 break;
             case CreatureType.Gator:
-                players[index].creatureAmounts[2]++;
+                players[index].creatureAmounts[2]--;
                 break;
             case CreatureType.Axolotl:
-                players[index].creatureAmounts[3]++;
+                players[index].creatureAmounts[3]--;
                 break;
             case CreatureType.Lizard:
-                players[index].creatureAmounts[4]++;
+                players[index].creatureAmounts[4]--;
                 break;
             case CreatureType.Dino:
-                players[index].creatureAmounts[5]++;
+                players[index].creatureAmounts[5]--;
                 break;
         }
     }

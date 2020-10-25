@@ -1109,10 +1109,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 53732701}
-        m_TargetAssemblyTypeName: PlayerViews, Assembly-CSharp
-        m_MethodName: setView
-        m_Mode: 3
+      - m_Target: {fileID: 53732699}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: skipTurn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -201,7 +201,10 @@ public class GameManager : MonoBehaviour {
 
     public void skipTurn()
     {
-        players[turn].myTurn = false;
-        Networking.server.playCard("none");
+        if (turn == me && players[me].myTurn)
+        {
+            players[turn].myTurn = false;
+            Networking.server.playCard("none");
+        }
     }
 }

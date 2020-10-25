@@ -57,11 +57,10 @@ public class CustomLayout : MonoBehaviour
             return;
         }
 
-        //if (Networking.server.host)
-        //{
-            Debug.Log("sending to all others to remove: " + card);
+        if (Networking.server.host)
+        {
             Networking.server.discardCard(card.GetComponent<CardData>().cardName);
-        //}
+        }
 
         tableCards.Remove(card);
 

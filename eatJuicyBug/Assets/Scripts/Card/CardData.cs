@@ -18,6 +18,7 @@ public class CardData : MonoBehaviour
         return c_type;
     }
 
+    public Limit limit;
     //Add as many effects into a card as you would like
     public List<CardEffect> cardEffects = new List<CardEffect>();
 

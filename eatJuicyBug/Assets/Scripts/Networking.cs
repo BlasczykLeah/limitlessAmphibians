@@ -207,8 +207,13 @@ public class Networking : MonoBehaviour
 
             if (cardPlayed)
             {
-                GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
-                GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
+                if(cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Creature) {
+                    GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
+                    GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
+                } else if(cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Limit) {
+                    GameManager.instance.PlayLimit(cardPlayed.GetComponent<CardData>().limit);
+                }
+                
             }
             else Debug.LogError("D:");
         }

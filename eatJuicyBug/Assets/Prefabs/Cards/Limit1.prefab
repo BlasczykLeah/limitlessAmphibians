@@ -122,6 +122,7 @@ MonoBehaviour:
   cardName: Limit1
   type: 1
   c_type: 6
+  limit: {fileID: 3384119467132424898}
   cardEffects:
   - {fileID: -7474978046557637503}
 --- !u!114 &-7474978046557637503

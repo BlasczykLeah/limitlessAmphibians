@@ -30,7 +30,7 @@ public class PlayerViews : MonoBehaviour
     {
         resetAllHighlights();
         viewButtons[index].transform.GetChild(0).gameObject.SetActive(true);
-        Camera.main.transform.position = new Vector3(index * 30, 10, 0);
+        Camera.main.transform.position = new Vector3(index * 100, 10, 0);
     }
 
     void resetAllHighlights()

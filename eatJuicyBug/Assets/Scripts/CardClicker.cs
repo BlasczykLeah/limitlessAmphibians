@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 public class CardClicker : MonoBehaviour
 {
+    public bool played = false;
+
     Image showCard;
     UnityEvent m_event = new UnityEvent();
     void Start()
@@ -20,7 +22,7 @@ public class CardClicker : MonoBehaviour
             //showCard.gameObject.SetActive(true);
             showCard.color = Color.white;
             showCard.sprite = GetComponent<SpriteRenderer>().sprite;
-        } else if(Input.GetMouseButtonDown(0)){
+        } else if(Input.GetMouseButtonDown(0) && !played){
             if(m_event != null) {
                 m_event.Invoke();
             }
@@ -33,6 +35,7 @@ public class CardClicker : MonoBehaviour
     }
 
     void PlayCard() {
-        Networking.server.playCard(gameObject.GetComponent<CardData>().cardName);
+        GameManager.instance.playCard(gameObject);
+        //Networking.server.playCard(gameObject.GetComponent<CardData>().cardName);
     }
 }

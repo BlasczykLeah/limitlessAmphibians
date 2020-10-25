@@ -57,14 +57,14 @@ io.sockets.on('connection', (socket) => {
 
     socket.on('playCard', (card) => {   //sending card played to everyone
         if (Array.from(Users.keys())[whosTurn] == socket.id) {
-            console.log(Users[socket.id].username + ' played a ' + card + ' card');
+            //console.log(Users[socket.id].username + ' played a ' + card + ' card');
             io.emit('cardPlayed', { card: card, id: socket.id });
         }
-        else console.log(Users[socket.id].username + ' cannot play a card, its not their turn');
+        //else console.log(Users[socket.id].username + ' cannot play a card, its not their turn');
     });
 
     socket.on('drawCard', () => {
-        console.log(Users[socket.id].username + ' drew a card');
+        //console.log(Users[socket.id].username + ' drew a card');
         socket.emit('drewCard', { card: drawCard() });
         //maybe send something to everyone else updating hand count
     });

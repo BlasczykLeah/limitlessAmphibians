@@ -18,7 +18,7 @@ public class CardDictionary : MonoBehaviour
         cards = new Dictionary<string, GameObject>();
         for(int i = 0; i < cardPrefs.Length; i++)
         {
-            cards.Add(cardPrefs[i].name, cardPrefs[i]);
+            cards.Add(cardPrefs[i].GetComponent<CardData>().cardName, cardPrefs[i]);
         }
     }
 

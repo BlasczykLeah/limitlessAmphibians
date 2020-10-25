@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour {
             //ta-da!!!
             WinGame();
         } else {
-            turn++;
-            if(turn >= players.Count - 1) {
-                turn = 0;
-            }
+            //turn++;
+            //if(turn >= players.Count - 1) {
+            //    turn = 0;
+            //}
             print("It is Player " + turn + "'s turn!");
         }
     }
@@ -143,6 +143,23 @@ public class GameManager : MonoBehaviour {
 
     public void setTurn(int index)
     {
+        turn = index;
         turnText.text = players[index].name + "'s Turn";
+    }
+
+    public void playCard(GameObject card)
+    {
+        if (turn == me)
+        {
+            //can play
+            card.GetComponent<CardClicker>().played = true;
+            Networking.server.playCard(card.GetComponent<CardData>().cardName);
+        }
+        else
+        {
+            //can't play
+            Debug.LogError("Its not your turn!");
+            card.GetComponent<CardClicker>().played = false;
+        }
     }
 }

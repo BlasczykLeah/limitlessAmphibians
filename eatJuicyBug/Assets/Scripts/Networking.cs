@@ -172,6 +172,8 @@ public class Networking : MonoBehaviour
 
         // **Assuming creature card for now
 
+        Debug.Log(GameManager.instance.players[playerIndex].name + " has played " + cardString);
+
         GameObject cardPlayed = null;
 
         if (myPlayerIndex == playerIndex)
@@ -181,6 +183,9 @@ public class Networking : MonoBehaviour
                 if(GameManager.instance.playerHand.transform.GetChild(i).GetComponent<CardData>().cardName == cardString)
                 {
                     cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
+                    cardPlayed.transform.localScale = Vector3.one * 0.2F;
+                    cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
+                    GameManager.instance.players[playerIndex].Hand.Remove(cardPlayed.GetComponent<Card>());
                     continue;
                 }
             }
@@ -189,13 +194,21 @@ public class Networking : MonoBehaviour
         {
             //CreatureType creature = CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCreatureType();
             cardPlayed = Instantiate(CardDictionary.instance.GetCard(cardString));
-            GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
         }
 
-        if(cardPlayed)
+        if (cardPlayed)
+        {
+            GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
             GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
+        }
+        else Debug.LogError("D:");
 
-        Invoke("EnableNextTurn", 0.5F);
+        if (host)
+        {
+            Debug.Log("I am setting the next person's turn");
+            Invoke("EnableNextTurn", 2F);
+        }
+        GameManager.instance.NextTurn();
     }
 
     void recieveCardDrawn(SocketIOEvent evt)

@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c95199be0ef8b43ab1fb407c9b2f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Lizard1
+  cardName: Cat
   type: 0
   c_type: 6
   cardEffects:
@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfd5bcf4d8cd254892071346ea4c4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  played: 0
 --- !u!65 &3583609248252101714
 BoxCollider:
   m_ObjectHideFlags: 0

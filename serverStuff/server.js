@@ -81,11 +81,12 @@ io.sockets.on('connection', (socket) => {
         handsToAllPlayers();
 
         console.log('choosing who goes first...');
-        whosTurn = Math.floor(Math.random * Users.keys().length);
+        //whosTurn = Math.floor(Math.random * Users.keys().length);
         //turn();
     });
 
     socket.on('firstTurn', () => {
+        whosTurn = 0;
         turn();
     });
 
@@ -100,6 +101,10 @@ io.sockets.on('connection', (socket) => {
         changeUserProperty('limit', thing.limit);
         changeUserProperty('win', thing.wincon);
         socket.broadcast.emit('playerValues', { id: socket.id, limit: thing.limit, win: thing.wincon });
+    });
+
+    socket.on('win', (id) => {
+        io.emit('winscene', { id: id } );
     });
 
 

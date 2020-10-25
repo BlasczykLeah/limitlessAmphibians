@@ -81,7 +81,11 @@ io.sockets.on('connection', (socket) => {
         handsToAllPlayers();
 
         console.log('choosing who goes first...');
-        whosTurn = 0;
+        whosTurn = Math.floor(Math.random * Users.keys().length);
+        //turn();
+    });
+
+    socket.on('firstTurn', () => {
         turn();
     });
 
@@ -228,8 +232,7 @@ io.sockets.on('connection', (socket) => {
                     username: "Name",
                     id: socket.id,
                     limit: "none",
-                    win: "none",
-                    ready: 0
+                    win: "none"
                 }
             );
 

@@ -22,6 +22,8 @@ public class Networking : MonoBehaviour
 
     public string winner = "";
 
+    SocketIOEvent tempDataStore;
+
     private void Awake()
     {
         if (server) Destroy(gameObject);
@@ -183,13 +185,55 @@ public class Networking : MonoBehaviour
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
             GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard, winCard);
         }
-        else Debug.LogError("Player instance not saved. Cannot add cards.");
+        else
+        {
+            Debug.LogError("Player instance not saved. Cannot add cards, trying again in 0.5s");
+            tempDataStore = evt;
+            Invoke("tryNewHand", 0.5F);
+            return;
+
+        }
 
         GameManager.instance.ready = true;
         if (host) socket.Emit("firstTurn");
 
         string thing = "{ " + quote + "limit" + quote + ":" + evt.data.GetField("limit").ToString() + ", " + quote + "wincon" + quote + ":" + evt.data.GetField("win").ToString() + " }";
         socket.Emit("setValues", new JSONObject(thing));
+    }
+
+    void tryNewHand()
+    {
+        if (myPlayerIndex != -1)
+        {
+            GameObject limitCard;
+            GameObject winCard;
+            GameObject[] newHand = new GameObject[3];
+
+            //GameManager.instance.players[myPlayerIndex].Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
+            newHand[0] = CardDictionary.instance.GetCard(tempDataStore.data.GetField("card1").ToString().Trim('"'));
+            newHand[1] = CardDictionary.instance.GetCard(tempDataStore.data.GetField("card2").ToString().Trim('"'));
+            newHand[2] = CardDictionary.instance.GetCard(tempDataStore.data.GetField("card3").ToString().Trim('"'));
+
+            limitCard = CardDictionary.instance.GetCard(tempDataStore.data.GetField("limit").ToString().Trim('"'));
+
+            winCard = CardDictionary.instance.GetCard(tempDataStore.data.GetField("win").ToString().Trim('"'));
+
+            Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
+            GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard, winCard);
+        }
+        else
+        {
+            Debug.LogError("Player instance not saved. Cannot add cards, trying again in 0.5s");
+            Invoke("tryNewHand", 0.5F);
+            return;
+        }
+
+        GameManager.instance.ready = true;
+        if (host) socket.Emit("firstTurn");
+
+        string thing = "{ " + quote + "limit" + quote + ":" + tempDataStore.data.GetField("limit").ToString() + ", " + quote + "wincon" + quote + ":" + tempDataStore.data.GetField("win").ToString() + " }";
+        socket.Emit("setValues", new JSONObject(thing));
+        tempDataStore = null;
     }
 
     void setReady()

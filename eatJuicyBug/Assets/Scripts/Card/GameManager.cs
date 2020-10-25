@@ -83,18 +83,17 @@ public class GameManager : MonoBehaviour {
             //raycast, looking for deletable card
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit thing;
-            if (Physics.Raycast(ray, out thing, 30))
+            if (Physics.Raycast(ray, out thing, 30, LayerMask.GetMask("Card")))
             {
                 if (thing.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
                 {
                     chooseTargetText.text = "Select this card";
-                    if (Input.GetMouseButtonDown(0) && !players[me].Hand.Contains(thing.collider.GetComponent<Card>()))
+                    if (Input.GetMouseButtonDown(0) && thing.collider.GetComponent<CardClicker>().played)
                     {
                         // card chosen
                         tableLayouts[me].removePlacedCard(thing.collider.gameObject);
 
                         players[turn].myTurn = false;
-                        cardToPlay.GetComponent<CardClicker>().played = true;
                         Networking.server.playCard(cardToPlay.GetComponent<CardData>().cardName);
                         targetBox.SetActive(false);
                         cardToPlay = null;

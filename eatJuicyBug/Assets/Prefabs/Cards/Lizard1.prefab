@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3583609248252101720}
   - component: {fileID: 3583609248252101714}
   - component: {fileID: 8967818777406211058}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lizard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   cardName: Lizard1
   type: 0
   c_type: 4
+  limit: {fileID: 0}
   cardEffects:
   - {fileID: 3583609248252101721}
 --- !u!114 &3583609248252101721
@@ -148,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cfd5bcf4d8cd254892071346ea4c4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  played: 0
 --- !u!65 &3583609248252101714
 BoxCollider:
   m_ObjectHideFlags: 0

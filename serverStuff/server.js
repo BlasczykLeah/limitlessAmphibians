@@ -72,6 +72,7 @@ io.sockets.on('connection', (socket) => {
 
     socket.on('discardCard', (card) => {
         DiscardPile.push(card);
+        console.table(DiscardPile);
         socket.broadcast.emit('cardRemoved', { id: socket.id, card: card });
     });
 
@@ -167,7 +168,11 @@ io.sockets.on('connection', (socket) => {
     }
 
     function drawCard() {
-        if (Deck.length == 0) discardToDeck();
+        if (Deck.length == 0) {
+            discardToDeck();
+            console.table(DiscardPile);
+            console.table(Deck);
+        }
 
         var rand = Math.floor(Math.random() * Deck.length);
 

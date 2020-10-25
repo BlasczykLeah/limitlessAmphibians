@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3583609248252101720}
   - component: {fileID: 3583609248252101714}
   - component: {fileID: 1591208379477461854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dino4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   cardName: Dino4
   type: 0
   c_type: 5
+  limit: {fileID: 0}
   cardEffects:
   - {fileID: 3583609248252101721}
 --- !u!114 &3583609248252101721

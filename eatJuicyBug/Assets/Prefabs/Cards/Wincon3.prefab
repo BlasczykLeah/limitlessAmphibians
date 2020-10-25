@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3583609248252101714}
   - component: {fileID: 6207024023595180861}
   - component: {fileID: 3396136669344781087}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wincon3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   cardName: Win3
   type: 0
   c_type: 6
+  limit: {fileID: 0}
   cardEffects:
   - {fileID: 3583609248252101721}
 --- !u!114 &3583609248252101721

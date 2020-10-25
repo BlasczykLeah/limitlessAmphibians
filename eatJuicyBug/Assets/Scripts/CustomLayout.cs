@@ -48,14 +48,14 @@ public class CustomLayout : MonoBehaviour
 
         for(int i = index + 1; i < tableCards.Count; i++)
         {
-            tableCards[i].transform.localPosition = tableCards[i - 1].transform.localPosition;
+            tableCards[i].transform.localPosition = new Vector3(tableCards[i - 1].transform.localPosition.x + 0.11F, tableCards[i - 1].transform.localPosition.y, tableCards[i - 1].transform.localPosition.z);
         }
         tableCards.Remove(card);
 
         //update nextPosition
         playCardLocalPosition = new Vector3(playCardLocalPosition.x - 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
 
-        Networking.server.discardCard(card.name);
+        Networking.server.discardCard(card.GetComponent<CardData>().cardName);
         Destroy(card);
     }
 
@@ -83,7 +83,7 @@ public class CustomLayout : MonoBehaviour
                 return;
             }
 
-            Networking.server.discardCard(limitCard.name);
+            Networking.server.discardCard(limitCard.GetComponent<CardData>().cardName);
             Destroy(limitCard);
         }
 
@@ -103,7 +103,7 @@ public class CustomLayout : MonoBehaviour
                 return;
             }
 
-            Networking.server.discardCard(winCard.name);
+            Networking.server.discardCard(winCard.GetComponent<CardData>().cardName);
             Destroy(winCard);
         }
 

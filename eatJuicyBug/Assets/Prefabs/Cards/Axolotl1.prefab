@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3583609248252101720}
   - component: {fileID: 3583609248252101714}
   - component: {fileID: 1539805788534389895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Axolotl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   cardName: Axolotl1
   type: 0
   c_type: 3
+  limit: {fileID: 0}
   cardEffects:
   - {fileID: 3583609248252101721}
 --- !u!114 &3583609248252101721

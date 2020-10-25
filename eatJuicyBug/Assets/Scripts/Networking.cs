@@ -101,10 +101,10 @@ public class Networking : MonoBehaviour
     {
         foreach(CardData c in GameManager.instance.playerHand.GetComponentsInChildren<CardData>())
         {
-            socket.Emit("discardCard", new JSONObject(c.cardName));
+            socket.Emit("discardCard", new JSONObject(quote + c.cardName + quote));
         }
 
-        socket.Emit("discardCard", new JSONObject(GameManager.instance.players[myPlayerIndex].limit.GetComponent<CardData>().cardName));
+        socket.Emit("discardCard", new JSONObject(quote + GameManager.instance.players[myPlayerIndex].limit.GetComponent<CardData>().cardName + quote));
     }
 
     public void getPlayers()
@@ -195,6 +195,10 @@ public class Networking : MonoBehaviour
 
         int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
 
+        string targetPlayer = evt.data.GetField("targetID").ToString().Trim('"');
+        int targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
+        string targetCard = evt.data.GetField("targetCard").ToString().Trim('"');
+
         // **Assuming creature card for now
 
         Debug.Log(GameManager.instance.players[playerIndex].name + " has played " + cardString);
@@ -224,17 +228,48 @@ public class Networking : MonoBehaviour
             {
                 //CreatureType creature = CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCreatureType();
                 cardPlayed = Instantiate(CardDictionary.instance.GetCard(cardString));
+                cardPlayed.GetComponent<CardClicker>().played = true;
             }
 
             if (cardPlayed)
             {
-                if(cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Creature) {
+                if (cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Creature)
+                {
+                    cardPlayed.GetComponent<CardData>().playerIndex = playerIndex;
                     GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
                     GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
-                } else if(cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Limit) {
-                    GameManager.instance.PlayLimit(cardPlayed.GetComponent<CardData>().limit, playerIndex);
                 }
-                
+                else if (cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Limit)
+                {
+                    GameManager.instance.PlayLimit(cardPlayed.GetComponent<CardData>().limit, targetPlayerIndex);
+                }
+                else // is a magic card
+                {
+                    if (targetCard != "none")
+                    {
+                        GameObject targettedCard = null;
+                        foreach (GameObject card in GameManager.instance.tableLayouts[targetPlayerIndex].tableCards)
+                        {
+                            if (card.GetComponent<CardData>().cardName == targetCard)
+                            {
+                                targettedCard = card;
+                                continue;
+                            }
+                        }
+
+                        if (targettedCard)
+                        {
+                            // PLAY MAGIC CARD THAT TARGETS ANOTHER PLAYERS CARD
+                            CreatureType creatureType = targettedCard.GetComponent<CardData>().GetCreatureType();
+                            cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
+                        }
+                        else Debug.LogError("target card not found.");
+                    }
+
+                    // PLAY MAGIC CARD THAT DOES NOT TARGET A CARD
+                    CreatureType type = cardPlayed.GetComponent<CardData>().GetCreatureType();
+                    cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, type);
+                }
             }
             else Debug.LogError("D:");
         }
@@ -256,7 +291,20 @@ public class Networking : MonoBehaviour
 
     public void playCard(string cardName)
     {
-        socket.Emit("playCard", new JSONObject(quote + cardName + quote));
+        string thing = "{ " + quote + "card" + quote + ":" + quote + cardName + quote + ", " + quote + "targetID" + quote + ":" + quote + "none" + quote + ", " + quote + "targetCard" + quote + ":" + quote + "none" + quote + " }";
+        socket.Emit("playCard", new JSONObject(thing));
+    }
+
+    public void playCard(string cardName, string playerTarget)
+    {
+        string thing = "{ " + quote + "card" + quote + ":" + quote + cardName + quote + ", " + quote + "targetID" + quote + ":" + quote + playerTarget + quote + ", " + quote + "targetCard" + quote + ":" + quote + "none" + quote + " }";
+        socket.Emit("playCard", new JSONObject(thing));
+    }
+
+    public void playCard(string cardName, string playerTarget, string cardSelected)
+    {
+        string thing = "{ " + quote + "card" + quote + ":" + quote + cardName + quote + ", " + quote + "targetID" + quote + ":" + quote + playerTarget + quote + ", " + quote + "targetCard" + quote + ":" + quote + cardSelected + quote + " }";
+        socket.Emit("playCard", new JSONObject(thing));
     }
 
     public void drawCard()

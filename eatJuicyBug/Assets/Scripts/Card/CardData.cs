@@ -9,6 +9,8 @@ public class CardData : MonoBehaviour
     [SerializeField] CardType type;
     [SerializeField] CreatureType c_type;
 
+    public int playerIndex = -1;
+
     public CardType GetCardType() {
         return type;
     }
@@ -19,6 +21,7 @@ public class CardData : MonoBehaviour
     }
 
     public Limit limit;
+    public Magic magic;
     //Add as many effects into a card as you would like
     public List<CardEffect> cardEffects = new List<CardEffect>();
 

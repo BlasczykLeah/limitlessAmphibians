@@ -1,0 +1,748 @@
+fileFormatVersion: 2
+guid: e109624058ae74026b73594d82dc83e4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6425955848808432807
+    second: Crittercards2_0
+  - first:
+      213: -6236266553869286319
+    second: Crittercards2_1
+  - first:
+      213: -839166607600670996
+    second: Crittercards2_2
+  - first:
+      213: 1663616348992428512
+    second: Crittercards2_3
+  - first:
+      213: 8114809168087962372
+    second: Crittercards2_4
+  - first:
+      213: 1090671112543224122
+    second: Crittercards2_5
+  - first:
+      213: 8496761968926183320
+    second: Crittercards2_6
+  - first:
+      213: 2956063466078424688
+    second: Crittercards2_7
+  - first:
+      213: -3564475677972416117
+    second: Crittercards2_8
+  - first:
+      213: 856398097167380738
+    second: Crittercards2_9
+  - first:
+      213: -5592402163852332062
+    second: Crittercards2_10
+  - first:
+      213: 9204758993829215678
+    second: Crittercards2_11
+  - first:
+      213: 4671234491078599433
+    second: Crittercards2_12
+  - first:
+      213: 7811966219556674557
+    second: Crittercards2_13
+  - first:
+      213: 2414879513074394112
+    second: Crittercards2_14
+  - first:
+      213: 2904751049423453316
+    second: Crittercards2_15
+  - first:
+      213: -870491102558517142
+    second: Crittercards2_16
+  - first:
+      213: 6402366264109393290
+    second: Crittercards2_17
+  - first:
+      213: -9187501531194619284
+    second: Crittercards2_18
+  - first:
+      213: 2658454208684350793
+    second: Crittercards2_19
+  - first:
+      213: 3854704988991882787
+    second: Crittercards2_20
+  - first:
+      213: 4110510602013252633
+    second: Crittercards2_21
+  - first:
+      213: 1531090780872334662
+    second: Crittercards2_22
+  - first:
+      213: -1015712899544289153
+    second: Crittercards2_23
+  - first:
+      213: 3601616976851886343
+    second: Crittercards2_0
+  - first:
+      213: 6076002983759805051
+    second: Crittercards2_1
+  - first:
+      213: 8445858707893213513
+    second: Crittercards2_2
+  - first:
+      213: 3574482778180857677
+    second: Crittercards2_3
+  - first:
+      213: -2486620868412127072
+    second: Crittercards2_4
+  - first:
+      213: -4101411910565505037
+    second: Crittercards2_5
+  - first:
+      213: 6711562989781022160
+    second: Crittercards2_6
+  - first:
+      213: -597753489148067105
+    second: Crittercards2_7
+  - first:
+      213: 6803279521737366728
+    second: Crittercards2_8
+  - first:
+      213: 6798892320221763944
+    second: Crittercards2_9
+  - first:
+      213: 8714400714064203490
+    second: Crittercards2_10
+  - first:
+      213: 3381273742067376714
+    second: Crittercards2_11
+  - first:
+      213: -4418899865659492216
+    second: Crittercards2_12
+  - first:
+      213: 2038292374373184271
+    second: Crittercards2_13
+  - first:
+      213: 6212384237944699029
+    second: Crittercards2_14
+  - first:
+      213: -4173351745270862081
+    second: Crittercards2_15
+  - first:
+      213: 4940022593923855420
+    second: Crittercards2_16
+  - first:
+      213: 7057501038798663846
+    second: Crittercards2_17
+  - first:
+      213: 5407411434639669281
+    second: Crittercards2_19
+  - first:
+      213: 8234710442307120293
+    second: Crittercards2_20
+  - first:
+      213: -7432090780890415516
+    second: Crittercards2_21
+  - first:
+      213: -5698987753450261569
+    second: Crittercards2_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Crittercards2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 173
+        width: 750
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a89cbe8007f7080800000000000000
+      internalID: -9187501531194619284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3721
+        width: 746
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 701e54aee838bf130800000000000000
+      internalID: 3601616976851886343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_1
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 3724
+        width: 747
+        height: 1047
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7a773d858c425450800000000000000
+      internalID: 6076002983759805051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_2
+      rect:
+        serializedVersion: 2
+        x: 1730
+        y: 3649
+        width: 748
+        height: 1047
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9495d1b2fb7b53570800000000000000
+      internalID: 8445858707893213513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_3
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 3680
+        width: 750
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fa839f52d1b9130800000000000000
+      internalID: 3574482778180857677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_4
+      rect:
+        serializedVersion: 2
+        x: 3533
+        y: 3673
+        width: 747
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a8c83fae7fbd7dd0800000000000000
+      internalID: -2486620868412127072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_5
+      rect:
+        serializedVersion: 2
+        x: 4376
+        y: 3652
+        width: 747
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f7df29f89bd417c0800000000000000
+      internalID: -4101411910565505037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_6
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 2541
+        width: 749
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d57e85daf2442d50800000000000000
+      internalID: 6711562989781022160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_7
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 2565
+        width: 750
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd244106e5a54b7f0800000000000000
+      internalID: -597753489148067105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_8
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 2510
+        width: 749
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cc58d00eaa1a6e50800000000000000
+      internalID: 6803279521737366728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_9
+      rect:
+        serializedVersion: 2
+        x: 2609
+        y: 2487
+        width: 752
+        height: 1052
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86913fc0b848a5e50800000000000000
+      internalID: 6798892320221763944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_10
+      rect:
+        serializedVersion: 2
+        x: 3578
+        y: 2487
+        width: 749
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee05305745cfe870800000000000000
+      internalID: 8714400714064203490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_11
+      rect:
+        serializedVersion: 2
+        x: 4395
+        y: 2499
+        width: 752
+        height: 1049
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42284cbd82bcee20800000000000000
+      internalID: 3381273742067376714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_12
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 1403
+        width: 750
+        height: 1051
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88838590cf9eca2c0800000000000000
+      internalID: -4418899865659492216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_13
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1418
+        width: 750
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f03b6ea7d18794c10800000000000000
+      internalID: 2038292374373184271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_14
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 1383
+        width: 748
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 598fdeebc82d63650800000000000000
+      internalID: 6212384237944699029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_15
+      rect:
+        serializedVersion: 2
+        x: 2630
+        y: 1332
+        width: 749
+        height: 1049
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffeaf54f2b64516c0800000000000000
+      internalID: -4173351745270862081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_16
+      rect:
+        serializedVersion: 2
+        x: 3577
+        y: 1315
+        width: 748
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c343c35306c7e8440800000000000000
+      internalID: 4940022593923855420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_17
+      rect:
+        serializedVersion: 2
+        x: 4448
+        y: 1315
+        width: 750
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a07b837dc741f160800000000000000
+      internalID: 7057501038798663846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_19
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 149
+        width: 749
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1283514dc0cfa0b40800000000000000
+      internalID: 5407411434639669281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_20
+      rect:
+        serializedVersion: 2
+        x: 1739
+        y: 120
+        width: 749
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac6ae59481974270800000000000000
+      internalID: 8234710442307120293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_21
+      rect:
+        serializedVersion: 2
+        x: 2614
+        y: 65
+        width: 750
+        height: 1049
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e329acfc8ebd890800000000000000
+      internalID: -7432090780890415516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_22
+      rect:
+        serializedVersion: 2
+        x: 3529
+        y: 166
+        width: 751
+        height: 1049
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb3bb4035d029e0b0800000000000000
+      internalID: -5698987753450261569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crittercards2_23
+      rect:
+        serializedVersion: 2
+        x: 4431
+        y: 2
+        width: 749
+        height: 1048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7071e4df7677e1f0800000000000000
+      internalID: -1015712899544289153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 17cf877eeece24e25910519619fa1492
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

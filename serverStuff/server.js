@@ -83,7 +83,9 @@ io.sockets.on('connection', (socket) => {
     });
 
     socket.on('nextTurn', () => {
-        io.to(Array.from(Users.keys())[whosTurn]).emit('drewCard', { card: drawCard()});
+        var newCard = drawCard();
+        console.log(Array.from(Users.keys())[whosTurn]);
+        io.to(Array.from(Users.keys())[whosTurn]).emit('drewCard', { card: newCard });
         turn();
     });
 

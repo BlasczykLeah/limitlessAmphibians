@@ -126,8 +126,17 @@ public class GameManager : MonoBehaviour {
         }
 
         GameObject newLimit = Instantiate(limPref);
+        newLimit.GetComponent<CardClicker>().played = true;
         players[me].limit = newLimit.GetComponent<Limit>();
         tableLayouts[me].addLimitCard(newLimit);
+    }
+
+    public void DrawCard(GameObject cardPref)
+    {
+        GameObject newCard = Instantiate(cardPref, playerHand.transform);
+        newCard.transform.localPosition = Vector3.zero;
+        newCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        players[me].Hand.Add(newCard.GetComponent<Card>());
     }
 
     public int GetPlayerIndexFromID(string id)
@@ -145,15 +154,20 @@ public class GameManager : MonoBehaviour {
     {
         turn = index;
         turnText.text = players[index].name + "'s Turn";
+        GetComponent<PlayerViews>().setView(turn);
     }
 
     public void playCard(GameObject card)
     {
         if (turn == me)
         {
-            //can play
-            card.GetComponent<CardClicker>().played = true;
-            Networking.server.playCard(card.GetComponent<CardData>().cardName);
+            if (players[me].limit.CheckLimit(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
+            {
+                //can play
+                card.GetComponent<CardClicker>().played = true;
+                Networking.server.playCard(card.GetComponent<CardData>().cardName);
+            }
+            else Debug.LogError("LIMIT WORKED");
         }
         else
         {

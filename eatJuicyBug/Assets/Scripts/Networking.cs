@@ -183,8 +183,11 @@ public class Networking : MonoBehaviour
                 if(GameManager.instance.playerHand.transform.GetChild(i).GetComponent<CardData>().cardName == cardString)
                 {
                     cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
+
+                    cardPlayed.transform.parent = null;
                     cardPlayed.transform.localScale = Vector3.one * 0.2F;
                     cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
+
                     GameManager.instance.players[playerIndex].Hand.Remove(cardPlayed.GetComponent<Card>());
                     continue;
                 }
@@ -214,6 +217,8 @@ public class Networking : MonoBehaviour
     void recieveCardDrawn(SocketIOEvent evt)
     {
         string cardString = evt.data.GetField("card").ToString().Trim('"');
+        GameObject newCard = CardDictionary.instance.GetCard(cardString);
+        GameManager.instance.DrawCard(newCard);
     }
 
     public void playCard(string cardName)

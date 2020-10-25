@@ -11,6 +11,7 @@ public class Mafia : Magic
                 // if the player has the specific creature type. 
                 GameObject card = GameManager.instance.tableLayouts[targetIndex].tableCards[i];
                 GameManager.instance.tableLayouts[targetIndex].GetComponent<CustomLayout>().removePlacedCard(card);
+                GameManager.instance.players[targetIndex].cardsOnTable--;
                 break;
             }
         }

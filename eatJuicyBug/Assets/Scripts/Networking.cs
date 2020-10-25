@@ -182,10 +182,15 @@ public class Networking : MonoBehaviour
         }
         else Debug.LogError("Player instance not saved. Cannot add cards.");
 
-        GameManager.instance.ready = true;
+        Invoke("setReady", 1F);
 
         string thing = "{ " + quote + "limit" + quote + ":" + evt.data.GetField("limit").ToString() + ", " + quote + "wincon" + quote + ":" + evt.data.GetField("win").ToString() + " }";
         socket.Emit("setValues", new JSONObject(thing));
+    }
+
+    void setReady()
+    {
+        GameManager.instance.ready = true;
     }
 
     void recieveCardPlayed(SocketIOEvent evt)
@@ -196,7 +201,8 @@ public class Networking : MonoBehaviour
         int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
 
         string targetPlayer = evt.data.GetField("targetID").ToString().Trim('"');
-        int targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
+        int targetPlayerIndex = -1;
+        if (targetPlayer != "none") targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
         string targetCard = evt.data.GetField("targetCard").ToString().Trim('"');
 
         // **Assuming creature card for now
@@ -237,6 +243,7 @@ public class Networking : MonoBehaviour
                 {
                     cardPlayed.GetComponent<CardData>().playerIndex = playerIndex;
                     GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
+                    GameManager.instance.players[playerIndex].cardsOnTable++;
                     GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
                 }
                 else if (cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Limit)
@@ -245,7 +252,13 @@ public class Networking : MonoBehaviour
                 }
                 else // is a magic card
                 {
-                    if (targetCard != "none")
+                    if(targetPlayerIndex == -1)
+                    {
+                        // has no player target
+                        CreatureType creatureType = cardPlayed.GetComponent<CardData>().GetCreatureType();
+                        cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
+                    }
+                    else if (targetCard != "none")
                     {
                         GameObject targettedCard = null;
                         foreach (GameObject card in GameManager.instance.tableLayouts[targetPlayerIndex].tableCards)
@@ -261,6 +274,11 @@ public class Networking : MonoBehaviour
                         {
                             // PLAY MAGIC CARD THAT TARGETS ANOTHER PLAYERS CARD
                             CreatureType creatureType = targettedCard.GetComponent<CardData>().GetCreatureType();
+                            Debug.Log("==================");
+                            Debug.Log("user: " + playerIndex);
+                            Debug.Log("target: " + targetPlayerIndex);
+                            Debug.Log("creature: " + creatureType.ToString());
+                            Debug.Log("==================");
                             cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
                         }
                         else Debug.LogError("target card not found.");
@@ -268,6 +286,11 @@ public class Networking : MonoBehaviour
 
                     // PLAY MAGIC CARD THAT DOES NOT TARGET A CARD
                     CreatureType type = cardPlayed.GetComponent<CardData>().GetCreatureType();
+                    Debug.Log("==================");
+                    Debug.Log("user: " + playerIndex);
+                    Debug.Log("target: " + targetPlayerIndex);
+                    Debug.Log("creature: " + type.ToString());
+                    Debug.Log("==================");
                     cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, type);
                 }
             }
@@ -277,9 +300,11 @@ public class Networking : MonoBehaviour
         if (host)
         {
             Debug.Log("I am setting the next person's turn");
-            Invoke("EnableNextTurn", 2F);
+            Invoke("EnableNextTurn", 3F);
         }
         GameManager.instance.NextTurn();
+
+        Debug.LogWarning("TESTINGGGGG");
     }
 
     void recieveCardDrawn(SocketIOEvent evt)
@@ -326,6 +351,7 @@ public class Networking : MonoBehaviour
         if (CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Creature)
         {
             GameManager.instance.tableLayouts[playerIndex].removePlacedCard(cardString);
+            GameManager.instance.players[playerIndex].cardsOnTable--;
         }
         else if(CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Limit)
         {

@@ -12,6 +12,7 @@ public class Warfare : Magic
                 // if the player has the specific creature type. 
                 GameObject card = GameManager.instance.tableLayouts[i].tableCards[i];
                 GameManager.instance.tableLayouts[i].GetComponent<CustomLayout>().removePlacedCard(card);
+                GameManager.instance.players[targetIndex].cardsOnTable--;
             }
         }
     }

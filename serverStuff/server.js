@@ -188,7 +188,7 @@ io.sockets.on('connection', (socket) => {
     function resetDeck() {
         // sets the deck back to default, and emptys the discard
         DiscardPile = [];
-        Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Cat', 'Box'];
+        Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl5', 'Axolotl6', 'Axolotl7', 'Axolotl8', 'Dino5', 'Dino6', 'Dino7', 'Dino8', 'Dragon5', 'Dragon6', 'Dragon7', 'Dragon8', 'Frog5', 'Frog6', 'Frog7', 'Frog8', 'Gator5', 'Gator6', 'Gator7', 'Gator8', 'Lizard5', 'Lizard6', 'Lizard7', 'Lizard8', 'Cat', 'Box', 'Magic1', 'Magic2', 'Magic3', 'Magic4', 'Magic5', 'Magic6', 'Magic7', 'Magic8', 'Magic9', 'Magic10', 'Magic11', 'Magic12'];
         Limits = ['Limit1', 'Limit2', 'Limit3', 'Limit4', 'Limit5', 'Limit6'];
         WinCards = ['Win1', 'Win2', 'Win3', 'Win4', 'Win5', 'Win6', 'Win7', 'Win8', 'Win9', 'Win10', 'Win11', 'Win12', 'Win13', 'Win14', 'Win15', 'Win16', 'Win17'];
         console.log('deck is ready');

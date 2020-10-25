@@ -394,14 +394,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -10.729
       objectReference: {fileID: 0}
+    - target: {fileID: -3393059317818742671, guid: cb93dd404d8bf4049b6df78305b197ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40ae9ea3f65588a48a32d3c05e1728fe, type: 2}
     - target: {fileID: 919132149155446097, guid: cb93dd404d8bf4049b6df78305b197ee, type: 3}
       propertyPath: m_Name
       value: froggytrophy
       objectReference: {fileID: 0}
+    - target: {fileID: 6170364737530096044, guid: cb93dd404d8bf4049b6df78305b197ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40ae9ea3f65588a48a32d3c05e1728fe, type: 2}
     - target: {fileID: 6829333093618665122, guid: cb93dd404d8bf4049b6df78305b197ee, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 40ae9ea3f65588a48a32d3c05e1728fe, type: 2}
+    - target: {fileID: 6829333093618665122, guid: cb93dd404d8bf4049b6df78305b197ee, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a27f24ed75d35c46b353b908c285f37, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb93dd404d8bf4049b6df78305b197ee, type: 3}
 --- !u!1 &505103129

@@ -178,37 +178,40 @@ public class Networking : MonoBehaviour
 
         Debug.Log(GameManager.instance.players[playerIndex].name + " has played " + cardString);
 
-        GameObject cardPlayed = null;
-
-        if (myPlayerIndex == playerIndex)
+        if (cardString != "none")
         {
-            for(int i = 0; i < GameManager.instance.playerHand.transform.childCount; i++)
+            GameObject cardPlayed = null;
+
+            if (myPlayerIndex == playerIndex)
             {
-                if(GameManager.instance.playerHand.transform.GetChild(i).GetComponent<CardData>().cardName == cardString)
+                for (int i = 0; i < GameManager.instance.playerHand.transform.childCount; i++)
                 {
-                    cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
+                    if (GameManager.instance.playerHand.transform.GetChild(i).GetComponent<CardData>().cardName == cardString)
+                    {
+                        cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
 
-                    cardPlayed.transform.parent = null;
-                    cardPlayed.transform.localScale = Vector3.one * 0.2F;
-                    cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
+                        cardPlayed.transform.parent = null;
+                        cardPlayed.transform.localScale = Vector3.one * 0.2F;
+                        cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
 
-                    GameManager.instance.players[playerIndex].Hand.Remove(cardPlayed.GetComponent<Card>());
-                    continue;
+                        GameManager.instance.players[playerIndex].Hand.Remove(cardPlayed.GetComponent<Card>());
+                        continue;
+                    }
                 }
             }
-        }
-        else
-        {
-            //CreatureType creature = CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCreatureType();
-            cardPlayed = Instantiate(CardDictionary.instance.GetCard(cardString));
-        }
+            else
+            {
+                //CreatureType creature = CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCreatureType();
+                cardPlayed = Instantiate(CardDictionary.instance.GetCard(cardString));
+            }
 
-        if (cardPlayed)
-        {
-            GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
-            GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
+            if (cardPlayed)
+            {
+                GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
+                GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
+            }
+            else Debug.LogError("D:");
         }
-        else Debug.LogError("D:");
 
         if (host)
         {

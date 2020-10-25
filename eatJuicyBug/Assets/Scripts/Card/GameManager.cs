@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
     public int turn;
     public bool ready = false;
 
+    float timer = 5F;
+    public GameObject skipButton;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -61,6 +64,12 @@ public class GameManager : MonoBehaviour {
 
             Invoke("StartGame", 2f);
             ready = false;
+        }
+
+        if (turn == me)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0 && !skipButton.activeInHierarchy) skipButton.SetActive(true);
         }
     }
 
@@ -155,6 +164,12 @@ public class GameManager : MonoBehaviour {
         turn = index;
         players[turn].myTurn = true;
         turnText.text = players[index].name + "'s Turn";
+
+        if(turn == me)
+        {
+            timer = 5F;
+            skipButton.SetActive(false);
+        }
         GetComponent<PlayerViews>().setView(turn);
     }
 
@@ -177,5 +192,11 @@ public class GameManager : MonoBehaviour {
             Debug.LogError("Its not your turn!");
             card.GetComponent<CardClicker>().played = false;
         }
+    }
+
+    public void skipTurn()
+    {
+        players[turn].myTurn = false;
+        Networking.server.playCard("none");
     }
 }

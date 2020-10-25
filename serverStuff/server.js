@@ -90,6 +90,12 @@ io.sockets.on('connection', (socket) => {
         turn();
     });
 
+    socket.on('setValues', (thing) => {
+        changeUserProperty('limit', thing.limit);
+        changeUserProperty('win', thing.wincon);
+        socket.broadcast.emit('playerValues', { id: socket.id, limit: thing.limit, win: thing.wincon });
+    });
+
 
 
 
@@ -123,6 +129,8 @@ io.sockets.on('connection', (socket) => {
         var card1 = drawCard();
         var card2 = drawCard();
         var card3 = drawCard();
+
+        
 
         io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3, limit: limit, win: win });
     }
@@ -212,7 +220,9 @@ io.sockets.on('connection', (socket) => {
                 socket.id,
                 {
                     username: "Name",
-                    id: socket.id
+                    id: socket.id,
+                    limit: "none",
+                    win: "none"
                 }
             );
 

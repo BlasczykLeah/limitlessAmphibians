@@ -65,6 +65,13 @@ public class CustomLayout : MonoBehaviour
     {
         if (limitCard)
         {
+            if(limitCard.GetComponent<CardData>().cardName == card.GetComponent<CardData>().cardName)
+            {
+                // already have this card
+                Destroy(card);
+                return;
+            }
+
             Networking.server.discardCard(limitCard.name);
             Destroy(limitCard);
         }
@@ -78,6 +85,13 @@ public class CustomLayout : MonoBehaviour
     {
         if (winCard)
         {
+            if (winCard.GetComponent<CardData>().cardName == card.GetComponent<CardData>().cardName)
+            {
+                // already have this card
+                Destroy(card);
+                return;
+            }
+
             Networking.server.discardCard(winCard.name);
             Destroy(winCard);
         }

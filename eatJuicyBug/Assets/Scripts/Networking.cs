@@ -43,6 +43,7 @@ public class Networking : MonoBehaviour
         socket.On("newHand", newHand);
         socket.On("host", setHost);
         socket.On("playerTurn", getWhosTurn);
+        socket.On("playerValues", setPlayerCards);
     }
 
     #region Starting Game
@@ -165,6 +166,9 @@ public class Networking : MonoBehaviour
         else Debug.LogError("Player instance not saved. Cannot add cards.");
 
         GameManager.instance.ready = true;
+
+        string thing = "{ " + quote + "limit" + quote + ":" + evt.data.GetField("limit").ToString() + ", " + quote + "wincon" + quote + ":" + evt.data.GetField("win").ToString() + " }";
+        socket.Emit("setValues", new JSONObject(thing));
     }
 
     void recieveCardPlayed(SocketIOEvent evt)
@@ -259,6 +263,21 @@ public class Networking : MonoBehaviour
     public void EnableNextTurn()
     {
         socket.Emit("nextTurn");
+    }
+
+    void setPlayerCards(SocketIOEvent evt)
+    {
+        string playerID = evt.data.GetField("id").ToString().Trim('"');
+        int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
+
+        GameObject limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
+        GameObject winCard = CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
+
+        GameObject newLimit = Instantiate(limitCard);
+        GameManager.instance.tableLayouts[playerIndex].addLimitCard(newLimit);
+
+        GameObject newWin = Instantiate(winCard);
+        GameManager.instance.tableLayouts[playerIndex].addWinCard(newWin);
     }
 
     #endregion

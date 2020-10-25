@@ -33,6 +33,7 @@ public class CardClicker : MonoBehaviour
     }
 
     void PlayCard() {
-        Networking.server.playCard(gameObject.GetComponent<CardData>().cardName);
+        GameManager.instance.playCard(GetComponent<CardData>().cardName);
+        //Networking.server.playCard(gameObject.GetComponent<CardData>().cardName);
     }
 }

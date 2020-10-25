@@ -42,10 +42,10 @@ public class GameManager : MonoBehaviour {
             //ta-da!!!
             WinGame();
         } else {
-            turn++;
-            if(turn >= players.Count - 1) {
-                turn = 0;
-            }
+            //turn++;
+            //if(turn >= players.Count - 1) {
+            //    turn = 0;
+            //}
             print("It is Player " + turn + "'s turn!");
         }
     }
@@ -143,6 +143,21 @@ public class GameManager : MonoBehaviour {
 
     public void setTurn(int index)
     {
+        turn = index;
         turnText.text = players[index].name + "'s Turn";
+    }
+
+    public void playCard(string cardName)
+    {
+        if (turn == me)
+        {
+            //can play
+            Networking.server.playCard(cardName);
+        }
+        else
+        {
+            //can't play
+            Debug.LogError("Its not your turn!");
+        }
     }
 }

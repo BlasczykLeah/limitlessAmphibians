@@ -112,7 +112,8 @@ public class GameManager : MonoBehaviour {
         foreach(GameObject card in cardPrefs)
         {
             GameObject newCard = Instantiate(card, playerHand.transform);
-            newCard.transform.position = Vector3.zero;
+            newCard.transform.localPosition = Vector3.zero;
+            newCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
             players[me].Hand.Add(newCard.GetComponent<Card>());
             //tableLayouts[me].placeCard(newCard);
             

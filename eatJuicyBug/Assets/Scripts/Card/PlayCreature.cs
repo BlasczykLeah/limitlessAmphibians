@@ -14,6 +14,6 @@ public class PlayCreature : CardEffect
 
     }
     public override void PlayCard() {
-        GameManager.instance.PlayCreature(type);
+        //GameManager.instance.PlayCreature(type);
     }
 }

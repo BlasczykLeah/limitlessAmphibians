@@ -310,8 +310,6 @@ public class Networking : MonoBehaviour
             Invoke("EnableNextTurn", 3F);
         }
         GameManager.instance.NextTurn();
-
-        Debug.LogWarning("TESTINGGGGG");
     }
 
     void recieveCardDrawn(SocketIOEvent evt)

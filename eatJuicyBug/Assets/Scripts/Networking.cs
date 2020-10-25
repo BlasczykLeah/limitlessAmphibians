@@ -182,7 +182,8 @@ public class Networking : MonoBehaviour
         }
         else Debug.LogError("Player instance not saved. Cannot add cards.");
 
-        Invoke("setReady", 0.5F);
+        GameManager.instance.ready = true;
+        if (host) socket.Emit("firstTurn");
 
         string thing = "{ " + quote + "limit" + quote + ":" + evt.data.GetField("limit").ToString() + ", " + quote + "wincon" + quote + ":" + evt.data.GetField("win").ToString() + " }";
         socket.Emit("setValues", new JSONObject(thing));

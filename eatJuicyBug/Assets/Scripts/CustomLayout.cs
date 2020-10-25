@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CustomLayout : MonoBehaviour
 {
-    Vector3 limitLocalPosition = new Vector3(-0.38F, 0.52F, 0.2F);
-    Vector3 winLocalPosition = new Vector3(-0.38F, 0.52F, -0.2F);
+    Vector3 limitLocalPosition;
+    Vector3 winLocalPosition;
     //Vector3 playCardLocalPosition = new Vector3(-0.16F, 0.52F, 0.1F);
+
+    GameObject cardsLayout;
+    GameObject winPos;
+    GameObject limPos;
 
     public List<GameObject> tableCards;
     public GameObject limitCard;
@@ -15,12 +19,19 @@ public class CustomLayout : MonoBehaviour
     void Awake()
     {
         tableCards = new List<GameObject>();
+        cardsLayout = transform.GetChild(0).gameObject;
+        winPos = transform.GetChild(1).gameObject;
+        limPos = transform.GetChild(2).gameObject;
+
+        limitLocalPosition = limPos.transform.localPosition;
+        winLocalPosition = winPos.transform.localPosition;
     }
 
     public void placeCard(GameObject card)
     {
         tableCards.Add(card);
-        card.transform.parent = transform;
+        card.transform.SetParent(cardsLayout.transform);
+        card.transform.localPosition = Vector3.zero;
 
         if (tableCards.Count > 6)
         {
@@ -87,7 +98,7 @@ public class CustomLayout : MonoBehaviour
             Destroy(limitCard);
         }
 
-        card.transform.parent = transform;
+        card.transform.SetParent(transform);
         limitCard = card;
         limitCard.transform.localPosition = limitLocalPosition;
     }
@@ -107,7 +118,7 @@ public class CustomLayout : MonoBehaviour
             Destroy(winCard);
         }
 
-        card.transform.parent = transform;
+        card.transform.SetParent(transform);
         winCard = card;
         winCard.transform.localPosition = winLocalPosition;
     }

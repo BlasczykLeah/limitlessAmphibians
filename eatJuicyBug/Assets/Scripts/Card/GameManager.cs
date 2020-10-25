@@ -300,12 +300,12 @@ public class GameManager : MonoBehaviour {
                     }
                 }
             }
-            else Debug.LogError("LIMIT WORKED");
+            else Debug.LogWarning("LIMIT WORKED");
         }
         else
         {
             //can't play
-            Debug.LogError("Its not your turn!");
+            Debug.LogWarning("Its not your turn!");
             card.GetComponent<CardClicker>().played = false;
         }
     }

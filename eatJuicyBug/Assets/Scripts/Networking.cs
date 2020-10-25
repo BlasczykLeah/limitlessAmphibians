@@ -246,7 +246,13 @@ public class Networking : MonoBehaviour
                 }
                 else // is a magic card
                 {
-                    if (targetCard != "none")
+                    if(targetPlayerIndex == -1)
+                    {
+                        // has no player target
+                        CreatureType creatureType = cardPlayed.GetComponent<CardData>().GetCreatureType();
+                        cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
+                    }
+                    else if (targetCard != "none")
                     {
                         GameObject targettedCard = null;
                         foreach (GameObject card in GameManager.instance.tableLayouts[targetPlayerIndex].tableCards)
@@ -291,6 +297,8 @@ public class Networking : MonoBehaviour
             Invoke("EnableNextTurn", 3F);
         }
         GameManager.instance.NextTurn();
+
+        Debug.LogWarning("TESTINGGGGG");
     }
 
     void recieveCardDrawn(SocketIOEvent evt)

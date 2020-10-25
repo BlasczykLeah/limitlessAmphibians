@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour {
     float timer = 5F;
     public GameObject skipButton;
 
+    public GameObject targetBox; 
+    public TextMeshProUGUI chooseTargetText;
+    GameObject cardToPlay = null;
+
     private void Awake() {
         if (instance == null) {
             instance = this;
@@ -66,10 +70,42 @@ public class GameManager : MonoBehaviour {
             ready = false;
         }
 
-        if (turn == me)
+        if (turn == me && !cardToPlay)
         {
             timer -= Time.deltaTime;
             if (timer < 0 && !skipButton.activeInHierarchy) skipButton.SetActive(true);
+        }
+
+        if (cardToPlay)
+        {
+            if (skipButton.activeInHierarchy) skipButton.SetActive(false);
+
+            //raycast, looking for deletable card
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit thing;
+            if (Physics.Raycast(ray, out thing, 30))
+            {
+                if (thing.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
+                {
+                    chooseTargetText.text = "Select this card";
+                    if (Input.GetMouseButtonDown(0) && !players[me].Hand.Contains(thing.collider.GetComponent<Card>()))
+                    {
+                        // card chosen
+                        tableLayouts[me].removePlacedCard(thing.collider.gameObject);
+
+                        players[turn].myTurn = false;
+                        cardToPlay.GetComponent<CardClicker>().played = true;
+                        Networking.server.playCard(cardToPlay.GetComponent<CardData>().cardName);
+                        targetBox.SetActive(false);
+                        cardToPlay = null;
+                    }
+                }
+                else chooseTargetText.text = "Choose a card to destroy";
+            }
+            else
+            {
+                chooseTargetText.text = "Choose a card to destroy";
+            }
         }
     }
 
@@ -80,6 +116,7 @@ public class GameManager : MonoBehaviour {
 
     // ALL CARD FUNCTIONS
     public void PlayCreature(CreatureType type, int index) {
+        players[index].cardsOnTable++;
         switch (type) {
             case CreatureType.Frog:
                 players[index].creatureAmounts[0]++;
@@ -108,6 +145,12 @@ public class GameManager : MonoBehaviour {
 
         players[index].limit = limit;
 
+        limit.gameObject.transform.SetParent(null);
+        limit.gameObject.transform.localScale = Vector3.one * 0.2F;
+        limit.gameObject.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
+
+        tableLayouts[index].addLimitCard(limit.gameObject);
+        Networking.server.updateValues(limit.gameObject.GetComponent<CardData>().cardName, players[index].winCon.GetComponent<CardData>().cardName);
     }
 
     public void PlaySwap() {
@@ -183,10 +226,21 @@ public class GameManager : MonoBehaviour {
         {
             if (players[me].limit.CheckLimit(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
             {
-                //can play
-                players[turn].myTurn = false;
-                card.GetComponent<CardClicker>().played = true;
-                Networking.server.playCard(card.GetComponent<CardData>().cardName);
+                if (players[me].cardsOnTable < 6 || card.GetComponent<CardData>().GetCardType() != CardType.Creature)
+                {
+                    //can play
+                    if (skipButton.activeInHierarchy) skipButton.SetActive(false);
+                    players[turn].myTurn = false;
+                    card.GetComponent<CardClicker>().played = true;
+                    Networking.server.playCard(card.GetComponent<CardData>().cardName);
+                }
+                else
+                {
+                    // need to remove card from table
+                    // show which card is to be played
+                    cardToPlay = card;
+                    targetBox.SetActive(true);
+                }
             }
             else Debug.LogError("LIMIT WORKED");
         }
@@ -203,6 +257,7 @@ public class GameManager : MonoBehaviour {
         if (turn == me && players[me].myTurn)
         {
             players[turn].myTurn = false;
+            skipButton.SetActive(false);
             Networking.server.playCard("none");
         }
     }

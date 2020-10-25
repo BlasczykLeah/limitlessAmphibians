@@ -44,6 +44,7 @@ public class Networking : MonoBehaviour
         socket.On("host", setHost);
         socket.On("playerTurn", getWhosTurn);
         socket.On("playerValues", setPlayerCards);
+        socket.On("cardRemoved", checkForRemove);
     }
 
     #region Starting Game
@@ -194,7 +195,7 @@ public class Networking : MonoBehaviour
                     {
                         cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
 
-                        cardPlayed.transform.parent = null;
+                        cardPlayed.transform.SetParent(null);
                         cardPlayed.transform.localScale = Vector3.one * 0.2F;
                         cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
 
@@ -252,6 +253,22 @@ public class Networking : MonoBehaviour
         socket.Emit("discardCard", new JSONObject(quote + cardName + quote));
     }
 
+    void checkForRemove(SocketIOEvent evt)
+    {
+        string cardString = evt.data.GetField("card").ToString().Trim('"');
+        string playerID = evt.data.GetField("id").ToString().Trim('"');
+        int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
+
+        if (CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Creature)
+        {
+            GameManager.instance.tableLayouts[playerIndex].removePlacedCard(cardString);
+        }
+        else if(CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Limit)
+        {
+            // do nothing for now
+        }
+    }
+
     void getWhosTurn(SocketIOEvent evt)
     {
         string playerID = evt.data.GetField("id").ToString().Trim('"');
@@ -278,6 +295,12 @@ public class Networking : MonoBehaviour
 
         GameObject newWin = Instantiate(winCard);
         GameManager.instance.tableLayouts[playerIndex].addWinCard(newWin);
+    }
+
+    public void updateValues(string limit, string win)
+    {
+        string thing = "{ " + quote + "limit" + quote + ":" + limit + ", " + quote + "wincon" + quote + ":" + win + " }";
+        socket.Emit("setValues", new JSONObject(thing));
     }
 
     #endregion

@@ -72,6 +72,7 @@ io.sockets.on('connection', (socket) => {
 
     socket.on('discardCard', (card) => {
         DiscardPile.push(card);
+        socket.broadcast.emit('cardRemoved', { id: socket.id, card: card });
     });
 
     socket.on('loadHands', () => {

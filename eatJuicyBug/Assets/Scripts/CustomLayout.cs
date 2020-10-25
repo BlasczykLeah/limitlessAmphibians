@@ -6,7 +6,7 @@ public class CustomLayout : MonoBehaviour
 {
     Vector3 limitLocalPosition = new Vector3(-0.38F, 0.52F, 0.2F);
     Vector3 winLocalPosition = new Vector3(-0.38F, 0.52F, -0.2F);
-    Vector3 playCardLocalPosition = new Vector3(-0.16F, 0.52F, 0.2F);
+    Vector3 playCardLocalPosition = new Vector3(-0.16F, 0.52F, 0.1F);
 
     List<GameObject> tableCards;
     public GameObject limitCard;
@@ -22,7 +22,7 @@ public class CustomLayout : MonoBehaviour
         tableCards.Add(card);
         card.transform.parent = transform;
 
-        if (tableCards.Count > 12)
+        if (tableCards.Count > 6)
         {
             Debug.LogWarning("max cards placed, placing at center");
             card.transform.localPosition = new Vector3(0, 0.52F, 0);
@@ -32,8 +32,7 @@ public class CustomLayout : MonoBehaviour
             card.transform.localPosition = playCardLocalPosition;
 
             //update nextPosition
-            if (tableCards.Count == 6) playCardLocalPosition = new Vector3(-0.16F, playCardLocalPosition.y, -0.1F);
-            else playCardLocalPosition = new Vector3(playCardLocalPosition.x + 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
+            playCardLocalPosition = new Vector3(playCardLocalPosition.x + 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
         }
     }
 
@@ -54,11 +53,23 @@ public class CustomLayout : MonoBehaviour
         tableCards.Remove(card);
 
         //update nextPosition
-        if (tableCards.Count == 5) playCardLocalPosition = new Vector3(0.39F, playCardLocalPosition.y, 0.2F);
-        else playCardLocalPosition = new Vector3(playCardLocalPosition.x - 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
+        playCardLocalPosition = new Vector3(playCardLocalPosition.x - 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
 
         Networking.server.discardCard(card.name);
         Destroy(card);
+    }
+
+    public void removePlacedCard(string cardName)
+    {
+        foreach(GameObject c in tableCards)
+        {
+            if(c.GetComponent<CardData>().cardName == cardName)
+            {
+                removePlacedCard(c);
+                return;
+            }
+        }
+        Debug.LogError("Could not find card to remove. " + cardName);
     }
 
     public void addLimitCard(GameObject card)

@@ -12,6 +12,7 @@ public class Player
     public Limit limit = null;
     public string id;
     public bool myTurn = false;
+    public int cardsOnTable = 0;
 
     public int[] creatureAmounts = new int[6];
 }

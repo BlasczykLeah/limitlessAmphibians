@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-[CreateAssetMenu(fileName = "New WinCon", menuName = "Wincon")]
-public class WinCondition : ScriptableObject
+public class WinCondition : MonoBehaviour
 {
 
     public Sprite sprite;
@@ -20,5 +19,8 @@ public class WinCondition : ScriptableObject
     public int lizard;
     [Header("Dino")]
     public int dino;
-
+    [Header("Box")]
+    public int box;
+    [Header("Cat")]
+    public int cat;
 }

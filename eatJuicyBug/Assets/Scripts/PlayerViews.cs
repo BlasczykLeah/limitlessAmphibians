@@ -28,6 +28,16 @@ public class PlayerViews : MonoBehaviour
 
     public void setView(int index)
     {
+        resetAllHighlights();
+        viewButtons[index].transform.GetChild(0).gameObject.SetActive(true);
         Camera.main.transform.position = new Vector3(index * 30, 10, 0);
+    }
+
+    void resetAllHighlights()
+    {
+        foreach(GameObject a in viewButtons)
+        {
+            a.transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 }

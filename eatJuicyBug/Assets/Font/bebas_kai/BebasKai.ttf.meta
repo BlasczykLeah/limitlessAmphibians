@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 285d5e8686ee08840b4bab83edbc1f36
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Bebas Kai
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 93a19071a544fa348be15626aaca212f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

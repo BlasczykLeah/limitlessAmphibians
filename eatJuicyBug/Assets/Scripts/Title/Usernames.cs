@@ -43,6 +43,11 @@ public class Usernames : MonoBehaviour
         }
     }
 
+    public void clearText()
+    {
+        nameField.text = "";
+    }
+
     public void addUsername(string id, string name)
     {
         if (usernameTexts.ContainsKey(id))
@@ -80,5 +85,10 @@ public class Usernames : MonoBehaviour
     {
         Debug.Log("starting game...");
         Networking.server.loadGame();
+    }
+
+    public void quit()
+    {
+        Application.Quit();
     }
 }

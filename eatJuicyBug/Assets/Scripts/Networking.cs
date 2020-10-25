@@ -288,7 +288,7 @@ public class Networking : MonoBehaviour
         if (host)
         {
             Debug.Log("I am setting the next person's turn");
-            Invoke("EnableNextTurn", 2F);
+            Invoke("EnableNextTurn", 3F);
         }
         GameManager.instance.NextTurn();
     }

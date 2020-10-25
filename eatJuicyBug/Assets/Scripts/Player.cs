@@ -11,6 +11,7 @@ public class Player
     public WinCondition winCon = null;
     public Limit limit = null;
     public string id;
+    public bool myTurn = false;
 
     public int[] creatureAmounts = new int[6];
 }

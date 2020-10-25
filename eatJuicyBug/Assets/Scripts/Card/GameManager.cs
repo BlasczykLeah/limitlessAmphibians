@@ -153,17 +153,19 @@ public class GameManager : MonoBehaviour {
     public void setTurn(int index)
     {
         turn = index;
+        players[turn].myTurn = true;
         turnText.text = players[index].name + "'s Turn";
         GetComponent<PlayerViews>().setView(turn);
     }
 
     public void playCard(GameObject card)
     {
-        if (turn == me)
+        if (turn == me && players[me].myTurn)
         {
             if (players[me].limit.CheckLimit(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
             {
                 //can play
+                players[turn].myTurn = false;
                 card.GetComponent<CardClicker>().played = true;
                 Networking.server.playCard(card.GetComponent<CardData>().cardName);
             }

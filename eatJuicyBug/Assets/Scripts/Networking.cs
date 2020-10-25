@@ -243,7 +243,7 @@ public class Networking : MonoBehaviour
                 {
                     GameManager.instance.PlayLimit(cardPlayed.GetComponent<CardData>().limit, targetPlayerIndex);
                 }
-                else
+                else // is a magic card
                 {
                     if (targetCard != "none")
                     {
@@ -260,11 +260,15 @@ public class Networking : MonoBehaviour
                         if (targettedCard)
                         {
                             // PLAY MAGIC CARD THAT TARGETS ANOTHER PLAYERS CARD
+                            CreatureType creatureType = targettedCard.GetComponent<CardData>().GetCreatureType();
+                            cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
                         }
                         else Debug.LogError("target card not found.");
                     }
 
                     // PLAY MAGIC CARD THAT DOES NOT TARGET A CARD
+                    CreatureType type = cardPlayed.GetComponent<CardData>().GetCreatureType();
+                    cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, type);
                 }
             }
             else Debug.LogError("D:");

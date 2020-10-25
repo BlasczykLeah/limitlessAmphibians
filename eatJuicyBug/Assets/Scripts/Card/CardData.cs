@@ -21,6 +21,7 @@ public class CardData : MonoBehaviour
     }
 
     public Limit limit;
+    public Magic magic;
     //Add as many effects into a card as you would like
     public List<CardEffect> cardEffects = new List<CardEffect>();
 

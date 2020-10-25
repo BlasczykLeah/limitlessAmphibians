@@ -56,7 +56,7 @@ public class Networking : MonoBehaviour
     void setHost(SocketIOEvent evt)
     {
         Debug.Log("You are now the host.");
-        host = true;
+        //host = true;
     }
 
     public void newUsername(string name)
@@ -126,6 +126,7 @@ public class Networking : MonoBehaviour
 
     public void loadGame()
     {
+        host = true;
         socket.Emit("loadGame");
     }
 

@@ -17,7 +17,7 @@ var Limits = [];
 var WinCards = [];
 
 var whosTurn = -1;
-var host = "";
+//var host = "";
 
 io.sockets.on('connection', (socket) => {
     console.log('a user connected');
@@ -218,7 +218,7 @@ io.sockets.on('connection', (socket) => {
 
             console.log(Array.from(Users.keys()).length);
             if (Array.from(Users.keys()).length == 1) {
-                host = socket.id;
+                //host = socket.id;
                 //console.log(Users[socket.id].username + ' is now the host.');
                 socket.emit('host');
             }
@@ -229,17 +229,17 @@ io.sockets.on('connection', (socket) => {
 
     function removeUser(socket) {
         if (Users.has(socket.id)) {
-            if (host == socket.id && Users.length > 1) {
+            /*if (host == socket.id && Users.length > 1) {
                 var user = Array.from(Users.keys())[0];
                 if (user == socket.id) user = Array.from(Users.keys())[1];
 
-                host = user;
+                //host = user;
                 //console.log(User[user].username + ' is now the host.');
                 io.to(user).emit('host');
             }
             else if (host == socket.id) {
-                host = "";
-            }
+                //host = "";
+            }*/
 
             Users.delete(socket.id);
             checkUsers();

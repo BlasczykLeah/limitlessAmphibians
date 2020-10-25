@@ -202,7 +202,11 @@ public class Networking : MonoBehaviour
         else Debug.LogError("D:");
 
         GameManager.instance.NextTurn();
-        if (host) Invoke("EnableNextTurn", 0.5F);
+        if (host)
+        {
+            Debug.Log("I am setting the next person's turn");
+            Invoke("EnableNextTurn", 0.5F);
+        }
     }
 
     void recieveCardDrawn(SocketIOEvent evt)

@@ -147,17 +147,19 @@ public class GameManager : MonoBehaviour {
         turnText.text = players[index].name + "'s Turn";
     }
 
-    public void playCard(string cardName)
+    public void playCard(GameObject card)
     {
         if (turn == me)
         {
             //can play
-            Networking.server.playCard(cardName);
+            card.GetComponent<CardClicker>().played = true;
+            Networking.server.playCard(card.GetComponent<CardData>().cardName);
         }
         else
         {
             //can't play
             Debug.LogError("Its not your turn!");
+            card.GetComponent<CardClicker>().played = false;
         }
     }
 }

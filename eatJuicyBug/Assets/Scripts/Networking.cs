@@ -183,6 +183,8 @@ public class Networking : MonoBehaviour
                 if(GameManager.instance.playerHand.transform.GetChild(i).GetComponent<CardData>().cardName == cardString)
                 {
                     cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
+                    cardPlayed.transform.localScale = Vector3.one * 0.2F;
+                    cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
                     GameManager.instance.players[playerIndex].Hand.Remove(cardPlayed.GetComponent<Card>());
                     continue;
                 }
@@ -201,12 +203,12 @@ public class Networking : MonoBehaviour
         }
         else Debug.LogError("D:");
 
-        GameManager.instance.NextTurn();
         if (host)
         {
             Debug.Log("I am setting the next person's turn");
-            Invoke("EnableNextTurn", 0.5F);
+            Invoke("EnableNextTurn", 2F);
         }
+        GameManager.instance.NextTurn();
     }
 
     void recieveCardDrawn(SocketIOEvent evt)

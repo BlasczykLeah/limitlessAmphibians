@@ -6,7 +6,7 @@ public class PlayLimit : CardEffect
 {
     public Limit limit;
     public override void PlayCard() {
-        GameManager.instance.PlayLimit(limit);
+       // GameManager.instance.PlayLimit(limit);
     }
 
 

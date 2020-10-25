@@ -87,8 +87,24 @@ public class Networking : MonoBehaviour
 
     void removeUser(SocketIOEvent evt)
     {
-        Usernames.inst.removeUsername(evt.data.GetField("id").ToString().Trim('"'));
+        if (Usernames.inst) Usernames.inst.removeUsername(evt.data.GetField("id").ToString().Trim('"'));
+        else
+        {
+            int playerGone = GameManager.instance.GetPlayerIndexFromID(evt.data.GetField("id").ToString().Trim('"'));
+            FindObjectOfType<PlayerViews>().viewButtons[playerGone].SetActive(false);
+            GameManager.instance.players[playerGone].disconnected = true;
+        }
         playerSockets.Remove(evt.data.GetField("id").ToString().Trim('"'));
+    }
+
+    private void OnApplicationQuit()
+    {
+        foreach(CardData c in GameManager.instance.playerHand.GetComponentsInChildren<CardData>())
+        {
+            socket.Emit("discardCard", new JSONObject(c.cardName));
+        }
+
+        socket.Emit("discardCard", new JSONObject(GameManager.instance.players[myPlayerIndex].limit.GetComponent<CardData>().cardName));
     }
 
     public void getPlayers()

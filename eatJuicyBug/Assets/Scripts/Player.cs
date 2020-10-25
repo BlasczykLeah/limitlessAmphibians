@@ -13,6 +13,7 @@ public class Player
     public string id;
     public bool myTurn = false;
     public int cardsOnTable = 0;
+    public bool disconnected = false;
 
     public int[] creatureAmounts = new int[6];
 }

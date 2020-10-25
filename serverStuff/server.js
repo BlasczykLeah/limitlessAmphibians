@@ -56,10 +56,10 @@ io.sockets.on('connection', (socket) => {
         io.emit('loadGameScene');
     });
 
-    socket.on('playCard', (card) => {   //sending card played to everyone
+    socket.on('playCard', (data) => {   //sending card played to everyone
         if (Array.from(Users.keys())[whosTurn] == socket.id) {
             //console.log(Users[socket.id].username + ' played a ' + card + ' card');
-            io.emit('cardPlayed', { card: card, id: socket.id });
+            io.emit('cardPlayed', { card: data.card, id: socket.id, targetID: data.targetID, targetCard: data.targetCard });
         }
         //else console.log(Users[socket.id].username + ' cannot play a card, its not their turn');
     });

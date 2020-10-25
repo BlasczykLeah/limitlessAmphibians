@@ -9,6 +9,8 @@ public class CardData : MonoBehaviour
     [SerializeField] CardType type;
     [SerializeField] CreatureType c_type;
 
+    public int playerIndex = -1;
+
     public CardType GetCardType() {
         return type;
     }

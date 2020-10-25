@@ -6,9 +6,9 @@ public class CustomLayout : MonoBehaviour
 {
     Vector3 limitLocalPosition = new Vector3(-0.38F, 0.52F, 0.2F);
     Vector3 winLocalPosition = new Vector3(-0.38F, 0.52F, -0.2F);
-    Vector3 playCardLocalPosition = new Vector3(-0.16F, 0.52F, 0.1F);
+    //Vector3 playCardLocalPosition = new Vector3(-0.16F, 0.52F, 0.1F);
 
-    List<GameObject> tableCards;
+    public List<GameObject> tableCards;
     public GameObject limitCard;
     public GameObject winCard;
 
@@ -29,10 +29,10 @@ public class CustomLayout : MonoBehaviour
         }
         else
         {
-            card.transform.localPosition = playCardLocalPosition;
+            //card.transform.localPosition = playCardLocalPosition;
 
             //update nextPosition
-            playCardLocalPosition = new Vector3(playCardLocalPosition.x + 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
+            //playCardLocalPosition = new Vector3(playCardLocalPosition.x + 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
         }
     }
 
@@ -44,16 +44,16 @@ public class CustomLayout : MonoBehaviour
             return;
         }
 
-        int index = tableCards.IndexOf(card);
+        //int index = tableCards.IndexOf(card);
 
-        for(int i = index + 1; i < tableCards.Count; i++)
-        {
-            tableCards[i].transform.localPosition = new Vector3(tableCards[i - 1].transform.localPosition.x - 0.11F, tableCards[i - 1].transform.localPosition.y, tableCards[i - 1].transform.localPosition.z);
-        }
+        //for(int i = index + 1; i < tableCards.Count; i++)
+        //{
+            //tableCards[i].transform.localPosition = new Vector3(tableCards[i - 1].transform.localPosition.x - 0.11F, tableCards[i - 1].transform.localPosition.y, tableCards[i - 1].transform.localPosition.z);
+        //}
         tableCards.Remove(card);
 
         //update nextPosition
-        playCardLocalPosition = new Vector3(playCardLocalPosition.x - 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
+        //playCardLocalPosition = new Vector3(playCardLocalPosition.x - 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
 
         if (Networking.server.host) Networking.server.discardCard(card.GetComponent<CardData>().cardName);
         Destroy(card);

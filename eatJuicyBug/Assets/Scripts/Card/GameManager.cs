@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour {
 
     public GameObject targetBox; 
     public TextMeshProUGUI chooseTargetText;
-    GameObject cardToPlay = null;
+    GameObject cardPlayed_selfCreature = null;
+    GameObject cardPlayed_playerTarget = null;
+    GameObject cardPlayed_otherCreature = null;
+    public GameObject[] playerTargetButtons;
 
     private void Awake() {
         if (instance == null) {
@@ -70,33 +73,33 @@ public class GameManager : MonoBehaviour {
             ready = false;
         }
 
-        if (turn == me && !cardToPlay)
+        if (turn == me && !cardPlayed_selfCreature)
         {
             timer -= Time.deltaTime;
             if (timer < 0 && !skipButton.activeInHierarchy) skipButton.SetActive(true);
         }
 
-        if (cardToPlay)
+        if (cardPlayed_selfCreature)    // targetting one of my own creatures
         {
             if (skipButton.activeInHierarchy) skipButton.SetActive(false);
 
             //raycast, looking for deletable card
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit thing;
-            if (Physics.Raycast(ray, out thing, 30, LayerMask.GetMask("Card")))
+            RaycastHit raycastStuff;
+            if (Physics.Raycast(ray, out raycastStuff, 30, LayerMask.GetMask("Card")))
             {
-                if (thing.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
+                if (raycastStuff.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
                 {
                     chooseTargetText.text = "Select this card";
-                    if (Input.GetMouseButtonDown(0) && thing.collider.GetComponent<CardClicker>().played)
+                    if (Input.GetMouseButtonDown(0) && raycastStuff.collider.GetComponent<CardData>().playerIndex == me)   //thing.collider.GetComponent<CardClicker>().played
                     {
                         // card chosen
-                        tableLayouts[me].removePlacedCard(thing.collider.gameObject);
+                        tableLayouts[me].removePlacedCard(raycastStuff.collider.gameObject);
 
                         players[turn].myTurn = false;
-                        Networking.server.playCard(cardToPlay.GetComponent<CardData>().cardName);
+                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName);
                         targetBox.SetActive(false);
-                        cardToPlay = null;
+                        cardPlayed_selfCreature = null;
                     }
                 }
                 else chooseTargetText.text = "Choose a card to destroy";
@@ -104,6 +107,40 @@ public class GameManager : MonoBehaviour {
             else
             {
                 chooseTargetText.text = "Choose a card to destroy";
+            }
+        }
+        if (cardPlayed_playerTarget)    // targetting a player
+        {
+
+        }
+        if (cardPlayed_otherCreature)   // targetting someone else's creature
+        {
+            if (skipButton.activeInHierarchy) skipButton.SetActive(false);
+
+            //raycast, looking for deletable card
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit raycastStuff;
+            if (Physics.Raycast(ray, out raycastStuff, 30, LayerMask.GetMask("Card")))
+            {
+                if (raycastStuff.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
+                {
+                    chooseTargetText.text = "Select this card";
+                    if (Input.GetMouseButtonDown(0) && raycastStuff.collider.GetComponent<CardData>().playerIndex != me && raycastStuff.collider.GetComponent<CardData>().playerIndex != -1)   //thing.collider.GetComponent<CardClicker>().played
+                    {
+                        // card chosen
+                        tableLayouts[raycastStuff.collider.GetComponent<CardData>().playerIndex].removePlacedCard(raycastStuff.collider.gameObject);
+
+                        players[turn].myTurn = false;
+                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName);
+                        targetBox.SetActive(false);
+                        cardPlayed_selfCreature = null;
+                    }
+                }
+                else chooseTargetText.text = "Choose another player's card to destroy";
+            }
+            else
+            {
+                chooseTargetText.text = "Choose another player's card to destroy";
             }
         }
     }
@@ -219,7 +256,7 @@ public class GameManager : MonoBehaviour {
         {
             if (players[me].limit.CheckLimit(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
             {
-                if (players[me].cardsOnTable < 6 || card.GetComponent<CardData>().GetCardType() != CardType.Creature)
+                if (players[me].cardsOnTable < 6 && card.GetComponent<CardData>().GetCardType() == CardType.Creature)
                 {
                     //can play
                     skipButton.SetActive(false);
@@ -227,12 +264,22 @@ public class GameManager : MonoBehaviour {
                     card.GetComponent<CardClicker>().played = true;
                     Networking.server.playCard(card.GetComponent<CardData>().cardName);
                 }
-                else
+                else if(card.GetComponent<CardData>().GetCardType() == CardType.Creature)
                 {
                     // need to remove card from table
                     // show which card is to be played
-                    cardToPlay = card;
+                    cardPlayed_selfCreature = card;
                     targetBox.SetActive(true);
+                }
+                else if(card.GetComponent<CardData>().GetCardType() == CardType.Limit)
+                {
+                    skipButton.SetActive(false);
+                    cardPlayed_playerTarget = card;
+                    enableTargetButtons(true);
+                }
+                else
+                {
+                    //magic
                 }
             }
             else Debug.LogError("LIMIT WORKED");
@@ -253,5 +300,23 @@ public class GameManager : MonoBehaviour {
             skipButton.SetActive(false);
             Networking.server.playCard("none");
         }
+    }
+
+    void enableTargetButtons(bool enable)
+    {
+        for(int i = 0; i < players.Count; i++)
+        {
+            if (!players[i].disconnected) playerTargetButtons[i].SetActive(enable);
+        }
+    }
+
+    public void choosePlayer(int index)
+    {
+        players[turn].myTurn = false;
+        cardPlayed_playerTarget.GetComponent<CardClicker>().played = true;
+        Networking.server.playCard(cardPlayed_playerTarget.GetComponent<CardData>().cardName, players[index].id);
+
+        enableTargetButtons(false);
+        cardPlayed_playerTarget = null;
     }
 }

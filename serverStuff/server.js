@@ -13,6 +13,7 @@ var Users = new Map();
 
 var Deck = [];
 var DiscardPile = [];
+var Limits = [];
 
 var host = "";
 
@@ -81,29 +82,50 @@ io.sockets.on('connection', (socket) => {
             console.log('dealing cards to player: ' + key);
             drawHand(key);
         });
+
+            // put leftover Limit cards in Deck
+        for (var i = 0; i < Limits.length; i++) {
+            Deck.push(Limits.pop());
+        }
+
+        console.log('cards have been dealt');
     }
 
     function drawHand(id) {
+        var limit = drawLimit();
+
         var card1 = drawCard();
         var card2 = drawCard();
         var card3 = drawCard();
 
-        io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3 });
+        io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3, limit: limit });
     }
 
-    function drawCard(rand) {
+    function drawLimit() {
+        if (Limits.length > 0) {
+            var rand = Math.floor(Math.random() * Limits.length);
+
+            var swap = Limits[rand];
+            Limits[rand] = Limits[Limits.length - 1];
+            Limits[Limits.length - 1] = swap;
+
+            var card = Limits.pop();
+
+            return card;
+        }
+        else console.log('no limit cards found.');
+    }
+
+    function drawCard() {
         if (Deck.length == 0) discardToDeck();
 
         var rand = Math.floor(Math.random() * Deck.length);
-
-        console.log("Cards swapping: " + Deck[rand] + "   " + Deck[Deck.length - 1]);
 
         var swap = Deck[rand];
         Deck[rand] = Deck[Deck.length - 1];
         Deck[Deck.length - 1] = swap;
 
         var card = Deck.pop();
-        console.log("card chosen: " + card);
 
         return card;
     }
@@ -111,8 +133,9 @@ io.sockets.on('connection', (socket) => {
     function resetDeck() {
         // sets the deck back to default, and emptys the discard
         DiscardPile = [];
-        Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Limit1', 'Limit2', 'Limit3', 'Limit4', 'Limit5', 'Limit6'];
-        console.log('deck is ready')
+        Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Cat', 'Box'];
+        Limits = ['Limit1', 'Limit2', 'Limit3', 'Limit4', 'Limit5', 'Limit6'];
+        console.log('deck is ready');
     }
 
     function discardToDeck() {

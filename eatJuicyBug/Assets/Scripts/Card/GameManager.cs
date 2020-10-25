@@ -5,6 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public List<Player> players = new List<Player>();
+    public CustomLayout[] tableLayouts;
+    public GameObject playerHand;
+
+    int me = -1;
     public int turn;
     public bool ready = false;
 
@@ -101,5 +105,21 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    
+    public void InstantiateMyCards(int myIndex, GameObject[] cardPrefs, GameObject limPref)
+    {
+        me = myIndex;
+
+        foreach(GameObject card in cardPrefs)
+        {
+            GameObject newCard = Instantiate(card, playerHand.transform);
+            newCard.transform.position = Vector3.zero;
+            players[me].Hand.Add(newCard.GetComponent<Card>());
+            //tableLayouts[me].placeCard(newCard);
+            
+        }
+
+        GameObject newLimit = Instantiate(limPref);
+        players[me].limit = newLimit.GetComponent<Limit>();
+        tableLayouts[me].addLimitCard(newLimit);
+    }
 }

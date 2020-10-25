@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class winnerText : MonoBehaviour
+public class endgameUI : MonoBehaviour
 {
     public Text text;
     public string winnerName;
@@ -17,5 +17,10 @@ public class winnerText : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void endGame()
+    {
+        Application.Quit();
     }
 }

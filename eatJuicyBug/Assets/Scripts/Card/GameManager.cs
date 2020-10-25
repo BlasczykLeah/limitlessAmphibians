@@ -23,8 +23,10 @@ public class GameManager : MonoBehaviour {
     }
 
     private void StartGame() {
-        turn = 0;
-        print("It is Player " + turn + "'s turn!");
+        //turn = 0;
+        //print("It is Player " + turn + "'s turn!");
+
+        //Networking.server.EnableNextTurn();
     }
     public void NextTurn() {
         if(players[turn].creatureAmounts[0] >= players[turn].winCon.frog &&
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour {
     public void InstantiateMyCards(int myIndex, GameObject[] cardPrefs, GameObject limPref)
     {
         me = myIndex;
+        GetComponent<PlayerViews>().setView(me);
 
         foreach(GameObject card in cardPrefs)
         {

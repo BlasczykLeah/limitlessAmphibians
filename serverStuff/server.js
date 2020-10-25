@@ -77,7 +77,8 @@ io.sockets.on('connection', (socket) => {
         console.log('dealing cards to all players');
         handsToAllPlayers();
 
-        whosTurn = Math.floor(Math.random * Array.from(Users.keys()));
+        console.log('choosing who goes first...');
+        whosTurn = Math.floor(Math.random * Array.from(Users.keys()).length);
         turn();
     });
 
@@ -94,6 +95,7 @@ io.sockets.on('connection', (socket) => {
         whosTurn = whosTurn + 1;
         if (whosTurn == sockets.length) whosTurn = 0;
 
+        console.log('index ' + whosTurn + ' player`s turn');
         io.emit('playerTurn', { id: sockets[whosTurn] });
     }
 

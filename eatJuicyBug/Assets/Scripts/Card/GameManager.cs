@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour {
 
     void WinGame() {
         print("WINNER: Player " + turn);
+        Networking.server.sendWin();
     }
     void Update()
     {

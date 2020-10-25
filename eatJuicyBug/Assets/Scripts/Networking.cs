@@ -20,6 +20,8 @@ public class Networking : MonoBehaviour
 
     public bool host;
 
+    public string winner = "";
+
     private void Awake()
     {
         if (server) Destroy(gameObject);
@@ -406,6 +408,12 @@ public class Networking : MonoBehaviour
     void goToWin(SocketIOEvent evt)
     {
         // go to win screen and update win text
+        string winnerID = evt.data.GetField("id").ToString().Trim('"');
+        int playerIndex = GameManager.instance.GetPlayerIndexFromID(winnerID);
+        winner = GameManager.instance.players[playerIndex].name;
+
+        Debug.Log("Loading Win Scene");
+        SceneManager.LoadScene(2);
     }
 
     #endregion

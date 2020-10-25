@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c95199be0ef8b43ab1fb407c9b2f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Wincon15
+  cardName: Win15
   type: 0
   c_type: 6
   cardEffects:

@@ -78,7 +78,7 @@ io.sockets.on('connection', (socket) => {
         handsToAllPlayers();
 
         console.log('choosing who goes first...');
-        whosTurn = Math.floor(Math.random * Array.from(Users.keys()).length);
+        whosTurn = 0;
         turn();
     });
 

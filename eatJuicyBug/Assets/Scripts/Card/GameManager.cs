@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
     public List<Player> players = new List<Player>();
     public CustomLayout[] tableLayouts;
     public GameObject playerHand;
+
+    public TextMeshProUGUI turnText;
 
     int me = -1;
     public int turn;
@@ -67,25 +70,25 @@ public class GameManager : MonoBehaviour {
     }
 
     // ALL CARD FUNCTIONS
-    public void PlayCreature(CreatureType type) {
+    public void PlayCreature(CreatureType type, int index) {
         switch (type) {
             case CreatureType.Frog:
-                players[0].creatureAmounts[0]++;
+                players[index].creatureAmounts[0]++;
                 break;
             case CreatureType.Dragon:
-                players[0].creatureAmounts[1]++;
+                players[index].creatureAmounts[1]++;
                 break;
             case CreatureType.Gator:
-                players[0].creatureAmounts[2]++;
+                players[index].creatureAmounts[2]++;
                 break;
             case CreatureType.Axolotl:
-                players[0].creatureAmounts[3]++;
+                players[index].creatureAmounts[3]++;
                 break;
             case CreatureType.Lizard:
-                players[0].creatureAmounts[4]++;
+                players[index].creatureAmounts[4]++;
                 break;
             case CreatureType.Dino:
-                players[0].creatureAmounts[5]++;
+                players[index].creatureAmounts[5]++;
                 break;
         }
         print("I am playing a " + type.ToString());
@@ -136,5 +139,10 @@ public class GameManager : MonoBehaviour {
 
         Debug.LogError(id + " not found.");
         return -1;
+    }
+
+    public void setTurn(int index)
+    {
+        turnText.text = players[index].name + "'s Turn";
     }
 }

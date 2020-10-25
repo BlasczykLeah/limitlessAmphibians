@@ -13,6 +13,11 @@ public class CardData : MonoBehaviour
         return type;
     }
 
+    public CreatureType GetCreatureType()
+    {
+        return c_type;
+    }
+
     //Add as many effects into a card as you would like
     public List<CardEffect> cardEffects = new List<CardEffect>();
 

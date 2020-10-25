@@ -169,7 +169,33 @@ public class Networking : MonoBehaviour
         string playerID = evt.data.GetField("id").ToString().Trim('"');
 
         int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
-        //GameManager.instance.players[playerIndex].Hand
+
+        // **Assuming creature card for now
+
+        GameObject cardPlayed = null;
+
+        if (myPlayerIndex == playerIndex)
+        {
+            for(int i = 0; i < GameManager.instance.playerHand.transform.childCount; i++)
+            {
+                if(GameManager.instance.playerHand.transform.GetChild(i).GetComponent<CardData>().cardName == cardString)
+                {
+                    cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
+                    continue;
+                }
+            }
+        }
+        else
+        {
+            //CreatureType creature = CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCreatureType();
+            cardPlayed = Instantiate(CardDictionary.instance.GetCard(cardString));
+            GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
+        }
+
+        if(cardPlayed)
+            GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
+
+        Invoke("EnableNextTurn", 0.5F);
     }
 
     void recieveCardDrawn(SocketIOEvent evt)
@@ -197,7 +223,7 @@ public class Networking : MonoBehaviour
         string playerID = evt.data.GetField("id").ToString().Trim('"');
         int index = GameManager.instance.GetPlayerIndexFromID(playerID);
         Debug.Log(GameManager.instance.players[index].name + "'s turn! - says the server");
-        // send who's turn it is to GameManager
+        GameManager.instance.setTurn(index);
     }
 
     public void EnableNextTurn()

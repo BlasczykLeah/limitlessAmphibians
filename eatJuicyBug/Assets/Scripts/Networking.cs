@@ -144,12 +144,15 @@ public class Networking : MonoBehaviour
     {
         if (myPlayerIndex != -1)
         {
+            GameObject limitCard;
             GameObject[] newHand = new GameObject[3];
 
             //GameManager.instance.players[myPlayerIndex].Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
             newHand[0] = CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"'));
             newHand[1] = CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"'));
             newHand[2] = CardDictionary.instance.GetCard(evt.data.GetField("card3").ToString().Trim('"'));
+
+            limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
 
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
         }

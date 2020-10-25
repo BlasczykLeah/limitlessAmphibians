@@ -144,12 +144,8 @@ public class GameManager : MonoBehaviour {
 
         players[index].limit = limit;
 
-        limit.gameObject.transform.SetParent(null);
-        limit.gameObject.transform.localScale = Vector3.one * 0.2F;
-        limit.gameObject.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
-
         tableLayouts[index].addLimitCard(limit.gameObject);
-        Networking.server.updateValues(limit.gameObject.GetComponent<CardData>().cardName, players[index].winCon.GetComponent<CardData>().cardName);
+        //Networking.server.updateValues(limit.gameObject.GetComponent<CardData>().cardName, players[index].winCon.GetComponent<CardData>().cardName);
     }
 
     public void PlaySwap() {
@@ -211,11 +207,9 @@ public class GameManager : MonoBehaviour {
         players[turn].myTurn = true;
         turnText.text = players[index].name + "'s Turn";
 
-        if(turn == me)
-        {
-            timer = 5F;
-            skipButton.SetActive(false);
-        }
+        timer = 5F;
+        skipButton.SetActive(false);
+
         GetComponent<PlayerViews>().setView(turn);
     }
 
@@ -228,7 +222,7 @@ public class GameManager : MonoBehaviour {
                 if (players[me].cardsOnTable < 6 || card.GetComponent<CardData>().GetCardType() != CardType.Creature)
                 {
                     //can play
-                    if (skipButton.activeInHierarchy) skipButton.SetActive(false);
+                    skipButton.SetActive(false);
                     players[turn].myTurn = false;
                     card.GetComponent<CardClicker>().played = true;
                     Networking.server.playCard(card.GetComponent<CardData>().cardName);

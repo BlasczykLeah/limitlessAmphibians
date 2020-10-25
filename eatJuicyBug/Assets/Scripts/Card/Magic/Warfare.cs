@@ -15,9 +15,12 @@ public class Warfare : Magic
                     // if the player has the specific creature type. 
                     Debug.Log("Removing card: " + card.GetComponent<CardData>().cardName);
                     GameManager.instance.tableLayouts[i].GetComponent<CustomLayout>().removePlacedCard(card);
+
+                    Debug.Log("does it get here?");
                     GameManager.instance.players[i].cardsOnTable--;
                     GameManager.instance.subTractCreature(creatureType, i);
-                    continue;
+                    Debug.Log("or here?");
+                    break;
                 }
             }
         }

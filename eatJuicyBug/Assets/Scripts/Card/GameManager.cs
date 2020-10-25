@@ -104,10 +104,9 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void PlayLimit(Limit limit) {
+    public void PlayLimit(Limit limit, int index) {
 
-        int num = Random.Range(0, players.Count);
-        players[num].limit = limit;
+        players[index].limit = limit;
 
     }
 

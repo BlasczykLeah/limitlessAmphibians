@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour {
                     {
                         // card chosen
                         tableLayouts[me].removePlacedCard(raycastStuff.collider.gameObject);
+                        players[me].cardsOnTable--;
 
                         players[turn].myTurn = false;
                         Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName);
@@ -151,7 +152,7 @@ public class GameManager : MonoBehaviour {
 
     // ALL CARD FUNCTIONS
     public void PlayCreature(CreatureType type, int index) {
-        players[index].cardsOnTable++;
+        //players[index].cardsOnTable++;
         switch (type) {
             case CreatureType.Frog:
                 players[index].creatureAmounts[0]++;

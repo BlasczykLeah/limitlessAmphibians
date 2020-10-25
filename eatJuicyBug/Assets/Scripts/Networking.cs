@@ -237,6 +237,7 @@ public class Networking : MonoBehaviour
                 {
                     cardPlayed.GetComponent<CardData>().playerIndex = playerIndex;
                     GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
+                    GameManager.instance.players[playerIndex].cardsOnTable++;
                     GameManager.instance.PlayCreature(cardPlayed.GetComponent<CardData>().GetCreatureType(), playerIndex);
                 }
                 else if (cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Limit)
@@ -261,6 +262,11 @@ public class Networking : MonoBehaviour
                         {
                             // PLAY MAGIC CARD THAT TARGETS ANOTHER PLAYERS CARD
                             CreatureType creatureType = targettedCard.GetComponent<CardData>().GetCreatureType();
+                            Debug.Log("==================");
+                            Debug.Log("user: " + playerIndex);
+                            Debug.Log("target: " + targetPlayerIndex);
+                            Debug.Log("creature: " + creatureType.ToString());
+                            Debug.Log("==================");
                             cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
                         }
                         else Debug.LogError("target card not found.");
@@ -268,6 +274,11 @@ public class Networking : MonoBehaviour
 
                     // PLAY MAGIC CARD THAT DOES NOT TARGET A CARD
                     CreatureType type = cardPlayed.GetComponent<CardData>().GetCreatureType();
+                    Debug.Log("==================");
+                    Debug.Log("user: " + playerIndex);
+                    Debug.Log("target: " + targetPlayerIndex);
+                    Debug.Log("creature: " + type.ToString());
+                    Debug.Log("==================");
                     cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, type);
                 }
             }
@@ -326,6 +337,7 @@ public class Networking : MonoBehaviour
         if (CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Creature)
         {
             GameManager.instance.tableLayouts[playerIndex].removePlacedCard(cardString);
+            GameManager.instance.players[playerIndex].cardsOnTable--;
         }
         else if(CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Limit)
         {

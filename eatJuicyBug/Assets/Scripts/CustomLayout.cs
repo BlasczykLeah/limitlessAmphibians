@@ -51,20 +51,11 @@ public class CustomLayout : MonoBehaviour
     {
         if (!tableCards.Contains(card))
         {
-            Debug.LogError(card + " not found here. Cannot remove");
+            Debug.LogWarning(card + " not found here. Cannot remove");
             return;
         }
 
-        //int index = tableCards.IndexOf(card);
-
-        //for(int i = index + 1; i < tableCards.Count; i++)
-        //{
-            //tableCards[i].transform.localPosition = new Vector3(tableCards[i - 1].transform.localPosition.x - 0.11F, tableCards[i - 1].transform.localPosition.y, tableCards[i - 1].transform.localPosition.z);
-        //}
         tableCards.Remove(card);
-
-        //update nextPosition
-        //playCardLocalPosition = new Vector3(playCardLocalPosition.x - 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
 
         if (Networking.server.host) Networking.server.discardCard(card.GetComponent<CardData>().cardName);
         Destroy(card);
@@ -80,7 +71,7 @@ public class CustomLayout : MonoBehaviour
                 return;
             }
         }
-        Debug.LogError("Could not find card to remove. " + cardName);
+        Debug.LogWarning("Could not find card to remove. " + cardName);
     }
 
     public void addLimitCard(GameObject card)

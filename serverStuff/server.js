@@ -228,7 +228,8 @@ io.sockets.on('connection', (socket) => {
                     username: "Name",
                     id: socket.id,
                     limit: "none",
-                    win: "none"
+                    win: "none",
+                    ready: 0
                 }
             );
 

@@ -22,7 +22,7 @@ public class PlayerViews : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             viewButtons[i].SetActive(true);
-            viewButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = GameManager.instance.players[i].name;
+            viewButtons[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = GameManager.instance.players[i].name;
         }
     }
 

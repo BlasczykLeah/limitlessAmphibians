@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardName: Magic12
-  type: 0
-  c_type: 1
+  type: 2
+  c_type: 6
   playerIndex: -1
   limit: {fileID: 0}
   magic: {fileID: -2284569912070058004}

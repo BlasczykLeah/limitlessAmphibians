@@ -195,7 +195,14 @@ public class Networking : MonoBehaviour
     void getWhosTurn(SocketIOEvent evt)
     {
         string playerID = evt.data.GetField("id").ToString().Trim('"');
+        int index = GameManager.instance.GetPlayerIndexFromID(playerID);
+        Debug.Log(GameManager.instance.players[index].name + "'s turn! - says the server");
         // send who's turn it is to GameManager
+    }
+
+    public void EnableNextTurn()
+    {
+        socket.Emit("nextTurn");
     }
 
     #endregion

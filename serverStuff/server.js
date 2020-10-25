@@ -78,13 +78,18 @@ io.sockets.on('connection', (socket) => {
         handsToAllPlayers();
 
         whosTurn = Math.floor(Math.random * Array.from(Users.keys()));
-        turn(whosTurn);
+        turn();
+    });
+
+    socket.on('nextTurn', () => {
+        io.to(Array.from(Users.keys())[whosTurn]).emit('drewCard', { card: drawCard()});
+        turn();
     });
 
 
 
 
-    function turn(index) {
+    function turn() {
         var sockets = Array.from(Users.keys());
         whosTurn = whosTurn + 1;
         if (whosTurn == sockets.length) whosTurn = 0;

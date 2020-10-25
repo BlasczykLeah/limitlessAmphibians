@@ -49,6 +49,8 @@ public class CustomLayout : MonoBehaviour
 
     public void removePlacedCard(GameObject card)
     {
+        Debug.Log(" trying to remove: " + card);
+
         if (!tableCards.Contains(card))
         {
             Debug.LogWarning(card + " not found here. Cannot remove");
@@ -57,7 +59,12 @@ public class CustomLayout : MonoBehaviour
 
         tableCards.Remove(card);
 
-        if (Networking.server.host) Networking.server.discardCard(card.GetComponent<CardData>().cardName);
+        //if (Networking.server.host)
+        //{
+            Debug.Log("sending to all others to remove: " + card);
+            Networking.server.discardCard(card.GetComponent<CardData>().cardName);
+        //}
+        Debug.Log("removed: " + card);
         Destroy(card);
     }
 

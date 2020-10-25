@@ -146,6 +146,7 @@ public class Networking : MonoBehaviour
         if (myPlayerIndex != -1)
         {
             GameObject limitCard;
+            GameObject winCard;
             GameObject[] newHand = new GameObject[3];
 
             //GameManager.instance.players[myPlayerIndex].Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
@@ -155,8 +156,10 @@ public class Networking : MonoBehaviour
 
             limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
 
+            winCard = CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
+
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
-            GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard);
+            GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard, winCard);
         }
         else Debug.LogError("Player instance not saved. Cannot add cards.");
 

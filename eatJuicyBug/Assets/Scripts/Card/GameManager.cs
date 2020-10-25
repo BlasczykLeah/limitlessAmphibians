@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void InstantiateMyCards(int myIndex, GameObject[] cardPrefs, GameObject limPref)
+    public void InstantiateMyCards(int myIndex, GameObject[] cardPrefs, GameObject limPref, GameObject winPref)
     {
         me = myIndex;
         GetComponent<PlayerViews>().setView(me);

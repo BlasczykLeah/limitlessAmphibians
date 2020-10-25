@@ -14,6 +14,7 @@ var Users = new Map();
 var Deck = [];
 var DiscardPile = [];
 var Limits = [];
+var WinCards = [];
 
 var whosTurn = -1;
 var host = "";
@@ -117,12 +118,13 @@ io.sockets.on('connection', (socket) => {
 
     function drawHand(id) {
         var limit = drawLimit();
+        var win = drawWin();
 
         var card1 = drawCard();
         var card2 = drawCard();
         var card3 = drawCard();
 
-        io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3, limit: limit });
+        io.to(id).emit('newHand', { card1: card1, card2: card2, card3: card3, limit: limit, win: win });
     }
 
     function drawLimit() {
@@ -138,6 +140,21 @@ io.sockets.on('connection', (socket) => {
             return card;
         }
         else console.log('no limit cards found.');
+    }
+
+    function drawWin() {
+        if (WinCards.length > 0) {
+            var rand = Math.floor(Math.random() * WinCards.length);
+
+            var swap = WinCards[rand];
+            WinCards[rand] = WinCards[Limits.length - 1];
+            WinCards[WinCards.length - 1] = swap;
+
+            var card = WinCards.pop();
+
+            return card;
+        }
+        else console.log('no win cards found.');
     }
 
     function drawCard() {
@@ -159,6 +176,7 @@ io.sockets.on('connection', (socket) => {
         DiscardPile = [];
         Deck = ['Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Axolotl1', 'Axolotl2', 'Axolotl3', 'Axolotl4', 'Dino1', 'Dino2', 'Dino3', 'Dino4', 'Dragon1', 'Dragon2', 'Dragon3', 'Dragon4', 'Frog1', 'Frog2', 'Frog3', 'Frog4', 'Gator1', 'Gator2', 'Gator3', 'Gator4', 'Lizard1', 'Lizard2', 'Lizard3', 'Lizard4', 'Cat', 'Box'];
         Limits = ['Limit1', 'Limit2', 'Limit3', 'Limit4', 'Limit5', 'Limit6'];
+        WinCards = ['Win1', 'Win2', 'Win3', 'Win4', 'Win5', 'Win6', 'Win7', 'Win8', 'Win9', 'Win10', 'Win11', 'Win12', 'Win13', 'Win14', 'Win15', 'Win16', 'Win17'];
         console.log('deck is ready');
     }
 

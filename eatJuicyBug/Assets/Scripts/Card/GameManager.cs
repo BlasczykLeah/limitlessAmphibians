@@ -337,4 +337,29 @@ public class GameManager : MonoBehaviour {
         enableTargetButtons(false);
         cardPlayed_playerTarget = null;
     }
+
+    public void subTractCreature(CreatureType type, int index)
+    {
+        switch (type)
+        {
+            case CreatureType.Frog:
+                players[index].creatureAmounts[0]++;
+                break;
+            case CreatureType.Dragon:
+                players[index].creatureAmounts[1]++;
+                break;
+            case CreatureType.Gator:
+                players[index].creatureAmounts[2]++;
+                break;
+            case CreatureType.Axolotl:
+                players[index].creatureAmounts[3]++;
+                break;
+            case CreatureType.Lizard:
+                players[index].creatureAmounts[4]++;
+                break;
+            case CreatureType.Dino:
+                players[index].creatureAmounts[5]++;
+                break;
+        }
+    }
 }

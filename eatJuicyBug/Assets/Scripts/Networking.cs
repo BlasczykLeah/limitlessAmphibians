@@ -45,6 +45,7 @@ public class Networking : MonoBehaviour
         socket.On("playerTurn", getWhosTurn);
         socket.On("playerValues", setPlayerCards);
         socket.On("cardRemoved", checkForRemove);
+        socket.On("setWin", goToWin);
     }
 
     #region Starting Game
@@ -284,6 +285,8 @@ public class Networking : MonoBehaviour
                             cardPlayed.GetComponent<CardData>().magic.DoMagic(playerIndex, targetPlayerIndex, creatureType);
                         }
                         else Debug.LogError("target card not found.");
+
+                        Destroy(cardPlayed);
                     }
 
                     // PLAY MAGIC CARD THAT DOES NOT TARGET A CARD
@@ -393,6 +396,16 @@ public class Networking : MonoBehaviour
     {
         string thing = "{ " + quote + "limit" + quote + ":" + quote + limit + quote + ", " + quote + "wincon" + quote + ":" + quote + win + quote + " }";
         socket.Emit("setValues", new JSONObject(thing));
+    }
+
+    public void sendWin()
+    {
+        socket.Emit("win", new JSONObject(quote + GameManager.instance.players[myPlayerIndex].id + quote));
+    }
+
+    void goToWin(SocketIOEvent evt)
+    {
+        // go to win screen and update win text
     }
 
     #endregion

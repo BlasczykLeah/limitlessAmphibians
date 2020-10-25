@@ -15,6 +15,7 @@ var Deck = [];
 var DiscardPile = [];
 var Limits = [];
 
+var whosTurn = -1;
 var host = "";
 
 io.sockets.on('connection', (socket) => {
@@ -55,8 +56,11 @@ io.sockets.on('connection', (socket) => {
     });
 
     socket.on('playCard', (card) => {   //sending card played to everyone
-        console.log(Users[socket.id].username + ' played a ' + card + ' card');
-        io.emit('cardPlayed', { card: card, id: socket.id });
+        if (Array.from(Users.keys())[whosTurn] == socket.id) {
+            console.log(Users[socket.id].username + ' played a ' + card + ' card');
+            io.emit('cardPlayed', { card: card, id: socket.id });
+        }
+        else console.log(Users[socket.id].username + ' cannot play a card, its not their turn');
     });
 
     socket.on('drawCard', () => {
@@ -72,10 +76,21 @@ io.sockets.on('connection', (socket) => {
     socket.on('loadHands', () => {
         console.log('dealing cards to all players');
         handsToAllPlayers();
+
+        whosTurn = Math.floor(Math.random * Array.from(Users.keys()));
+        turn(whosTurn);
     });
 
 
 
+
+    function turn(index) {
+        var sockets = Array.from(Users.keys());
+        whosTurn = whosTurn + 1;
+        if (whosTurn == sockets.length) whosTurn = 0;
+
+        io.emit('playerTurn', { id: sockets[whosTurn] });
+    }
 
     function handsToAllPlayers() {
         Users.forEach((value, key, map) => {

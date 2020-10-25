@@ -123,4 +123,15 @@ public class GameManager : MonoBehaviour {
         players[me].limit = newLimit.GetComponent<Limit>();
         tableLayouts[me].addLimitCard(newLimit);
     }
+
+    public int GetPlayerIndexFromID(string id)
+    {
+        foreach (Player p in players)
+        {
+            if (p.id == id) return players.IndexOf(p);
+        }
+
+        Debug.LogError(id + " not found.");
+        return -1;
+    }
 }

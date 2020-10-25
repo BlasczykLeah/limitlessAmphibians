@@ -42,6 +42,7 @@ public class Networking : MonoBehaviour
         socket.On("drewCard", recieveCardDrawn);
         socket.On("newHand", newHand);
         socket.On("host", setHost);
+        socket.On("playerTurn", getWhosTurn);
     }
 
     #region Starting Game
@@ -166,6 +167,9 @@ public class Networking : MonoBehaviour
     {
         string cardString = evt.data.GetField("card").ToString().Trim('"');
         string playerID = evt.data.GetField("id").ToString().Trim('"');
+
+        int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
+        //GameManager.instance.players[playerIndex].Hand
     }
 
     void recieveCardDrawn(SocketIOEvent evt)
@@ -186,6 +190,12 @@ public class Networking : MonoBehaviour
     public void discardCard(string cardName)
     {
         socket.Emit("discardCard", new JSONObject(quote + cardName + quote));
+    }
+
+    void getWhosTurn(SocketIOEvent evt)
+    {
+        string playerID = evt.data.GetField("id").ToString().Trim('"');
+        // send who's turn it is to GameManager
     }
 
     #endregion

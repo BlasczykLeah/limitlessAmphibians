@@ -196,7 +196,8 @@ public class Networking : MonoBehaviour
         int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
 
         string targetPlayer = evt.data.GetField("targetID").ToString().Trim('"');
-        int targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
+        int targetPlayerIndex = -1;
+        if (targetPlayer != "none") targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
         string targetCard = evt.data.GetField("targetCard").ToString().Trim('"');
 
         // **Assuming creature card for now

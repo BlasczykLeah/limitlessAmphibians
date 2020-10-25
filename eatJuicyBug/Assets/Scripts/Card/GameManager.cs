@@ -138,6 +138,11 @@ public class GameManager : MonoBehaviour {
         newLimit.GetComponent<CardClicker>().played = true;
         players[me].limit = newLimit.GetComponent<Limit>();
         tableLayouts[me].addLimitCard(newLimit);
+
+        GameObject newWin = Instantiate(winPref);
+        newWin.GetComponent<CardClicker>().played = true;
+        players[me].winCon = newWin.GetComponent<WinCondition>();
+        tableLayouts[me].addWinCard(newWin);
     }
 
     public void DrawCard(GameObject cardPref)

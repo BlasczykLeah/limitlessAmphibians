@@ -157,7 +157,7 @@ public class Networking : MonoBehaviour
 
             limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
 
-            winCard = null;//CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
+            winCard = CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
 
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
             GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard, winCard);

@@ -155,6 +155,7 @@ public class Networking : MonoBehaviour
             limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
 
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
+            GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard);
         }
         else Debug.LogError("Player instance not saved. Cannot add cards.");
 

@@ -5,7 +5,7 @@ using TMPro;
 
 public class loadWin : MonoBehaviour
 {
-    TextMeshProUGUI text;
+    public TextMeshProUGUI text;
 
     void Start()
     {

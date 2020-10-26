@@ -49,7 +49,7 @@ public class Networking : MonoBehaviour
         socket.On("playerTurn", getWhosTurn);
         socket.On("playerValues", setPlayerCards);
         socket.On("cardRemoved", checkForRemove);
-        socket.On("setWin", goToWin);
+        socket.On("winscene", goToWin);
     }
 
     #region Starting Game
@@ -104,9 +104,9 @@ public class Networking : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        foreach(CardData c in GameManager.instance.playerHand.GetComponentsInChildren<CardData>())
+        foreach(GameObject c in GameManager.instance.playerHand.GetComponentsInChildren<GameObject>())
         {
-            socket.Emit("discardCard", new JSONObject(quote + c.cardName + quote));
+            socket.Emit("discardCard", new JSONObject(quote + c.GetComponent<CardData>().cardName + quote));
         }
 
         socket.Emit("discardCard", new JSONObject(quote + GameManager.instance.players[myPlayerIndex].limit.GetComponent<CardData>().cardName + quote));

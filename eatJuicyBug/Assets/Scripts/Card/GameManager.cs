@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour {
                     {
                         // card chosen
                         //tableLayouts[me].removePlacedCard(raycastStuff.collider.gameObject);
-                        players[me].cardsOnTable--;
+                        //players[me].cardsOnTable--;
 
                         players[turn].myTurn = false;
                         Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName, players[me].id, raycastStuff.collider.GetComponent<CardData>().cardName);

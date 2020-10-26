@@ -284,6 +284,12 @@ public class Networking : MonoBehaviour
             {
                 if (cardPlayed.GetComponent<CardData>().GetCardType() == CardType.Creature)
                 {
+                    if(targetCard != "none")    // card was removed to play
+                    {
+                        GameManager.instance.tableLayouts[playerIndex].removePlacedCard(targetCard);
+                        GameManager.instance.players[playerIndex].cardsOnTable--;
+                    }
+
                     cardPlayed.GetComponent<CardData>().playerIndex = playerIndex;
                     GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
                     GameManager.instance.players[playerIndex].cardsOnTable++;

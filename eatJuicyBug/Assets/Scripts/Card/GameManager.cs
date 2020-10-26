@@ -95,11 +95,11 @@ public class GameManager : MonoBehaviour {
                     if (Input.GetMouseButtonDown(0) && raycastStuff.collider.GetComponent<CardData>().playerIndex == me)   //thing.collider.GetComponent<CardClicker>().played
                     {
                         // card chosen
-                        tableLayouts[me].removePlacedCard(raycastStuff.collider.gameObject);
+                        //tableLayouts[me].removePlacedCard(raycastStuff.collider.gameObject);
                         players[me].cardsOnTable--;
 
                         players[turn].myTurn = false;
-                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName);
+                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName, players[me].id, raycastStuff.collider.GetComponent<CardData>().cardName);
                         targetBox.SetActive(false);
                         cardPlayed_selfCreature = null;
                     }

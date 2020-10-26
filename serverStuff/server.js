@@ -107,6 +107,11 @@ io.sockets.on('connection', (socket) => {
         io.emit('winscene', { id: id } );
     });
 
+    socket.on('newWinCard', (id) => {
+        var win = drawWin();
+        io.emit('playerValues', {limit: 'none', win: win });
+    });
+
 
 
 
@@ -161,19 +166,9 @@ io.sockets.on('connection', (socket) => {
         else console.log('no limit cards found.');
     }
 
-    function drawWin() {
-        if (WinCards.length > 0) {
-            var rand = Math.floor(Math.random() * WinCards.length);
-
-            var swap = WinCards[rand];
-            WinCards[rand] = WinCards[Limits.length - 1];
-            WinCards[WinCards.length - 1] = swap;
-
-            var card = WinCards.pop();
-
-            return card;
-        }
-        else console.log('no win cards found.');
+    function drawWin() {    // win cards are no longer unique; everyone *could* get the same one
+        var rand = Math.floor(Math.random() * WinCards.length);
+        return WinCards[rand];
     }
 
     function drawCard() {

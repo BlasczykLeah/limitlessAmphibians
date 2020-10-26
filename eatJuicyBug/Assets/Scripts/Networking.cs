@@ -236,12 +236,6 @@ public class Networking : MonoBehaviour
         tempDataStore = null;
     }
 
-    void setReady()
-    {
-        GameManager.instance.ready = true;
-        if (host) socket.Emit("firstTurn");
-    }
-
     void recieveCardPlayed(SocketIOEvent evt)
     {
         string cardString = evt.data.GetField("card").ToString().Trim('"');
@@ -402,10 +396,6 @@ public class Networking : MonoBehaviour
             GameManager.instance.tableLayouts[playerIndex].removePlacedCard(cardString);
             GameManager.instance.players[playerIndex].cardsOnTable--;
         }
-        else if(CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCardType() == CardType.Limit)
-        {
-            // do nothing for now
-        }
     }
 
     void getWhosTurn(SocketIOEvent evt)
@@ -423,17 +413,27 @@ public class Networking : MonoBehaviour
 
     void setPlayerCards(SocketIOEvent evt)
     {
+        string newWinStr = evt.data.GetField("win").ToString().Trim('"');
+        string newLimStr = evt.data.GetField("limit").ToString().Trim('"');
+
         string playerID = evt.data.GetField("id").ToString().Trim('"');
         int playerIndex = GameManager.instance.GetPlayerIndexFromID(playerID);
 
-        GameObject limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
-        GameObject winCard = CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
-
-        GameObject newLimit = Instantiate(limitCard);
-        GameManager.instance.tableLayouts[playerIndex].addLimitCard(newLimit);
-
-        GameObject newWin = Instantiate(winCard);
-        GameManager.instance.tableLayouts[playerIndex].addWinCard(newWin);
+        if(newWinStr != "none")
+        {
+            GameObject winCard = CardDictionary.instance.GetCard(newWinStr);
+            GameObject newWin = Instantiate(winCard);
+            newWin.GetComponent<CardClicker>().played = true;
+            GameManager.instance.tableLayouts[playerIndex].addWinCard(newWin);
+            GameManager.instance.players[playerIndex].winCon = newWin.GetComponent<WinCondition>();
+        }
+        if(newLimStr != "none")
+        {
+            GameObject limitCard = CardDictionary.instance.GetCard(newLimStr);
+            GameObject newLimit = Instantiate(limitCard);
+            newLimit.GetComponent<CardClicker>().played = true;
+            GameManager.instance.tableLayouts[playerIndex].addLimitCard(newLimit);
+        }
     }
 
     public void updateValues(string limit, string win)

@@ -89,6 +89,10 @@ public class Usernames : MonoBehaviour
 
     public void quit()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }

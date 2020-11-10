@@ -6,8 +6,8 @@ public class CardData : MonoBehaviour
 {
     public string cardName;
 
-    [SerializeField] CardType type;
-    [SerializeField] CreatureType c_type;
+    [SerializeField] CardType type = CardType.Creature;
+    [SerializeField] CreatureType c_type = CreatureType.None;
 
     public int playerIndex = -1;
 

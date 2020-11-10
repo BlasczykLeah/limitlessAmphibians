@@ -104,6 +104,12 @@ public class Networking : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        if(GameManager.instance is null)
+        {
+            Debug.Log("GameManager instance is null");
+            return;
+        }
+
         foreach(GameObject c in GameManager.instance.playerHand.GetComponentsInChildren<GameObject>())
         {
             socket.Emit("discardCard", new JSONObject(quote + c.GetComponent<CardData>().cardName + quote));

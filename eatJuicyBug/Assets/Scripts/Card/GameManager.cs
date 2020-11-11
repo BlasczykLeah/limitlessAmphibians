@@ -42,13 +42,7 @@ public class GameManager : MonoBehaviour {
         //Networking.server.EnableNextTurn();
     }
     public void NextTurn() {
-        if(players[turn].creatureAmounts[0] >= players[turn].winCon.frog &&
-           players[turn].creatureAmounts[1] >= players[turn].winCon.dragon &&
-           players[turn].creatureAmounts[2] >= players[turn].winCon.gator &&
-           players[turn].creatureAmounts[3] >= players[turn].winCon.azolotl &&
-           players[turn].creatureAmounts[4] >= players[turn].winCon.lizard &&
-           players[turn].creatureAmounts[5] >= players[turn].winCon.dino) {
-
+        if(players[turn].creatureAmounts.Fulfills(players[turn].winCon.requirements)) {
             //ta-da!!!
             WinGame();
         } else {
@@ -154,27 +148,15 @@ public class GameManager : MonoBehaviour {
     // ALL CARD FUNCTIONS
     public void PlayCreature(CreatureType type, int index) {
         //players[index].cardsOnTable++;
-        switch (type) {
-            case CreatureType.Frog:
-                players[index].creatureAmounts[0]++;
-                break;
-            case CreatureType.Dragon:
-                players[index].creatureAmounts[1]++;
-                break;
-            case CreatureType.Gator:
-                players[index].creatureAmounts[2]++;
-                break;
-            case CreatureType.Axolotl:
-                players[index].creatureAmounts[3]++;
-                break;
-            case CreatureType.Lizard:
-                players[index].creatureAmounts[4]++;
-                break;
-            case CreatureType.Dino:
-                players[index].creatureAmounts[5]++;
-                break;
+        if(players[index].creatureAmounts.ContainsKey(type))
+        {
+            players[index].creatureAmounts[type]++;
         }
-        print("I am playing a " + type.ToString());
+        else
+        {
+            players[index].creatureAmounts.Add(type, 1);
+        }
+        print("I am playing " + (type == CreatureType.Axolotl ? "an " : "a ") + type.ToString());
 
     }
 
@@ -341,26 +323,6 @@ public class GameManager : MonoBehaviour {
 
     public void subTractCreature(CreatureType type, int index)
     {
-        switch (type)
-        {
-            case CreatureType.Frog:
-                players[index].creatureAmounts[0]--;
-                break;
-            case CreatureType.Dragon:
-                players[index].creatureAmounts[1]--;
-                break;
-            case CreatureType.Gator:
-                players[index].creatureAmounts[2]--;
-                break;
-            case CreatureType.Axolotl:
-                players[index].creatureAmounts[3]--;
-                break;
-            case CreatureType.Lizard:
-                players[index].creatureAmounts[4]--;
-                break;
-            case CreatureType.Dino:
-                players[index].creatureAmounts[5]--;
-                break;
-        }
+        players[index].creatureAmounts[type]--;
     }
 }

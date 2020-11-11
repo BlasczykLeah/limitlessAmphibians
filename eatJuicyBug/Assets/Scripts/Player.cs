@@ -15,5 +15,5 @@ public class Player
     public int cardsOnTable = 0;
     public bool disconnected = false;
 
-    public int[] creatureAmounts = new int[6];
+    public Dictionary<CreatureType, int> creatureAmounts = new Dictionary<CreatureType, int>();
 }

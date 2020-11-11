@@ -1,26 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 public class WinCondition : MonoBehaviour
 {
-
-    public Sprite sprite;
-
-    [Header("Frog")]
     public int frog;
-    [Header("Dragon")]
     public int dragon;
-    [Header("Gator")]
     public int gator;
-    [Header("Azototl")]
-    public int azolotl;
-    [Header("Lizard")]
+    public int axolotl;
     public int lizard;
-    [Header("Dino")]
     public int dino;
-    [Header("Box")]
     public int box;
-    [Header("Cat")]
     public int cat;
+
+    public Dictionary<CreatureType, int> requirements;
+
+    void Start()
+    {
+        requirements = new Dictionary<CreatureType, int>() {
+            { CreatureType.Frog, frog },
+            { CreatureType.Dragon, dragon },
+            { CreatureType.Gator, gator },
+            { CreatureType.Axolotl, axolotl },
+            { CreatureType.Lizard, lizard },
+            { CreatureType.Dino, dino },
+            { CreatureType.Box, box },
+            { CreatureType.Cat, cat }
+        };
+    }
+
 }

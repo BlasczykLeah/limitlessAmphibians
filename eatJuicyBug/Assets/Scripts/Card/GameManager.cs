@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour {
     {
         if (turn == me && players[me].myTurn)
         {
-            if (players[me].limit.CheckLimit(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
+            if (players[me].limit.Permits(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
             {
                 if (players[me].cardsOnTable < 6 && card.GetComponent<CardData>().GetCardType() == CardType.Creature)
                 {

@@ -122,7 +122,9 @@ MonoBehaviour:
   cardName: Limit3
   type: 1
   c_type: 6
+  playerIndex: -1
   limit: {fileID: -8586096038495113956}
+  magic: {fileID: 0}
   cardEffects:
   - {fileID: -7474978046557637503}
 --- !u!114 &-7474978046557637503
@@ -173,9 +175,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3583609248252101723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e2a9e262cc11ab41883ee4db71e16cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f5aa82dc7c039947aec85bc9e7d6c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockedType: 4
 --- !u!114 &4198854345121658406
 MonoBehaviour:
   m_ObjectHideFlags: 0

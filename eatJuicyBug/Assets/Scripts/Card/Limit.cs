@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class Limit : MonoBehaviour
+public class Limit : MonoBehaviour
 {
-    
-    public virtual bool CheckLimit(CardType type, CreatureType creature) {
-        return true;
+    [SerializeField] private CreatureType blockedType;
+
+    public bool Permits(CardType type, CreatureType creature) {
+        return type != CardType.Creature || creature != blockedType;
     }
-    
 }

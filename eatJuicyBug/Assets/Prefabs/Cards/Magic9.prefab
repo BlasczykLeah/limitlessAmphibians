@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Magic9
   type: 4
-  c_type: 3
+  c_type: 4
   playerIndex: -1
   limit: {fileID: 0}
   magic: {fileID: -2284569912070058004}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1c4ee5e9bb39a499df8d274d032041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
+  type: 0
 --- !u!114 &3583609248252101720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   played: 0
+  hoverEffectEnabled: 0
 --- !u!65 &3583609248252101714
 BoxCollider:
   m_ObjectHideFlags: 0

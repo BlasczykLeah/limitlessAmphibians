@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Limit1
   type: 1
-  c_type: 6
+  c_type: 0
   playerIndex: -1
   limit: {fileID: 3384119467132424898}
   magic: {fileID: 0}

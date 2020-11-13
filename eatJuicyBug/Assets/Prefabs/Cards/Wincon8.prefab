@@ -121,8 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Win8
   type: 0
-  c_type: 6
+  c_type: 0
+  playerIndex: -1
   limit: {fileID: 0}
+  magic: {fileID: 0}
   cardEffects:
   - {fileID: 3583609248252101721}
 --- !u!114 &3583609248252101721
@@ -137,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1c4ee5e9bb39a499df8d274d032041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
+  type: 0
 --- !u!114 &3583609248252101720
 MonoBehaviour:
   m_ObjectHideFlags: 0

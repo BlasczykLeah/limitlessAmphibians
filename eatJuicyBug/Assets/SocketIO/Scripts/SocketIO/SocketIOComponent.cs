@@ -29,16 +29,14 @@
 
 //#define SOCKET_IO_DEBUG			// Uncomment this for debug
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using WebSocketSharp;
-using WebSocketSharp.Net;
 
 namespace SocketIO
 {
-	public class SocketIOComponent : MonoBehaviour
+    public class SocketIOComponent : MonoBehaviour
 	{
 		#region Public Properties
 
@@ -307,7 +305,11 @@ namespace SocketIO
 			
 			try {
 				ws.Send(encoder.Encode(packet));
-			} catch(SocketIOException) {
+			} catch(SocketIOException
+			#if SOCKET_IO_DEBUG
+			ex
+			#endif
+			) {
 				#if SOCKET_IO_DEBUG
 				debugMethod.Invoke(ex.ToString());
 				#endif
@@ -361,9 +363,11 @@ namespace SocketIO
 
 			if(packet.socketPacketType == SocketPacketType.ACK){
 				for(int i = 0; i < ackList.Count; i++){
-					if(ackList[i].packetId != packet.id){ continue; }
-					lock(ackQueueLock){ ackQueue.Enqueue(packet); }
-					return;
+					if(ackList[i].packetId == packet.id)
+					{
+						lock(ackQueueLock) { ackQueue.Enqueue(packet); }
+						return;
+					}
 				}
 
 				#if SOCKET_IO_DEBUG
@@ -398,7 +402,11 @@ namespace SocketIO
 			foreach (Action<SocketIOEvent> handler in this.handlers[ev.name]) {
 				try{
 					handler(ev);
-				} catch(Exception){
+				} catch(Exception
+				#if SOCKET_IO_DEBUG
+				ex
+				#endif
+				){
 					#if SOCKET_IO_DEBUG
 					debugMethod.Invoke(ex.ToString());
 					#endif
@@ -410,11 +418,13 @@ namespace SocketIO
 		{
 			Ack ack;
 			for(int i = 0; i < ackList.Count; i++){
-				if(ackList[i].packetId != packet.id){ continue; }
-				ack = ackList[i];
-				ackList.RemoveAt(i);
-				ack.Invoke(packet.json);
-				return;
+				if(ackList[i].packetId == packet.id)
+				{
+					ack = ackList[i];
+					ackList.RemoveAt(i);
+					ack.Invoke(packet.json);
+					return;
+				}
 			}
 		}
 

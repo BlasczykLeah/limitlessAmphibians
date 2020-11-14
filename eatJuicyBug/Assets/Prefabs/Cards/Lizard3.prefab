@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8358726141444190730}
   - component: {fileID: 3583609248252101716}
-  - component: {fileID: 3583609248252101719}
-  - component: {fileID: 3583609248252101718}
   - component: {fileID: 3583609248252101721}
   - component: {fileID: 3583609248252101720}
   - component: {fileID: 3583609248252101714}
@@ -93,39 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3583609248252101719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3583609248252101723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acbd15a241d45e341b10c49a76360c6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardData: {fileID: 3583609248252101718}
---- !u!114 &3583609248252101718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3583609248252101723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65c95199be0ef8b43ab1fb407c9b2f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: Lizard3
-  type: 0
-  c_type: 5
-  playerIndex: -1
-  limit: {fileID: 0}
-  magic: {fileID: 0}
-  cardEffects:
-  - {fileID: 3583609248252101721}
 --- !u!114 &3583609248252101721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1c4ee5e9bb39a499df8d274d032041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardName: Lizard3
+  playerIndex: -1
   type: 5
 --- !u!114 &3583609248252101720
 MonoBehaviour:
@@ -152,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   played: 0
+  hoverEffectEnabled: 0
 --- !u!65 &3583609248252101714
 BoxCollider:
   m_ObjectHideFlags: 0

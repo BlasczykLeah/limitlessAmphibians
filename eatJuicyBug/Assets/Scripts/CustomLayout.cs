@@ -59,7 +59,7 @@ public class CustomLayout : MonoBehaviour
 
         if (Networking.server.host)
         {
-            Networking.server.discardCard(card.GetComponent<CardData>().cardName);
+            Networking.server.discardCard(card.GetComponent<Card>().cardName);
         }
 
         tableCards.Remove(card);
@@ -72,7 +72,7 @@ public class CustomLayout : MonoBehaviour
     {
         foreach(GameObject c in tableCards)
         {
-            if(c.GetComponent<CardData>().cardName == cardName)
+            if(c.GetComponent<Card>().cardName == cardName)
             {
                 removePlacedCard(c);
                 return;
@@ -85,14 +85,14 @@ public class CustomLayout : MonoBehaviour
     {
         if (limitCard)
         {
-            if(limitCard.GetComponent<CardData>().cardName == card.GetComponent<CardData>().cardName)
+            if(limitCard.GetComponent<Card>().cardName == card.GetComponent<Card>().cardName)
             {
                 // already have this card
                 Destroy(card);
                 return;
             }
 
-            if (Networking.server.host) Networking.server.discardCard(limitCard.GetComponent<CardData>().cardName);
+            if (Networking.server.host) Networking.server.discardCard(limitCard.GetComponent<Card>().cardName);
             Destroy(limitCard);
         }
 
@@ -105,14 +105,14 @@ public class CustomLayout : MonoBehaviour
     {
         if (winCard)
         {
-            if (winCard.GetComponent<CardData>().cardName == card.GetComponent<CardData>().cardName)
+            if (winCard.GetComponent<Card>().cardName == card.GetComponent<Card>().cardName)
             {
                 // already have this card
                 Destroy(card);
                 return;
             }
 
-            if (Networking.server.host) Networking.server.discardCard(winCard.GetComponent<CardData>().cardName);
+            if (Networking.server.host) Networking.server.discardCard(winCard.GetComponent<Card>().cardName);
             Destroy(winCard);
         }
 

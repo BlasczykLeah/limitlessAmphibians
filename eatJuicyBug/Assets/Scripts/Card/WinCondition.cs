@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
-public class WinCondition : MonoBehaviour
+public class WinCondition : Card
 {
     public int frog;
     public int dragon;

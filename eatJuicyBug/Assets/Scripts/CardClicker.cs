@@ -64,11 +64,11 @@ public class CardClicker : MonoBehaviour
     void PlayCard() {
         if(!(GameManager.instance is null))
         {
-            GameManager.instance.playCard(gameObject);
+            GameManager.instance.playCard(gameObject.GetComponent<Card>());
         }
         else if(!(LocalGameManager.instance is null))
         {
-            LocalGameManager.instance.PlayCard(gameObject);
+            LocalGameManager.instance.PlayCard(gameObject.GetComponent<Card>());
         }
         //Networking.server.playCard(gameObject.GetComponent<CardData>().cardName);
     }

@@ -10,10 +10,10 @@ public class Warfare : Magic
         for (int i = 0; i < Networking.server.playerSockets.Count; i++) {
             Debug.Log("checking row " + i);
             foreach (GameObject card in GameManager.instance.tableLayouts[i].tableCards) {
-                Debug.Log(card.GetComponent<CardData>().cardName);
-                if (card.GetComponent<CardData>().GetCreatureType() == creatureType) {
+                Debug.Log(card.GetComponent<Card>().cardName);
+                if (card.GetComponent<Card>() is Creature c && c.Type == creatureType) {
                     // if the player has the specific creature type. 
-                    Debug.Log("Removing card: " + card.GetComponent<CardData>().cardName);
+                    Debug.Log("Removing card: " + card.GetComponent<Card>().cardName);
                     GameManager.instance.tableLayouts[i].GetComponent<CustomLayout>().removePlacedCard(card);
 
                     Debug.Log("does it get here?");

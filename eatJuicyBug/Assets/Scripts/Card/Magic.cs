@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class Magic : MonoBehaviour
+﻿public abstract class Magic : Card
 {
+    public MagicTarget target;
+    public CreatureType creatureType;
     
     //does magic stuffs
     public virtual void DoMagic(int playerIndex, int targetIndex, CreatureType creatureType) {

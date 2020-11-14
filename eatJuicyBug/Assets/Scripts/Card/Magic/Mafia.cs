@@ -8,7 +8,7 @@ public class Mafia : Magic
     
     public override void DoMagic(int playerIndex, int targetIndex, CreatureType creatureType) {
         for (int i = 0; i < GameManager.instance.tableLayouts[targetIndex].tableCards.Count; i++) {
-            if (GameManager.instance.tableLayouts[targetIndex].tableCards[i].GetComponent<CardData>().GetCreatureType() == creatureType) {
+            if (GameManager.instance.tableLayouts[targetIndex].tableCards[i].GetComponent<Card>() is Creature c && c.Type == creatureType) {
                 // if the player has the specific creature type. 
                 GameObject card = GameManager.instance.tableLayouts[targetIndex].tableCards[i];
                 GameManager.instance.tableLayouts[targetIndex].GetComponent<CustomLayout>().removePlacedCard(card);

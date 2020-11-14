@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class Limit : MonoBehaviour
+public class Limit : Card
 {
     [SerializeField] private CreatureType blockedType = CreatureType.None;
 
-    public bool Permits(CardType type, CreatureType creature) {
-        return type != CardType.Creature || creature != blockedType;
+    public bool Permits(Card card) {
+        return !(card is Creature c && c.Type == blockedType);
     }
 }

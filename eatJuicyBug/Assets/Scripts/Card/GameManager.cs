@@ -20,9 +20,9 @@ public class GameManager : MonoBehaviour {
 
     public GameObject targetBox; 
     public TextMeshProUGUI chooseTargetText;
-    GameObject cardPlayed_selfCreature = null;
-    GameObject cardPlayed_playerTarget = null;
-    GameObject cardPlayed_otherCreature = null;
+    Creature cardPlayed_selfCreature = null;
+    Card cardPlayed_playerTarget = null;
+    Card cardPlayed_otherCreature = null;
     public GameObject[] playerTargetButtons;
 
     private void Awake() {
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
             if (timer < 0 && !skipButton.activeInHierarchy) skipButton.SetActive(true);
         }
 
-        if (cardPlayed_selfCreature)    // targetting one of my own creatures
+        if (cardPlayed_selfCreature)    // targeting one of my own creatures
         {
             if (skipButton.activeInHierarchy) skipButton.SetActive(false);
 
@@ -83,17 +83,17 @@ public class GameManager : MonoBehaviour {
             RaycastHit raycastStuff;
             if (Physics.Raycast(ray, out raycastStuff, 30, LayerMask.GetMask("Card")))
             {
-                if (raycastStuff.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
+                if (raycastStuff.collider.GetComponent<Card>() is Creature c)
                 {
                     chooseTargetText.text = "Select this card";
-                    if (Input.GetMouseButtonDown(0) && raycastStuff.collider.GetComponent<CardData>().playerIndex == me)   //thing.collider.GetComponent<CardClicker>().played
+                    if (Input.GetMouseButtonDown(0) && c.playerIndex == me)   //thing.collider.GetComponent<CardClicker>().played
                     {
                         // card chosen
                         //tableLayouts[me].removePlacedCard(raycastStuff.collider.gameObject);
                         //players[me].cardsOnTable--;
 
                         players[turn].myTurn = false;
-                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName, players[me].id, raycastStuff.collider.GetComponent<CardData>().cardName);
+                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<Card>().cardName, players[me].id, c.cardName);
                         targetBox.SetActive(false);
                         cardPlayed_selfCreature = null;
                     }
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour {
             }
         }
 
-        if (cardPlayed_otherCreature)   // targetting someone else's creature
+        if (cardPlayed_otherCreature)   // targeting someone else's creature
         {
             if (skipButton.activeInHierarchy) skipButton.SetActive(false);
 
@@ -115,18 +115,18 @@ public class GameManager : MonoBehaviour {
             RaycastHit raycastStuff;
             if (Physics.Raycast(ray, out raycastStuff, 30, LayerMask.GetMask("Card")))
             {
-                if (raycastStuff.collider.GetComponent<CardData>().GetCardType() == CardType.Creature)
+                if (raycastStuff.collider.GetComponent<Card>() is Creature c)
                 {
                     chooseTargetText.text = "Select this card";
-                    if (Input.GetMouseButtonDown(0) && raycastStuff.collider.GetComponent<CardData>().playerIndex != me && raycastStuff.collider.GetComponent<CardData>().playerIndex != -1)   //thing.collider.GetComponent<CardClicker>().played
+                    if (Input.GetMouseButtonDown(0) && c.playerIndex != me && c.playerIndex != -1)   //thing.collider.GetComponent<CardClicker>().played
                     {
                         // card chosen
                         //tableLayouts[raycastStuff.collider.GetComponent<CardData>().playerIndex].removePlacedCard(raycastStuff.collider.gameObject);
 
-                        string playerSelected = players[raycastStuff.collider.GetComponent<CardData>().playerIndex].id;
+                        string playerSelected = players[c.playerIndex].id;
 
                         players[turn].myTurn = false;
-                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<CardData>().cardName, playerSelected, raycastStuff.collider.GetComponent<CardData>().cardName);
+                        Networking.server.playCard(cardPlayed_selfCreature.GetComponent<Card>().cardName, playerSelected, c.cardName);
                         targetBox.SetActive(false);
                         cardPlayed_otherCreature = null;
                     }
@@ -233,63 +233,61 @@ public class GameManager : MonoBehaviour {
         GetComponent<PlayerViews>().setView(turn);
     }
 
-    public void playCard(GameObject card)
+    public void playCard(Card card)
     {
-        if (turn == me && players[me].myTurn)
+        if(turn != me || !players[me].myTurn)
         {
-            if (players[me].limit.Permits(card.GetComponent<CardData>().GetCardType(), card.GetComponent<CardData>().GetCreatureType()))
-            {
-                if (players[me].cardsOnTable < 6 && card.GetComponent<CardData>().GetCardType() == CardType.Creature)
+            //can't play
+            Debug.LogWarning("Its not your turn!");
+            card.GetComponent<CardClicker>().played = false;
+            return;
+        }
+
+        if(!players[me].limit.Permits(card.GetComponent<Card>()))
+        {
+            Debug.LogWarning("LIMIT WORKED");
+            return;
+        }
+
+        switch(card)
+        {
+            case Creature c:
+                if(players[me].cardsOnTable < 6)
                 {
                     //can play
                     skipButton.SetActive(false);
                     players[turn].myTurn = false;
                     card.GetComponent<CardClicker>().played = true;
-                    Networking.server.playCard(card.GetComponent<CardData>().cardName);
-                }
-                else if(card.GetComponent<CardData>().GetCardType() == CardType.Creature)
-                {
-                    // need to remove card from table
-                    // show which card is to be played
-                    cardPlayed_selfCreature = card;
-                    targetBox.SetActive(true);
-                }
-                else if(card.GetComponent<CardData>().GetCardType() == CardType.Limit)
-                {
-                    skipButton.SetActive(false);
-                    cardPlayed_playerTarget = card;
-                    enableTargetButtons(true);
+                    Networking.server.playCard(card.cardName);
                 }
                 else
                 {
-                    //magic: Magic_Target, Magic_CardTarget, Magic_All
-                    if(card.GetComponent<CardData>().GetCardType() == CardType.Magic_All)
-                    {
-                        skipButton.SetActive(false);
-                        players[turn].myTurn = false;
-                        card.GetComponent<CardClicker>().played = true;
-                        Networking.server.playCard(card.GetComponent<CardData>().cardName);
-                    }
-                    else if(card.GetComponent<CardData>().GetCardType() == CardType.Magic_Target)
-                    {
-                        skipButton.SetActive(false);
-                        cardPlayed_playerTarget = card;
-                        enableTargetButtons(true);
-                    }
-                    else    // Magic_CardTarget
-                    {
-                        cardPlayed_otherCreature = card;
-                        targetBox.SetActive(true);
-                    }
+                    // need to remove card from table
+                    // show which card is to be played
+                    cardPlayed_selfCreature = c;
+                    targetBox.SetActive(true);
                 }
-            }
-            else Debug.LogWarning("LIMIT WORKED");
-        }
-        else
-        {
-            //can't play
-            Debug.LogWarning("Its not your turn!");
-            card.GetComponent<CardClicker>().played = false;
+                break;
+            case Limit _:
+                skipButton.SetActive(false);
+                cardPlayed_playerTarget = card;
+                enableTargetButtons(true);
+                break;
+            case Magic m when m.target == MagicTarget.All:
+                skipButton.SetActive(false);
+                players[turn].myTurn = false;
+                card.GetComponent<CardClicker>().played = true;
+                Networking.server.playCard(card.cardName);
+                break;
+            case Magic m when m.target == MagicTarget.Opponent:
+                skipButton.SetActive(false);
+                cardPlayed_playerTarget = card;
+                enableTargetButtons(true);
+                break;
+            case Magic m when m.target == MagicTarget.Card:
+                cardPlayed_otherCreature = card;
+                targetBox.SetActive(true);
+                break;
         }
     }
 
@@ -315,7 +313,7 @@ public class GameManager : MonoBehaviour {
     {
         players[turn].myTurn = false;
         cardPlayed_playerTarget.GetComponent<CardClicker>().played = true;
-        Networking.server.playCard(cardPlayed_playerTarget.GetComponent<CardData>().cardName, players[index].id);
+        Networking.server.playCard(cardPlayed_playerTarget.GetComponent<Card>().cardName, players[index].id);
 
         enableTargetButtons(false);
         cardPlayed_playerTarget = null;

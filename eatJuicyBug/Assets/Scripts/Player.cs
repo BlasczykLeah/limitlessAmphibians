@@ -38,7 +38,7 @@ public class Player
 
     public void DiscardFromHand(int index)
     {
-        if(index < 0 || index > hand.Count)
+        if(index < 0 || index >= hand.Count)
             return;
 
         hand.RemoveAt(index);
@@ -47,7 +47,7 @@ public class Player
     public void DiscardFromHand(CreatureType type)
     {
         int index = hand.FindIndex(card => card is Creature c && c.Type == type);
-        if(index >= 0)
+        if(index < 0)
             return;
 
         hand.RemoveAt(index);
@@ -56,7 +56,7 @@ public class Player
     public void DiscardFromPlaced(CreatureType type)
     {
         int index = placed.FindIndex(card => card is Creature c && c.Type == type);
-        if(index >= 0)
+        if(index < 0)
             return;
 
         placed.RemoveAt(index);

@@ -4,12 +4,12 @@ public class Deck : List<Card>
 {
     public Card Draw()
     {
-        return Draw(0);
+        return DrawNth(0);
     }
 
-    public Card Draw(int n)
+    public Card DrawNth(int n)
     {
-        if(n >= Count)
+        if(n < 0 || n >= Count)
             return null;
 
         Card card = this[Count - 1 - n];
@@ -19,12 +19,12 @@ public class Deck : List<Card>
 
     public Card Peek()
     {
-        return Peek(0);
+        return PeekNth(0);
     }
 
-    public Card Peek(int n)
+    public Card PeekNth(int n)
     {
-        if(n >= Count)
+        if(n < 0 || n >= Count)
             return null;
 
         return this[Count - n - 1];

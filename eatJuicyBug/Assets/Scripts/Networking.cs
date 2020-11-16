@@ -273,7 +273,7 @@ public class Networking : MonoBehaviour
                         cardPlayed.transform.localScale = Vector3.one * 0.2F;
                         cardPlayed.transform.rotation = Quaternion.Euler(Vector3.right * 90F);
 
-                        GameManager.instance.players[playerIndex].Hand.Remove(cardPlayed.GetComponent<Card>());
+                        GameManager.instance.players[playerIndex].hand.Remove(cardPlayed.GetComponent<Card>());
                         continue;
                     }
                 }

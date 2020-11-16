@@ -1,38 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-public class Deck : MonoBehaviour
+public class Deck : List<Card>
 {
-    public List<Card> cards = new List<Card>();
-
     public Card Draw()
     {
-        if(cards.Count == 0)
+        return Draw(0);
+    }
+
+    public Card Draw(int n)
+    {
+        if(n >= Count)
             return null;
 
-        Card card = cards[0];
-        cards.RemoveAt(0);
+        Card card = this[Count - 1 - n];
+        RemoveAt(Count - 1 - n);
         return card;
     }
 
-    public Card Retrieve(CreatureType type)
+    public Card Peek()
     {
-        return Retrieve(type, 0, cards.Count);
+        return Peek(0);
     }
 
-    public Card Retrieve(CreatureType type, int start, int end)
+    public Card Peek(int n)
     {
-        end = Math.Min(end, cards.Count);
-        for(int i = start; i < end; i++)
-        {
-            if(cards[i] is Creature c && c.Type == type)
-            {
-                cards.RemoveAt(i);
-                return c;
-            }
-        }
+        if(n >= Count)
+            return null;
 
-        return null;
+        return this[Count - n - 1];
+    }
+
+    public Card Draw(CreatureType type)
+    {
+        int index = FindLastIndex(card1 => card1 is Creature c && c.Type == type);
+        if(index < 0)
+            return null;
+
+        Card card2 = this[index];
+        RemoveAt(index);
+        return card2;
     }
 }

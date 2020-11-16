@@ -179,15 +179,7 @@ public class LocalGameManager : MonoBehaviour
     public void PlayCreature(CreatureType type, int index)
     {
         //players[index].cardsOnTable++;
-        if(players[index].creatureAmounts.ContainsKey(type))
-        {
-            players[index].creatureAmounts[type]++;
-        }
-        else
-        {
-            players[index].creatureAmounts.Add(type, 1);
-        }
-
+        players[index].creatureAmounts.Increment(type);
         print("I am playing " + (type == CreatureType.Axolotl ? "an " : "a ") + type.ToString());
     }
 
@@ -232,7 +224,7 @@ public class LocalGameManager : MonoBehaviour
             {
                 newCard.GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
             }
-            players[me].Hand.Add(newCard.GetComponent<Card>());
+            players[me].hand.Add(newCard.GetComponent<Card>());
         }
     }
 
@@ -241,7 +233,7 @@ public class LocalGameManager : MonoBehaviour
         GameObject newCard = Instantiate(cardPref, playerHand.transform);
         newCard.transform.localPosition = Vector3.zero;
         newCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        players[me].Hand.Add(newCard.GetComponent<Card>());
+        players[me].hand.Add(newCard.GetComponent<Card>());
     }
 
     public int GetPlayerIndexFromID(string id)

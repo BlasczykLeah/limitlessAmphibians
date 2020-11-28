@@ -8,7 +8,7 @@ public class Player
 
     public string name;
     public List<Card> hand = new List<Card>();
-    public List<Card> placed = new List<Card>();
+    public List<Creature> placed = new List<Creature>();
     public WinCondition winCon = null;
     public Limit limit = null;
     public string id;
@@ -31,7 +31,7 @@ public class Player
         if(placed.Count >= placedLimit)
             return;
 
-        placed.Add(hand[index]);
+        placed.Add(c);
         hand.RemoveAt(index);
         creatureAmounts.Increment(c.Type);
     }

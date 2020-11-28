@@ -56,9 +56,9 @@ public class LocalGameManager : MonoBehaviour
             views.viewButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = players[i].name;
         }
 
-        GameObject limitCard = CardDictionary.instance.GetCard("Limit1");
-        GameObject winCard = CardDictionary.instance.GetCard("Win1");
-        GameObject[] newHand = new GameObject[] {
+        Limit limitCard = (Limit) CardDictionary.instance.GetCard("Limit1");
+        WinCondition winCard = (WinCondition) CardDictionary.instance.GetCard("Win1");
+        Card[] newHand = new Card[] {
             CardDictionary.instance.GetCard("Axolotl1"),
             CardDictionary.instance.GetCard("Dino1"),
             CardDictionary.instance.GetCard("Dragon1"),
@@ -187,7 +187,7 @@ public class LocalGameManager : MonoBehaviour
     {
         players[index].limit = limit;
 
-        tableLayouts[index].addLimitCard(limit.gameObject);
+        tableLayouts[index].AddLimitCard(limit);
     }
 
     public void PlaySwap()
@@ -198,33 +198,33 @@ public class LocalGameManager : MonoBehaviour
     {
     }
 
-    public void InstantiateMyCards(int myIndex, GameObject[] cardPrefs, GameObject limPref, GameObject winPref)
+    public void InstantiateMyCards(int myIndex, Card[] cardPrefs, Limit limPref, WinCondition winPref)
     {
         me = myIndex;
         GetComponent<PlayerViews>().setView(me);
 
-        GameObject newLimit = Instantiate(limPref);
+        Limit newLimit = Instantiate(limPref);
         newLimit.GetComponent<CardClicker>().played = true;
         players[me].limit = newLimit.GetComponent<Limit>();
-        tableLayouts[me].addLimitCard(newLimit);
+        tableLayouts[me].AddLimitCard(players[me].limit);
 
-        GameObject newWin = Instantiate(winPref);
+        WinCondition newWin = Instantiate(winPref);
         newWin.GetComponent<CardClicker>().played = true;
         players[me].winCon = newWin.GetComponent<WinCondition>();
-        tableLayouts[me].addWinCard(newWin);
+        tableLayouts[me].AddWinCard(newWin);
 
         for(int i = 0; i < cardPrefs.Length; i++)
         {
-            GameObject newCard = Instantiate(cardPrefs[i], playerHand.transform);
+            Card newCard = Instantiate(cardPrefs[i], playerHand.transform);
             newCard.transform.localPosition = Vector3.zero;
             newCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
             newCard.GetComponent<SpriteRenderer>().sortingOrder = i;
             newCard.GetComponent<CardClicker>().hoverEffectEnabled = true;
-            if(!players[me].limit.Permits(newCard.GetComponent<Card>()))
+            if(!players[me].limit.Permits(newCard))
             {
                 newCard.GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
             }
-            players[me].hand.Add(newCard.GetComponent<Card>());
+            players[me].hand.Add(newCard);
         }
     }
 

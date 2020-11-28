@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour {
 
         players[index].limit = limit;
 
-        tableLayouts[index].addLimitCard(limit.gameObject);
+        tableLayouts[index].AddLimitCard(limit);
         //Networking.server.updateValues(limit.gameObject.GetComponent<CardData>().cardName, players[index].winCon.GetComponent<CardData>().cardName);
     }
 
@@ -169,35 +169,35 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void InstantiateMyCards(int myIndex, GameObject[] cardPrefs, GameObject limPref, GameObject winPref)
+    public void InstantiateMyCards(int myIndex, Card[] cardPrefs, Limit limPref, WinCondition winPref)
     {
         me = myIndex;
         GetComponent<PlayerViews>().setView(me);
 
-        foreach(GameObject card in cardPrefs)
+        foreach(Card card in cardPrefs)
         {
-            GameObject newCard = Instantiate(card, playerHand.transform);
+            Card newCard = Instantiate(card, playerHand.transform);
             newCard.transform.localPosition = Vector3.zero;
             newCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            players[me].hand.Add(newCard.GetComponent<Card>());
+            players[me].hand.Add(newCard);
             //tableLayouts[me].placeCard(newCard);
             
         }
 
-        GameObject newLimit = Instantiate(limPref);
+        Limit newLimit = Instantiate(limPref);
         newLimit.GetComponent<CardClicker>().played = true;
         players[me].limit = newLimit.GetComponent<Limit>();
-        tableLayouts[me].addLimitCard(newLimit);
+        tableLayouts[me].AddLimitCard(newLimit);
 
-        GameObject newWin = Instantiate(winPref);
+        WinCondition newWin = Instantiate(winPref);
         newWin.GetComponent<CardClicker>().played = true;
         players[me].winCon = newWin.GetComponent<WinCondition>();
-        tableLayouts[me].addWinCard(newWin);
+        tableLayouts[me].AddWinCard(newWin);
     }
 
-    public void DrawCard(GameObject cardPref)
+    public void DrawCard(Card cardPref)
     {
-        GameObject newCard = Instantiate(cardPref, playerHand.transform);
+        Card newCard = Instantiate(cardPref, playerHand.transform);
         newCard.transform.localPosition = Vector3.zero;
         newCard.transform.localRotation = Quaternion.Euler(0, 0, 0);
         players[me].hand.Add(newCard.GetComponent<Card>());

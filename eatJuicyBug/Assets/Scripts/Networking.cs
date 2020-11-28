@@ -174,18 +174,18 @@ public class Networking : MonoBehaviour
     {
         if (myPlayerIndex != -1)
         {
-            GameObject limitCard;
-            GameObject winCard;
-            GameObject[] newHand = new GameObject[3];
+            Limit limitCard;
+            WinCondition winCard;
+            Card[] newHand = new Card[3];
 
             //GameManager.instance.players[myPlayerIndex].Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
             newHand[0] = CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"'));
             newHand[1] = CardDictionary.instance.GetCard(evt.data.GetField("card2").ToString().Trim('"'));
             newHand[2] = CardDictionary.instance.GetCard(evt.data.GetField("card3").ToString().Trim('"'));
 
-            limitCard = CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
+            limitCard = (Limit) CardDictionary.instance.GetCard(evt.data.GetField("limit").ToString().Trim('"'));
 
-            winCard = CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
+            winCard = (WinCondition) CardDictionary.instance.GetCard(evt.data.GetField("win").ToString().Trim('"'));
 
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
             GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard, winCard);
@@ -210,18 +210,18 @@ public class Networking : MonoBehaviour
     {
         if (myPlayerIndex != -1)
         {
-            GameObject limitCard;
-            GameObject winCard;
-            GameObject[] newHand = new GameObject[3];
+            Limit limitCard;
+            WinCondition winCard;
+            Card[] newHand = new Card[3];
 
             //GameManager.instance.players[myPlayerIndex].Hand.Add(CardDictionary.instance.GetCard(evt.data.GetField("card1").ToString().Trim('"')).GetComponent<Card>());
             newHand[0] = CardDictionary.instance.GetCard(tempDataStore.data.GetField("card1").ToString().Trim('"'));
             newHand[1] = CardDictionary.instance.GetCard(tempDataStore.data.GetField("card2").ToString().Trim('"'));
             newHand[2] = CardDictionary.instance.GetCard(tempDataStore.data.GetField("card3").ToString().Trim('"'));
 
-            limitCard = CardDictionary.instance.GetCard(tempDataStore.data.GetField("limit").ToString().Trim('"'));
+            limitCard = (Limit) CardDictionary.instance.GetCard(tempDataStore.data.GetField("limit").ToString().Trim('"'));
 
-            winCard = CardDictionary.instance.GetCard(tempDataStore.data.GetField("win").ToString().Trim('"'));
+            winCard = (WinCondition) CardDictionary.instance.GetCard(tempDataStore.data.GetField("win").ToString().Trim('"'));
 
             Debug.Log("Hand created: " + newHand[0].name + ", " + newHand[1].name + ", " + newHand[2].name);
             GameManager.instance.InstantiateMyCards(myPlayerIndex, newHand, limitCard, winCard);
@@ -250,24 +250,27 @@ public class Networking : MonoBehaviour
 
         string targetPlayer = evt.data.GetField("targetID").ToString().Trim('"');
         int targetPlayerIndex = -1;
-        if (targetPlayer != "none") targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
+        if(targetPlayer != "none")
+        {
+            targetPlayerIndex = GameManager.instance.GetPlayerIndexFromID(targetPlayer);
+        }
         string targetCard = evt.data.GetField("targetCard").ToString().Trim('"');
 
         // **Assuming creature card for now
 
         Debug.Log(GameManager.instance.players[playerIndex].name + " has played " + cardString);
 
-        if (cardString != "none")
+        if(cardString != "none")
         {
-            GameObject cardPlayed = null;
+            Card cardPlayed = null;
 
-            if (myPlayerIndex == playerIndex)
+            if(myPlayerIndex == playerIndex)
             {
-                for (int i = 0; i < GameManager.instance.playerHand.transform.childCount; i++)
+                for(int i = 0; i < GameManager.instance.playerHand.transform.childCount; i++)
                 {
-                    if (GameManager.instance.playerHand.transform.GetChild(i).GetComponent<Card>().cardName == cardString)
+                    if(GameManager.instance.playerHand.transform.GetChild(i).GetComponent<Card>().cardName == cardString)
                     {
-                        cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).gameObject;
+                        cardPlayed = GameManager.instance.playerHand.transform.GetChild(i).GetComponent<Card>();
 
                         cardPlayed.transform.SetParent(null);
                         cardPlayed.transform.localScale = Vector3.one * 0.2F;
@@ -280,7 +283,6 @@ public class Networking : MonoBehaviour
             }
             else
             {
-                //CreatureType creature = CardDictionary.instance.GetCard(cardString).GetComponent<CardData>().GetCreatureType();
                 cardPlayed = Instantiate(CardDictionary.instance.GetCard(cardString));
                 cardPlayed.GetComponent<CardClicker>().played = true;
             }
@@ -291,12 +293,12 @@ public class Networking : MonoBehaviour
                 {
                     if(targetCard != "none")    // card was removed to play
                     {
-                        GameManager.instance.tableLayouts[playerIndex].removePlacedCard(targetCard);
+                        GameManager.instance.tableLayouts[playerIndex].RemovePlacedCard(targetCard);
                         GameManager.instance.players[playerIndex].cardsOnTable--;
                     }
 
                     c.playerIndex = playerIndex;
-                    GameManager.instance.tableLayouts[playerIndex].placeCard(cardPlayed);
+                    GameManager.instance.tableLayouts[playerIndex].PlaceCard(c);
                     GameManager.instance.players[playerIndex].cardsOnTable++;
                     GameManager.instance.PlayCreature(c.Type, playerIndex);
                 }
@@ -312,26 +314,26 @@ public class Networking : MonoBehaviour
                         CreatureType creatureType = cardPlayed.GetComponent<Magic>().creatureType;
                         cardPlayed.GetComponent<Magic>().DoMagic(playerIndex, targetPlayerIndex, creatureType);
                     }
-                    else if (targetCard != "none")
+                    else if(targetCard != "none")
                     {
-                        GameObject targettedCard = null;
-                        foreach (GameObject card in GameManager.instance.tableLayouts[targetPlayerIndex].tableCards)
+                        Creature targetedCard = null;
+                        foreach(Creature card in GameManager.instance.tableLayouts[targetPlayerIndex].tableCards)
                         {
-                            if (card.GetComponent<Card>().cardName == targetCard)
+                            if (card.cardName == targetCard)
                             {
-                                targettedCard = card;
+                                targetedCard = card;
                                 continue;
                             }
                         }
 
-                        if (targettedCard)
+                        if (targetedCard)
                         {
                             // PLAY MAGIC CARD THAT TARGETS ANOTHER PLAYERS CARD
-                            CreatureType creatureType = targettedCard.GetComponent<Creature>().Type;
+                            CreatureType creatureType = targetedCard.Type;
                             Debug.Log("==================");
                             Debug.Log("user: " + playerIndex);
                             Debug.Log("target: " + targetPlayerIndex);
-                            Debug.Log("creature: " + creatureType.ToString());
+                            Debug.Log("creature: " + creatureType);
                             Debug.Log("==================");
                             cardPlayed.GetComponent<Magic>().DoMagic(playerIndex, targetPlayerIndex, creatureType);
                         }
@@ -345,7 +347,7 @@ public class Networking : MonoBehaviour
                     Debug.Log("==================");
                     Debug.Log("user: " + playerIndex);
                     Debug.Log("target: " + targetPlayerIndex);
-                    Debug.Log("creature: " + type.ToString());
+                    Debug.Log("creature: " + type);
                     Debug.Log("==================");
                     cardPlayed.GetComponent<Magic>().DoMagic(playerIndex, targetPlayerIndex, type);
                 }
@@ -364,7 +366,7 @@ public class Networking : MonoBehaviour
     void recieveCardDrawn(SocketIOEvent evt)
     {
         string cardString = evt.data.GetField("card").ToString().Trim('"');
-        GameObject newCard = CardDictionary.instance.GetCard(cardString);
+        Card newCard = CardDictionary.instance.GetCard(cardString);
         GameManager.instance.DrawCard(newCard);
     }
 
@@ -404,7 +406,7 @@ public class Networking : MonoBehaviour
 
         if (CardDictionary.instance.GetCard(cardString).GetComponent<Card>() is Creature)
         {
-            GameManager.instance.tableLayouts[playerIndex].removePlacedCard(cardString);
+            GameManager.instance.tableLayouts[playerIndex].RemovePlacedCard(cardString);
             GameManager.instance.players[playerIndex].cardsOnTable--;
         }
     }
@@ -432,18 +434,16 @@ public class Networking : MonoBehaviour
 
         if(newWinStr != "none")
         {
-            GameObject winCard = CardDictionary.instance.GetCard(newWinStr);
-            GameObject newWin = Instantiate(winCard);
-            newWin.GetComponent<CardClicker>().played = true;
-            GameManager.instance.tableLayouts[playerIndex].addWinCard(newWin);
-            GameManager.instance.players[playerIndex].winCon = newWin.GetComponent<WinCondition>();
+            WinCondition winCard = (WinCondition) CardDictionary.instance.GetCard(newWinStr);
+            winCard.GetComponent<CardClicker>().played = true;
+            GameManager.instance.tableLayouts[playerIndex].AddWinCard(winCard);
+            GameManager.instance.players[playerIndex].winCon = winCard;
         }
         if(newLimStr != "none")
         {
-            GameObject limitCard = CardDictionary.instance.GetCard(newLimStr);
-            GameObject newLimit = Instantiate(limitCard);
-            newLimit.GetComponent<CardClicker>().played = true;
-            GameManager.instance.tableLayouts[playerIndex].addLimitCard(newLimit);
+            Limit limitCard = (Limit) CardDictionary.instance.GetCard(newLimStr);
+            limitCard.GetComponent<CardClicker>().played = true;
+            GameManager.instance.tableLayouts[playerIndex].AddLimitCard(limitCard);
         }
     }
 

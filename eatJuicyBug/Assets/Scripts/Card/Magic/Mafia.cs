@@ -10,8 +10,8 @@ public class Mafia : Magic
         for (int i = 0; i < GameManager.instance.tableLayouts[targetIndex].tableCards.Count; i++) {
             if (GameManager.instance.tableLayouts[targetIndex].tableCards[i].GetComponent<Card>() is Creature c && c.Type == creatureType) {
                 // if the player has the specific creature type. 
-                GameObject card = GameManager.instance.tableLayouts[targetIndex].tableCards[i];
-                GameManager.instance.tableLayouts[targetIndex].GetComponent<CustomLayout>().removePlacedCard(card);
+                Creature card = GameManager.instance.tableLayouts[targetIndex].tableCards[i];
+                GameManager.instance.tableLayouts[targetIndex].GetComponent<CustomLayout>().RemovePlacedCard(card);
                 GameManager.instance.players[targetIndex].cardsOnTable--;
                 GameManager.instance.subTractCreature(creatureType, playerIndex);
                 return;

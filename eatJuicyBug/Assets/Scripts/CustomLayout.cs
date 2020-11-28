@@ -1,36 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CustomLayout : MonoBehaviour
 {
-    Vector3 limitLocalPosition;
-    Vector3 winLocalPosition;
-    //Vector3 playCardLocalPosition = new Vector3(-0.16F, 0.52F, 0.1F);
+    [SerializeField] private Transform cardsLayout = null;
+    [SerializeField] private Transform winPos = null;
+    [SerializeField] private Transform limPos = null;
 
-    GameObject cardsLayout;
-    GameObject winPos;
-    GameObject limPos;
+    public List<Creature> tableCards = new List<Creature>();
+    public Limit limitCard;
+    public WinCondition winCard;
 
-    public List<GameObject> tableCards;
-    public GameObject limitCard;
-    public GameObject winCard;
-
-    void Awake()
-    {
-        tableCards = new List<GameObject>();
-        cardsLayout = transform.GetChild(0).gameObject;
-        winPos = transform.GetChild(1).gameObject;
-        limPos = transform.GetChild(2).gameObject;
-
-        limitLocalPosition = limPos.transform.localPosition;
-        winLocalPosition = winPos.transform.localPosition;
-    }
-
-    public void placeCard(GameObject card)
+    public void PlaceCard(Creature card)
     {
         tableCards.Add(card);
-        card.transform.SetParent(cardsLayout.transform);
+        card.transform.SetParent(cardsLayout);
         card.transform.localPosition = Vector3.zero;
 
         if (tableCards.Count > 6)
@@ -38,18 +22,11 @@ public class CustomLayout : MonoBehaviour
             Debug.LogWarning("max cards placed, placing at center");
             card.transform.localPosition = new Vector3(0, 0.52F, 0);
         }
-        else
-        {
-            //card.transform.localPosition = playCardLocalPosition;
-
-            //update nextPosition
-            //playCardLocalPosition = new Vector3(playCardLocalPosition.x + 0.11F, playCardLocalPosition.y, playCardLocalPosition.z);
-        }
     }
 
-    public void removePlacedCard(GameObject card)
+    public void RemovePlacedCard(Creature card)
     {
-        Debug.Log(" trying to remove: " + card);
+        Debug.Log(" trying to remove: " + card.name);
 
         if (!tableCards.Contains(card))
         {
@@ -59,65 +36,71 @@ public class CustomLayout : MonoBehaviour
 
         if (Networking.server.host)
         {
-            Networking.server.discardCard(card.GetComponent<Card>().cardName);
+            Networking.server.discardCard(card.cardName);
         }
 
         tableCards.Remove(card);
 
         Debug.Log("removed: " + card);
-        Destroy(card);
+        Destroy(card.gameObject);
     }
 
-    public void removePlacedCard(string cardName)
+    public void RemovePlacedCard(string cardName)
     {
-        foreach(GameObject c in tableCards)
+        foreach(Creature c in tableCards)
         {
-            if(c.GetComponent<Card>().cardName == cardName)
+            if(c.cardName == cardName)
             {
-                removePlacedCard(c);
+                RemovePlacedCard(c);
                 return;
             }
         }
         Debug.LogWarning("Could not find card to remove. " + cardName);
     }
 
-    public void addLimitCard(GameObject card)
+    public void AddLimitCard(Limit card)
     {
-        if (limitCard)
+        if(limitCard)
         {
-            if(limitCard.GetComponent<Card>().cardName == card.GetComponent<Card>().cardName)
+            if(limitCard.cardName == card.cardName)
             {
                 // already have this card
-                Destroy(card);
+                Destroy(card.gameObject);
                 return;
             }
 
-            if (Networking.server.host) Networking.server.discardCard(limitCard.GetComponent<Card>().cardName);
+            if(Networking.server.host)
+            {
+                Networking.server.discardCard(limitCard.cardName);
+            }
             Destroy(limitCard);
         }
-
-        card.transform.SetParent(transform);
+        
+        card.transform.SetParent(limPos);
         limitCard = card;
-        limitCard.transform.localPosition = limitLocalPosition;
+        limitCard.transform.localPosition = Vector3.zero;
     }
 
-    public void addWinCard(GameObject card)
+    public void AddWinCard(WinCondition card)
     {
-        if (winCard)
+        if(winCard)
         {
-            if (winCard.GetComponent<Card>().cardName == card.GetComponent<Card>().cardName)
+            if(winCard.cardName == card.cardName)
             {
                 // already have this card
-                Destroy(card);
+                Destroy(card.gameObject);
                 return;
             }
 
-            if (Networking.server.host) Networking.server.discardCard(winCard.GetComponent<Card>().cardName);
+            if(Networking.server.host)
+            {
+                Networking.server.discardCard(winCard.cardName);
+            }
             Destroy(winCard);
         }
 
-        card.transform.SetParent(transform);
+        card.transform.SetParent(winPos);
         winCard = card;
-        winCard.transform.localPosition = winLocalPosition;
+        winCard.transform.localPosition = Vector3.zero;
     }
 }

@@ -1,12 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class EatMagic : Magic
 {
-   
-    public override void DoMagic(int playerIndex, int targetIndex, CreatureType creatureType) {
-
+    public void DoMagic(Deck deck, List<Card> hand)
+    {
+        Card c = deck.SkipFirstWhere(card => card is Creature creature && creature.Type == creatureType);
+        if(!(c is null))
+        {
+            hand.Add(c);
+        }
     }
-
 }

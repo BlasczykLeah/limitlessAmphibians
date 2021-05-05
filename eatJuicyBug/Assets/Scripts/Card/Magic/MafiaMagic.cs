@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mafia : Magic
+public class MafiaMagic : Magic
 {
     // take an opponents card, and put it into your hand
     

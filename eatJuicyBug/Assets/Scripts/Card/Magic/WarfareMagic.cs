@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Warfare : Magic
+public class WarfareMagic : Magic
 {
 
     // destroy each of creature type
